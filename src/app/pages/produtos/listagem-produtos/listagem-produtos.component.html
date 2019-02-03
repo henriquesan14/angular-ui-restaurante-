@@ -1,0 +1,38 @@
+<app-painel-simples titulo="Produtos" col="12" tipo="default" >
+  <div class="form-group row">
+    <button class="btn btn-primary add" routerLink="/dashboard/produtos/novo">Novo Produto</button>
+    <input placeholder="Pesquise o nome do produto..." [(ngModel)]="nome" type="text" name="nome" class="form-control col-md-6">
+    <button (click)="findAll(nome)" class="btn btn-success col-md-1"><i class="fas fa-search"></i></button>
+  </div>
+  <br>
+    <table *ngIf="existemProdutos()" class="table table-hover">
+      <thead>
+        <tr>
+          <th (click)="trocarOrder('id')">Id</th>
+          <th (click)="trocarOrder('nome')">Nome</th>
+          <th (click)="trocarOrder('categoria')">Categoria</th>
+          <th (click)="trocarOrder('preco')">Preço</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let produto of produtos">
+          <td>{{produto.id}}</td>
+          <td>{{produto.nome}}</td>
+          <td>{{produto.categoria}}</td>
+          <td>{{produto.preco | currency:'BRL'}}</td>
+          <td><button type="button" class="btn btn-success btn-sm"><i class="fas fa-pencil-alt"></i></button></td>
+          <td><button type="button" class="btn btn-danger btn-sm"><i class="fas fa-trash-alt"></i></button></td>
+        </tr>
+      </tbody>
+    </table>
+    <div *ngIf="!existemProdutos()">
+      <span class="badge badge-info">Nenhum produto cadastrado</span>
+    </div>
+    <div class="text-center">
+      <i *ngIf="pageProdutos.number" (click)="findAll(nome,0,orderBy)" class="fas fa-angle-double-left"></i>
+      <i *ngIf="pageProdutos.number" (click)="findAll(nome, pageProdutos.number -1,orderBy)" class="fas fa-angle-left"></i>
+      <label [ngClass]="pageProdutos.number === i? 'atual': ''" class="number" (click)="findAll(nome, i,orderBy)" *ngFor="let i of totalPages()">{{i+1}}</label>
+      <i *ngIf="pageProdutos.number < pageProdutos.totalPages -1" (click)="findAll(nome,pageProdutos.number +1,orderBy)" class="fas fa-angle-right"></i>
+      <i *ngIf="pageProdutos.number < pageProdutos.totalPages -1" (click)="findAll(nome,pageProdutos.totalPages -1,orderBy)" class="fas fa-angle-double-right"></i>
+    </div>
+</app-painel-simples>

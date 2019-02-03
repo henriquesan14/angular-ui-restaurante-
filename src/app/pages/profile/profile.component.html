@@ -1,0 +1,139 @@
+<app-painel-simples titulo="Profile" col="12" tipo="default">
+    <form #f="ngForm" (ngSubmit)="updateUsuario()" >
+      <div class="row">
+        <div class="form-group col-md-6">
+          <label for="nome">Nome</label>
+          <input type="text" name="nome" #nome="ngModel" [(ngModel)]="usuario.nome" [class.is-invalid]="!nome.valid && nome.touched" id="nome"   
+          class="form-control"  required />
+          <div *ngIf="!nome.valid && nome.touched" class="text-danger">
+              Informe o nome
+          </div>
+        </div>
+
+        <div class="form-group col-md-6">
+            <label for="sobrenome">Sobrenome</label>
+            <input type="text" name="sobrenome" #sobrenome="ngModel" [(ngModel)]="usuario.sobrenome" [class.is-invalid]="!sobrenome.valid && sobrenome.touched" id="sobrenome"   
+            class="form-control"  required />
+            <div *ngIf="!sobrenome.valid && sobrenome.touched" class="text-danger">
+                Informe o sobrenome
+            </div>
+        </div>
+
+        <div class="form-group col-md-6">
+            <label for="cpf">CPF</label>
+            <input readonly  type="text" name="cpf" #cpf="ngModel" [(ngModel)]="usuario.cpf" [class.is-invalid]="!cpf.valid && cpf.touched" id="cpf"   
+            class="form-control" />
+        </div>
+
+        <div class="form-group col-md-6">
+            <label for="telefone">Telefone</label>
+            <input type="text" name="telefone" #telefone="ngModel" [(ngModel)]="usuario.telefone" [class.is-invalid]="!telefone.valid && telefone.touched" id="telefone"   
+            class="form-control" required minlength="14" maxlength="14" placeholder="(00)00000-0000" [textMask]="{mask: maskFone, guide: false}" />
+            <div *ngIf="!telefone.valid && telefone.touched" class="text-danger">
+                Informe o telefone
+            </div>
+        </div>
+
+        <div class="form-group col-md-6">
+            <label for="email">Email</label>
+            <input type="email" name="email" #email="ngModel" [(ngModel)]="usuario.email" [class.is-invalid]="!email.valid && email.touched" id="email"   
+            class="form-control" placeholder="example@email.com" required email  />
+            <div *ngIf="!email.valid && email.touched" class="text-danger">
+                Email inválido
+            </div>
+        </div>
+
+        <div class="form-group col-md-6">
+            <label >Perfis</label>
+            <div>
+              <label class=" badge" [ngClass]="perfil === 'ADMIN' ? 'badge-danger' : 'badge-success' " *ngFor="let perfil of usuario.perfis">{{perfil}}</label>
+            </div>
+          </div>
+
+        <div class="form-group col-md-12">
+          <button type="submit" [disabled]="!f.valid" class="mr btn btn-success">Editar</button>
+          <button data-toggle="modal" data-target="#exampleModal" type="button" class="btn btn-primary">Alterar senha</button>
+        </div>
+      </div>
+    </form>
+  </app-painel-simples>
+
+  <app-painel-simples titulo="Endereços" col="12" >
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th>Descrição</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let end of usuario.enderecos">
+          <td>{{end.logradouro +', nº' + end.numero + ' ' + end?.complemento + ', ' + end.bairro + ', ' + end.cep}}</td>
+          <td><button routerLink="/dashboard/profile/{{usuario.id}}/endereco/{{end.id}}" type="button"   class="btn btn-success btn-sm"><i class="fas fa-pencil-alt"></i></button></td>
+          <td><button type="button" class="btn btn-danger btn-sm" (click)="trocaId(end.id)" data-toggle="modal" data-target="#confirmDialog"><i class="fas fa-trash"></i></button></td>
+        </tr>
+      </tbody>
+    </table>
+    <button class="btn btn-primary" data-toggle="modal" data-target="#modalEnd">Novo Endereço</button>
+  </app-painel-simples>
+    
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Alterar Senha</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+          <div class="modal-body">
+              <form [formGroup]="formSenha" (ngSubmit)="updatePassword(); $event.preventDefault()">
+                  <div class="row">
+                      <div class="form-group col-md-10">
+                          <label for="senhaAtual">Senha atual*</label>
+                          <input type="password" name="senhaAtual" maxlength="40"  formControlName="senhaAtual" id="senhaAtual"   
+                          class="form-control"/>
+                      </div>
+            
+                      <div class="form-group col-md-10">
+                          <label for="novaSenha">Nova senha*</label>
+                          <input type="password" name="novaSenha" maxlength="40" formControlName="novaSenha"   id="novaSenha"   
+                          class="form-control" />
+                      </div>
+            
+                      <div class="form-group col-md-10">
+                          <label for="confirmSenha">Confirmação de senha*</label>
+                          <input type="password" name="confirmSenha" maxlength="40" formControlName="confirmSenha"  id="confirmSenha"   
+                          class="form-control"/>
+                      </div>
+            
+                      <div class="form-group col-md-12">
+                          <button type="button" class="mr btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                          <button type="submit" [disabled]="formSenha.invalid"  class="btn btn-success" >Alterar senha</button>
+                      </div>
+                      
+                  </div>
+                </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal fade" id="confirmDialog" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+              <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLongTitle">Tem certeza que deseja apagar o registro de {{id}}? </h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+            <div class="modal-body">
+                <button class="mr btn btn-secondary"  data-dismiss="modal">Cancelar</button>
+                <button class="btn btn-danger" data-dismiss="modal" (click)="deleteEndereco()">Apagar</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    <app-cadastro-endereco (outputEvent)="update()" [idUsuario]="usuario.id"></app-cadastro-endereco>
+    

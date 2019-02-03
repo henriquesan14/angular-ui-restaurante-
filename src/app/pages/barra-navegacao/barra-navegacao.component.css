@@ -1,0 +1,12 @@
+.navbar{
+    margin: 0;
+    border-radius: 0;
+  }
+  .navbar-toggle{
+    display: inline-block;
+    margin-left: 10px;
+  }
+
+  .nav-item{
+    cursor:pointer;
+  }

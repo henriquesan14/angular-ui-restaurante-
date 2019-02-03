@@ -1,0 +1,53 @@
+<div class="modal fade" id="modalEnd" tabindex="-1" role="dialog" aria-labelledby="modalEnd" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLongTitle">Novo Endereço</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+      <div class="modal-body">
+          <form [formGroup]="formEnd" (ngSubmit)="onSubmit(); $event.preventDefault()">
+              <div class="row">
+                  <div class="form-group col-md-10">
+                      <label for="logradouro">Logradouro*</label>
+                      <input type="text" name="logradouro"  formControlName="logradouro" id="logradouro"   
+                      class="form-control"/>
+                  </div>
+        
+                  <div class="form-group col-md-10">
+                      <label for="numero">Número*</label>
+                      <input type="text" name="numero" formControlName="numero"   id="numero"   
+                      class="form-control" />
+                  </div>
+        
+                  <div class="form-group col-md-10">
+                      <label for="bairro">Bairro*</label>
+                      <input type="text" name="bairro" formControlName="bairro"  id="bairro"   
+                      class="form-control"/>
+                  </div>
+
+                  <div class="form-group col-md-10">
+                    <label for="complemento">Complemento</label>
+                    <input type="text" name="complemento" formControlName="complemento"  id="complemento"   
+                    class="form-control"/>
+                  </div>
+
+                  <div class="form-group col-md-10">
+                    <label for="cep">CEP*</label>
+                    <input [textMask]="{mask: maskCep, guide: false}" placeholder="00000-000" maxlength="9" type="text" name="cep" formControlName="cep"  id="cep"   
+                    class="form-control"/>
+                  </div>
+        
+                  <div class="form-group col-md-12">
+                      <button type="button" class="mr btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                      <button type="submit" [disabled]="formEnd.invalid"  class="btn btn-success" >Adicionar</button>
+                  </div>
+                  
+              </div>
+            </form>
+      </div>
+    </div>
+  </div>
+</div>

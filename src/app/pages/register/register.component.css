@@ -1,0 +1,29 @@
+.badge{
+    font-size:18px;
+}
+
+
+#form-container {
+    width: 100%;
+    height: 80%;
+    background: #16202a;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#form-box {
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    width: 75%;
+    padding: 20px;
+    box-sizing: border-box;
+    border-radius:5px;
+}
+
+.mr{
+    margin-right: 10px;
+}
+

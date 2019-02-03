@@ -1,0 +1,59 @@
+#form-container {
+    width: 100vw;
+    height: 100vh;
+    background: #16202a;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+}
+
+#form-box {
+    width: 300px;
+    padding: 20px;
+    box-sizing: border-box;
+    background-color: #fff;
+    border-radius:5px;
+}
+
+#form-box img{
+    display: block;
+    width: 120px;
+    height: 120px;
+    margin: 10px auto;
+}
+
+.btn.btn-success{
+    background-color:#26323e;
+    color:#fff;
+    border:none;
+}
+
+.btn.btn-success:hover{
+    background-color:#15212a;
+
+}
+
+.label.label-danger{
+font-size:15px;
+}
+
+.label.label-success{
+font-size:15px;
+}
+
+.badge-danger{
+    font-size:13px;
+}
+
+.register{
+    margin-top:5px;
+    color:#15212a;
+    border: 1px solid #15212a;;
+}
+
+.register:hover{
+    color: #fff;
+    background-color:#26323e;
+}

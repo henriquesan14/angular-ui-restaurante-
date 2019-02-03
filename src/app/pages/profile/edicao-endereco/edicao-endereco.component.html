@@ -1,0 +1,53 @@
+<app-painel-simples titulo="Editar Endereço" col="12" tipo="default">
+    <form #f="ngForm" (ngSubmit)="updateEndereco()">
+        <div class="row">
+
+            <div class="form-group col-md-10">
+                <label for="logradouro">Logradouro*</label>
+                <input type="text" #logradouro="ngModel" [class.is-invalid]="!logradouro.valid && logradouro.touched" id="logradouro" name="logradouro"
+                class="form-control"  [(ngModel)]="end.logradouro" required />
+                <div *ngIf="!logradouro.valid && logradouro.touched" class=" text-danger">
+                    Informe o logradouro
+                </div>
+            </div>
+  
+            <div class="form-group col-md-10">
+                <label for="numero">Número*</label>
+                <input type="text" #numero="ngModel" [class.is-invalid]="!numero.valid && numero.touched" id="numero" name="numero"
+                class="form-control"  [(ngModel)]="end.numero" required />
+                <div *ngIf="!numero.valid && numero.touched" class=" text-danger">
+                    Informe o número
+                </div>
+            </div>
+  
+            <div class="form-group col-md-10">
+                    <label for="bairro">Bairro*</label>
+                    <input type="text" #bairro="ngModel" [class.is-invalid]="!bairro.valid && bairro.touched" id="bairro" name="bairro"
+                    class="form-control"  [(ngModel)]="end.bairro" required />
+                    <div *ngIf="!bairro.valid && bairro.touched" class=" text-danger">
+                        Informe o bairro
+                    </div>
+            </div>
+
+            <div class="form-group col-md-10">
+                    <label for="complemento">Complemento</label>
+                    <input type="text" #complemento="ngModel"  id="complemento" name="complemento"
+                    class="form-control"  [(ngModel)]="end.complemento" />
+            </div>
+
+            <div class="form-group col-md-10">
+                    <label for="cep">CEP*</label>
+                    <input [textMask]="{mask: maskCep, guide: false}" placeholder="00000-000" type="text" #cep="ngModel" [class.is-invalid]="!cep.valid && cep.touched" id="cep" name="cep"
+                    class="form-control"  [(ngModel)]="end.cep" required minlength="9" maxlength="9" />
+                    <div *ngIf="!cep.valid && cep.touched" class=" text-danger">
+                        Informe o CEP
+                    </div>
+            </div>
+  
+            <div class="form-group col-md-12">
+                <button type="button" routerLink="/dashboard/profile" class="mr btn btn-secondary">Voltar</button>
+                <button type="submit" [disabled]="!f.valid"  class="btn btn-success" >Editar</button>
+            </div> 
+        </div>
+      </form>
+  </app-painel-simples>

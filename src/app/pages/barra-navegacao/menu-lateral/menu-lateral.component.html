@@ -1,0 +1,52 @@
+<div class="menu" [class.menu-open]="menuAberto">
+    <ul>
+        <a routerLink="/dashboard/profile"><img class="user" src="assets/imgs/user2.png"></a>
+        <li ><a (click)="toggle5()"><i class="fas fa-user"></i><span>{{ (usuarioService.usuario$ | async)?.nome }}</span></a>
+            <ul [ngClass]="opProfile == true ? 'show-menu' : 'hide-menu'">
+                <li><a routerLink="/dashboard/profile"><i class="fas fa-user-cog"></i>Profile</a></li>
+                <li><a (click)="logout()"><i class="fas fa-sign-out-alt"></i>Sair</a></li>
+            </ul>
+        </li>
+    </ul>
+    <hr class="barra">  
+    <ul>
+    
+    <li><a><i class="fas fa-chart-line"></i><span>Dashboard</span></a></li>
+       
+    <li ><a (click)="toggle1()"><i class="fas fa-utensils"></i><span>Produtos</span></a>
+     <ul [ngClass]="opProdutos == true ? 'show-menu' : 'hide-menu'">
+         <li><a routerLink="/dashboard/produtos"><i class="fas fa-list-alt"></i>Listar</a></li>
+         <li><a routerLink="/dashboard/produtos/novo"><i class="fas fa-plus-square"></i>Cadastrar</a></li>
+     </ul>
+    </li>
+
+    <li ><a (click)="toggle2()"><i class="fas fa-concierge-bell"></i><span>Categorias</span></a>
+        <ul [ngClass]="opCategorias == true ? 'show-menu' : 'hide-menu'">
+            <li><a routerLink="/dashboard/categorias"><i class="fas fa-list-alt"></i>Listar</a></li>
+            <li><a routerLink="/dashboard/categorias/novo"><i class="fas fa-plus-square"></i>Cadastrar</a></li>
+        </ul>
+       </li>
+
+    <li ><a (click)="toggle3()"><i class="fas fa-chair"></i><span>Mesas</span></a>
+      <ul [ngClass]="opMesas == true ? 'show-menu' : 'hide-menu'">
+          <li><a routerLink="/dashboard/mesas"><i class="fas fa-list-alt"></i>Listar</a></li>
+          <li><a routerLink="/dashboard/mesas/novo"><i class="fas fa-plus-square"></i>Cadastrar</a></li>
+      </ul>
+     </li>
+
+     <li ><a (click)="toggle4()"><i class="fas fa-shopping-cart"></i><span>Pedidos</span></a>
+      <ul [ngClass]="opPedidos == true ? 'show-menu' : 'hide-menu'">
+          <li><a routerLink="/dashboard/pedidos"><i class="fas fa-list-alt"></i>Listar</a></li>
+          <li><a routerLink="/dashboard/pedidos/novo"><i class="fas fa-plus-square"></i>Novo</a></li>
+      </ul>
+     </li>
+
+     <li ><a (click)="toggle6()"><i class="fas fa-user-alt"></i><span>Usuários</span></a>
+        <ul [ngClass]="opUsuarios == true ? 'show-menu' : 'hide-menu'">
+            <li><a routerLink="/dashboard/usuarios"><i class="fas fa-list-alt"></i>Listar</a></li>
+            <li><a routerLink="/dashboard/usuarios/novo"><i class="fas fa-plus-square"></i>Novo</a></li>
+        </ul>
+       </li>
+    
+  </ul>
+</div>
