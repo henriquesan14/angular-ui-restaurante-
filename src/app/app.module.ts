@@ -35,6 +35,7 @@ import { ListagemUsuariosComponent } from './pages/usuarios/listagem-usuarios/li
 import { CadastroUsuarioComponent } from './pages/usuarios/cadastro-usuario/cadastro-usuario.component';
 import { RegisterComponent } from './pages/register/register.component';
 import { environment } from 'src/environments/environment';
+import { EdicaoProdutoComponent } from './pages/produtos/edicao-produto/edicao-produto.component';
 
 @NgModule({
   declarations: [
@@ -60,7 +61,8 @@ import { environment } from 'src/environments/environment';
     EdicaoEnderecoComponent,
     ListagemUsuariosComponent,
     CadastroUsuarioComponent,
-    RegisterComponent
+    RegisterComponent,
+    EdicaoProdutoComponent
   ],
   imports: [
     BrowserModule,

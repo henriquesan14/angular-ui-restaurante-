@@ -17,7 +17,20 @@ export class ProdutoService {
       `${API_CONFIG.baseUrl}/produtos?nome=${nome}&page=${page}&orderBy=${orderBy}&linesPorPage=${linesporPage}`);
   }
 
+  find(id: string){
+    return this.http.get(`${API_CONFIG.baseUrl}/produtos/${id}`);
+  }
+
   insert(produto: Produto){
     return this.http.post(`${API_CONFIG.baseUrl}/produtos`, produto);
   }
+
+  update(produto: Produto){
+    return this.http.put(`${API_CONFIG.baseUrl}/produtos/${produto.id}`, produto);
+  }
+
+  delete(id: string) {
+    return this.http.delete(`${API_CONFIG.baseUrl}/produtos/${id}`);
+  }
+
 }

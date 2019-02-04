@@ -1,4 +1,4 @@
-import { Component} from '@angular/core';
+import { Component, Output, EventEmitter} from '@angular/core';
 import { Produto } from 'src/app/models/produto';
 import { ProdutoService } from 'src/app/services/domain/produto.service';
 import { Router } from '@angular/router';
@@ -11,6 +11,7 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class CadastroProdutoComponent {
 
+  @Output() outputEvent = new EventEmitter();
   constructor(private produtoService: ProdutoService,
      private router: Router,
      private toastr: ToastrService) { }
@@ -20,7 +21,11 @@ export class CadastroProdutoComponent {
     .subscribe(() => {
         this.toastr.success('Produto cadastrado', 'Sucesso');
          this.router.navigateByUrl('/dashboard/produtos'); }, (error) =>{
-         console.log(error) ; this.toastr.error(error.error.message, 'Falha'); });
+         console.log(error) ;
+          this.toastr.error(error.error.message, 'Falha');
+
+
+        });
     }
 
 }

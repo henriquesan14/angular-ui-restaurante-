@@ -4,6 +4,7 @@ import { AuthService } from 'src/app/services/auth.service';
 import { StorageService } from 'src/app/services/storage.service';
 import { UsuarioService } from 'src/app/services/domain/usuario.service';
 import { Usuario } from 'src/app/models/usuario';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-menu-lateral',
@@ -17,7 +18,8 @@ export class MenuLateralComponent implements OnInit {
   constructor(private auth: AuthService,
      private router: Router,
       private storage: StorageService,
-     public usuarioService: UsuarioService) { }
+     public usuarioService: UsuarioService,
+     private toastr: ToastrService) { }
   opProdutos = false;
   opMesas = false;
   opPedidos = false;
@@ -54,6 +56,7 @@ export class MenuLateralComponent implements OnInit {
 
   logout(){
     this.auth.logout();
+    this.toastr.success('Desconectado!', 'Sucesso');
     this.router.navigateByUrl('');
   }
 

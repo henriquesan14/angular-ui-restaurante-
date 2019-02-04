@@ -3,6 +3,7 @@ import { AuthService } from 'src/app/services/auth.service';
 import { UsuarioNewDTO } from 'src/app/models/usuario-new.dto';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { ErrorResponse } from 'src/app/models/error';
 
 
 @Component({
@@ -27,9 +28,19 @@ export class RegisterComponent implements OnInit {
     this.authService.register(this.usuario)
     .subscribe((response) => {
       this.auth.successFullLogin(response.headers.get('Authorization'));
+      this.toastr.success('Bem Vindo!', 'Sucesso');
       this.router.navigateByUrl('/dashboard');
        },
-    (error) => {console.log(error); this.toastr.error(error.error.message, 'Falha'); });
+    (error) => {
+      console.log(error);
+      if(error.error.errors){
+        for(const err of error.error.errors){
+          this.toastr.error(err.message, 'Falha');
+        }
+      } else {
+        this.toastr.error(error.error.message, 'Falha');
+      }
+      });
   }
 
 }

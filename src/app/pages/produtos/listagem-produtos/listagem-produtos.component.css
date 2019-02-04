@@ -29,3 +29,7 @@ th:hover{
     cursor: pointer;
     background-color:#ccc;
 }
+
+.mr{
+    margin-right: 10px;
+}

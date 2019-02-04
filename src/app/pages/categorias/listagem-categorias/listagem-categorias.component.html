@@ -3,7 +3,7 @@
         <button class="btn btn-primary add" routerLink="/dashboard/categorias/novo">Nova Categoria</button>
     </div>
       <br>   
-  <table class="table table-hover">
+  <table class="table table-hover" *ngIf="existemCategorias()">
         <thead>
           <tr>
             <th >Id</th>

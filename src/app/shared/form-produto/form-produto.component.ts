@@ -1,7 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter} from '@angular/core';
 import { Produto } from 'src/app/models/produto';
 import { CategoriaService } from 'src/app/services/domain/categoria.service';
-import { CategoriaDTO } from 'src/app/models/categoria.dto';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import createNumberMask from 'text-mask-addons/dist/createNumberMask';
 import { ToastrService } from 'ngx-toastr';
@@ -13,16 +12,17 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class FormProdutoComponent implements OnInit {
 
-  constructor(private categoriaService: CategoriaService,
+  constructor(public categoriaService: CategoriaService,
      private formBuilder: FormBuilder,
      private toastr: ToastrService){}
 
   public formCategoria: FormGroup;
   title: string;
-  categorias: CategoriaDTO[] = <CategoriaDTO[]>[];
+  btn: string;
   @Input() produto: Produto = <Produto>{};
   @Input() id: number;
   @Output() outputProduto: EventEmitter<Produto> = new EventEmitter();
+
 
   public numberMask = createNumberMask({
     prefix: '',
@@ -42,13 +42,19 @@ export class FormProdutoComponent implements OnInit {
     this.outputProduto.emit(this.produto);
   }
 
+  comparaCategoria(obj1, obj2) {
+    return obj1 && obj2 ? (obj1.id === obj2.id) : obj1 === obj2;
+  }
+
   ngOnInit() {
+    this.atualizarCategorias();
     this.configuraForm();
-    this.findCategorias();
     if (this.id === undefined){
       this.title = 'Novo Produto';
+      this.btn = 'Cadastrar';
     } else {
       this.title = 'Editar Produto';
+      this.btn = 'Editar';
     }
   }
 
@@ -59,17 +65,22 @@ export class FormProdutoComponent implements OnInit {
     });
   }
 
-  findCategorias(){
-    this.categoriaService.findAll()
-    .subscribe((response: CategoriaDTO[]) => {
-      this.categorias = response; });
+
+
+  atualizarCategorias() {
+    this.categoriaService.atualizarCategorias()
+      .subscribe(
+        () => { },
+        () => {
+          this.toastr.error('Falha ao atualizar listagem de linguagens.', 'Falha!');
+        });
   }
 
   addCategoria() {
     this.categoriaService.insert(this.formCategoria.value)
     .subscribe(() => {
       this.formCategoria.reset();
-      this.findCategorias();
+      this.atualizarCategorias();
       this.toastr.success('Categoria cadastrada!', 'Sucesso'); },
     (error) => {this.toastr.error(error.error.message, 'Falha'); });
   }

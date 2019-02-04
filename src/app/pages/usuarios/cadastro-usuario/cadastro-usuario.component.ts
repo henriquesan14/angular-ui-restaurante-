@@ -27,8 +27,17 @@ export class CadastroUsuarioComponent implements OnInit {
   addUsuario(){
     this.usuarioService.insert(this.usuario)
     .subscribe(() => {
+      this.toastr.success('Usuario cadastro!', 'Sucesso');
       this.router.navigateByUrl('dashboard/usuarios'); },
-    (error) => {console.log(error); this.toastr.error('Error ao cadastrar usuario', 'Falha'); });
+    (error) => {
+      if(error.error.errors){
+        for(const err of error.error.errors){
+          this.toastr.error(err.message, 'Falha');
+        }
+      } else {
+        this.toastr.error(error.error.message);
+      }
+    });
   }
 
 }

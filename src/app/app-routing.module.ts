@@ -16,6 +16,7 @@ import { CadastroUsuarioComponent } from './pages/usuarios/cadastro-usuario/cada
 import { RegisterComponent } from './pages/register/register.component';
 import { AuthGuard } from './guards/auth.guard';
 import { NotAuthGuard } from './guards/not-auth.guard';
+import { EdicaoProdutoComponent } from './pages/produtos/edicao-produto/edicao-produto.component';
 
 const routes: Routes = [
   {path: '', component: LoginComponent, canActivate: [NotAuthGuard]},
@@ -24,6 +25,7 @@ const routes: Routes = [
     {path: '', component: HomeComponent},
     {path: 'produtos', component: ListagemProdutosComponent},
     {path: 'produtos/novo', component: CadastroProdutoComponent},
+    {path: 'produtos/editar/:id', component: EdicaoProdutoComponent},
     {path: 'categorias', component: ListagemCategoriasComponent},
     {path: 'categorias/novo', component: CadastroCategoriaComponent},
     {path: 'mesas', component: ListagemMesaComponent},

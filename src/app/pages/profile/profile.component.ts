@@ -94,7 +94,7 @@ export class ProfileComponent implements OnInit {
   deleteEndereco(){
     this.usuarioService.deleteEndereco(this.usuario.id, this.id)
     .subscribe( () => { 
-      this.toastr.success('Endereço apagado com sucesso');
+      this.toastr.success('Endereço apagado com sucesso', 'Sucesso');
       this.findUser();
   }, (error) => {this.toastr.error('Erro ao apagar endereço');});
   }

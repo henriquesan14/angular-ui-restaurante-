@@ -3,7 +3,7 @@
       <button class="btn btn-primary add" routerLink="/dashboard/mesas/novo">Nova Mesa</button>
   </div>
     <br>   
-<table class="table table-hover">
+<table class="table table-hover" *ngIf="existemMesas()">
       <thead>
         <tr>
           <th >Id</th>

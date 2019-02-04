@@ -2,6 +2,7 @@ import { Component, OnInit} from '@angular/core';
 import { UsuarioService } from 'src/app/services/domain/usuario.service';
 import { EnderecoDTO } from 'src/app/models/endereco.dto';
 import { Router, ActivatedRoute } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-edicao-endereco',
@@ -16,7 +17,8 @@ export class EdicaoEnderecoComponent implements OnInit {
   public maskCep = [ /[0-9]/, /\d/, /\d/, /\d/, /\d/ , '-', /\d/, /\d/, /\d/];
   constructor(private usuarioService: UsuarioService,
      private router: Router,
-     private activatedRoute: ActivatedRoute) { }
+     private activatedRoute: ActivatedRoute,
+     private toastr: ToastrService) { }
   ngOnInit() {
     this.idUsuario = this.activatedRoute.snapshot.params.idUsuario;
     this.idEndereco = this.activatedRoute.snapshot.params.idEndereco;
@@ -31,8 +33,10 @@ export class EdicaoEnderecoComponent implements OnInit {
   updateEndereco() {
     this.usuarioService.updateEndereco(this.idUsuario, this.idEndereco, this.end)
     .subscribe(() => {
+      this.toastr.success('Endereço atualizado', 'Sucesso');
      this.router.navigateByUrl('/dashboard/profile');
-    }, (error) => {console.log(error); });
+    }, (error) => {console.log(error);
+    this.toastr.error('Falha ao cadastrar', 'Falha'); });
   }
 
 }

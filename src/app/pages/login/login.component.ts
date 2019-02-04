@@ -27,6 +27,7 @@ export class LoginComponent implements OnInit {
     this.auth.authenticate(this.creds)
     .subscribe((response) => {
       this.auth.successFullLogin(response.headers.get('Authorization'));
+      this.toastr.success('Bem vindo!', 'Sucesso');
       this.router.navigateByUrl('/dashboard');
     }, (error) => {
       if (error.status === 401) {
