@@ -1,0 +1,49 @@
+<app-painel-simples titulo="Detalhes Usuario - Id {{usuario.id}}" col="12">
+  <div class="row">
+    <div class="form-group col-md-6">
+      <label>Nome</label>
+      <label class="form-control">{{usuario.nome +' ' + usuario.sobrenome}}</label>
+    </div>
+
+    <div class="form-group col-md-6">
+      <label>CPF</label>
+      <label  class="form-control">{{usuario.cpf}}</label>
+    </div>
+
+    <div class="form-group col-md-6">
+        <label>Email</label>
+        <label  class="form-control">{{usuario.email}}</label>
+    </div>
+
+    <div class="form-group col-md-6">
+        <label>Telefone</label>
+        <label  class="form-control">{{usuario.telefone}}</label>
+    </div>
+
+    <div class="form-group col-md-6">
+        <label >Perfis</label>
+        <div>
+          <label class=" badge" [ngClass]="perfil === 'ADMIN' ? 'badge-danger' : 'badge-success' " *ngFor="let perfil of usuario.perfis">{{perfil}}</label>
+        </div>
+    </div>
+
+    <div class="form-group col-md-12">
+      <button class="btn btn-light" routerLink="/dashboard/usuarios">Voltar</button>
+    </div>
+  </div>
+</app-painel-simples>
+
+<app-painel-simples titulo="Endereços" col="12" >
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th>Descrição</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let end of usuario.enderecos">
+          <td>{{end.logradouro +', nº' + end.numero + ' ' + end?.complemento + ', ' + end.bairro + ', ' + end.cep}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </app-painel-simples>

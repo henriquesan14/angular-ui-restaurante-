@@ -21,10 +21,13 @@ export class CadastroProdutoComponent {
     .subscribe(() => {
         this.toastr.success('Produto cadastrado', 'Sucesso');
          this.router.navigateByUrl('/dashboard/produtos'); }, (error) =>{
-         console.log(error) ;
+         if (error.error.errors){
+          for (const err of error.error.errors){
+            this.toastr.error(err.message, 'Falha');
+          }
+         } else {
           this.toastr.error(error.error.message, 'Falha');
-
-
+         }
         });
     }
 

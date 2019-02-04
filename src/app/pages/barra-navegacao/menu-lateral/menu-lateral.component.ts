@@ -13,7 +13,7 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class MenuLateralComponent implements OnInit {
 
-  usuario: Usuario = <Usuario>{};
+  usuario: Usuario = <Usuario>{perfis: []};
   menuAberto = true;
   constructor(private auth: AuthService,
      private router: Router,
@@ -52,6 +52,19 @@ export class MenuLateralComponent implements OnInit {
       this.usuarioService.findByEmail(user.email)
       .subscribe((response: Usuario) => {this.usuario = response;} );
     }
+  }
+
+  hasRole(roles: string[]): boolean {
+    let ok = false;
+    for (const roleUsuario of this.usuario.perfis) {
+      for (const roleBuscada of roles) {
+        if (roleBuscada === roleUsuario) {
+          ok = true;
+          break;
+        }
+      }
+    }
+    return ok;
   }
 
   logout(){

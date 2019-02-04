@@ -3,7 +3,6 @@ import { AuthService } from 'src/app/services/auth.service';
 import { UsuarioNewDTO } from 'src/app/models/usuario-new.dto';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { ErrorResponse } from 'src/app/models/error';
 
 
 @Component({

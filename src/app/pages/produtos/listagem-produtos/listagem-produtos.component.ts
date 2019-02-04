@@ -1,7 +1,8 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 import { ProdutoService } from 'src/app/services/domain/produto.service';
 import { ProdutoDTO, PageProduto } from 'src/app/models/produto.dto';
 import { ToastrService } from 'ngx-toastr';
+
 
 @Component({
   selector: 'app-listagem-produtos',

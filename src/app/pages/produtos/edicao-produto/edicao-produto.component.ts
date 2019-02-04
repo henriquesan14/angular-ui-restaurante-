@@ -40,7 +40,13 @@ export class EdicaoProdutoComponent implements OnInit {
       this.router.navigateByUrl('dashboard/produtos');
     },
     (error) => {
-      this.toastr.error(error.error.message, 'Falha');
+      if (error.error.errors){
+        for (const err of error.error.errors){
+          this.toastr.error(err.message, 'Falha');
+        }
+       } else {
+        this.toastr.error(error.error.message, 'Falha');
+       }
     });
   }
 

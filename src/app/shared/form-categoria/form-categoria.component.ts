@@ -9,6 +9,7 @@ import { CategoriaDTO } from 'src/app/models/categoria.dto';
 export class FormCategoriaComponent implements OnInit {
 
   title: string;
+  btn: string;
   @Input() categoria: CategoriaDTO = <CategoriaDTO>{};
   @Input() id: number;
   @Output() outputCategoria: EventEmitter<CategoriaDTO> = new EventEmitter();
@@ -20,8 +21,10 @@ export class FormCategoriaComponent implements OnInit {
   ngOnInit() {
     if (this.id === undefined){
       this.title = 'Nova Categoria';
+      this.btn = 'Cadastrar';
     } else {
       this.title = 'Editar Categoria';
+      this.btn = 'Editar';
     }
   }
 

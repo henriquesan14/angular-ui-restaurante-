@@ -36,6 +36,9 @@ import { CadastroUsuarioComponent } from './pages/usuarios/cadastro-usuario/cada
 import { RegisterComponent } from './pages/register/register.component';
 import { environment } from 'src/environments/environment';
 import { EdicaoProdutoComponent } from './pages/produtos/edicao-produto/edicao-produto.component';
+import { EdicaoCategoriaComponent } from './pages/categorias/edicao-categoria/edicao-categoria.component';
+import { EdicaoMesaComponent } from './pages/mesas/edicao-mesa/edicao-mesa.component';
+import { UsuarioDetailComponent } from './pages/usuarios/usuario-detail/usuario-detail.component';
 
 @NgModule({
   declarations: [
@@ -62,7 +65,10 @@ import { EdicaoProdutoComponent } from './pages/produtos/edicao-produto/edicao-p
     ListagemUsuariosComponent,
     CadastroUsuarioComponent,
     RegisterComponent,
-    EdicaoProdutoComponent
+    EdicaoProdutoComponent,
+    EdicaoCategoriaComponent,
+    EdicaoMesaComponent,
+    UsuarioDetailComponent
   ],
   imports: [
     BrowserModule,

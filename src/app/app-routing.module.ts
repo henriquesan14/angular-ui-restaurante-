@@ -17,6 +17,9 @@ import { RegisterComponent } from './pages/register/register.component';
 import { AuthGuard } from './guards/auth.guard';
 import { NotAuthGuard } from './guards/not-auth.guard';
 import { EdicaoProdutoComponent } from './pages/produtos/edicao-produto/edicao-produto.component';
+import { EdicaoCategoriaComponent } from './pages/categorias/edicao-categoria/edicao-categoria.component';
+import { EdicaoMesaComponent } from './pages/mesas/edicao-mesa/edicao-mesa.component';
+import { UsuarioDetailComponent } from './pages/usuarios/usuario-detail/usuario-detail.component';
 
 const routes: Routes = [
   {path: '', component: LoginComponent, canActivate: [NotAuthGuard]},
@@ -28,12 +31,15 @@ const routes: Routes = [
     {path: 'produtos/editar/:id', component: EdicaoProdutoComponent},
     {path: 'categorias', component: ListagemCategoriasComponent},
     {path: 'categorias/novo', component: CadastroCategoriaComponent},
+    {path: 'categorias/editar/:id', component: EdicaoCategoriaComponent},
     {path: 'mesas', component: ListagemMesaComponent},
     {path: 'mesas/novo', component: CadastroMesaComponent},
+    {path: 'mesas/editar/:id', component: EdicaoMesaComponent},
     {path: 'profile', component: ProfileComponent},
     {path: 'profile/:idUsuario/endereco/:idEndereco', component: EdicaoEnderecoComponent},
     {path: 'usuarios', component: ListagemUsuariosComponent},
-    {path: 'usuarios/novo', component: CadastroUsuarioComponent}
+    {path: 'usuarios/novo', component: CadastroUsuarioComponent},
+    {path: 'usuarios/:id', component: UsuarioDetailComponent}
   ]},
   {path: '**', redirectTo: ''}
 ];

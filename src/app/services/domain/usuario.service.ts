@@ -36,6 +36,10 @@ export class UsuarioService {
       `${API_CONFIG.baseUrl}/usuarios/email?value=${email}`);
   }
 
+  find(id: string): Observable<Usuario>{
+    return this.http.get<Usuario>(`${API_CONFIG.baseUrl}/usuarios/${id}`);
+  }
+
   findAll(): Observable<UsuarioDTO[]>{
     return this.http.get<UsuarioDTO[]>(`${API_CONFIG.baseUrl}/usuarios`);
   }

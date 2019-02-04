@@ -15,7 +15,19 @@ export class MesaService {
     return this.http.get<MesaDTO[]>(`${API_CONFIG.baseUrl}/mesas`);
   }
 
+  find(id: string): Observable<MesaDTO>{
+    return this.http.get<MesaDTO>(`${API_CONFIG.baseUrl}/mesas/${id}`);
+  }
+
   insert(mesa: MesaDTO){
     return this.http.post(`${API_CONFIG.baseUrl}/mesas`, mesa);
+  }
+
+  update(mesa: MesaDTO){
+    return this.http.put(`${API_CONFIG.baseUrl}/mesas/${mesa.id}`, mesa);
+  }
+
+  delete(id: string){
+    return this.http.delete(`${API_CONFIG.baseUrl}/mesas/${id}`);
   }
 }

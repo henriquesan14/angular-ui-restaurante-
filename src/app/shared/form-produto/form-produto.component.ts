@@ -4,6 +4,7 @@ import { CategoriaService } from 'src/app/services/domain/categoria.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import createNumberMask from 'text-mask-addons/dist/createNumberMask';
 import { ToastrService } from 'ngx-toastr';
+import { CategoriaDTO } from 'src/app/models/categoria.dto';
 
 @Component({
   selector: 'app-form-produto',
@@ -22,7 +23,7 @@ export class FormProdutoComponent implements OnInit {
   @Input() produto: Produto = <Produto>{};
   @Input() id: number;
   @Output() outputProduto: EventEmitter<Produto> = new EventEmitter();
-
+  categorias: CategoriaDTO[];
 
   public numberMask = createNumberMask({
     prefix: '',
@@ -46,8 +47,13 @@ export class FormProdutoComponent implements OnInit {
     return obj1 && obj2 ? (obj1.id === obj2.id) : obj1 === obj2;
   }
 
+  findAll(){
+    this.categoriaService.findAll()
+    .subscribe((response) => {this.categorias = response;});
+  }
+
   ngOnInit() {
-    this.atualizarCategorias();
+    this.findAll();
     this.configuraForm();
     if (this.id === undefined){
       this.title = 'Novo Produto';
@@ -67,20 +73,11 @@ export class FormProdutoComponent implements OnInit {
 
 
 
-  atualizarCategorias() {
-    this.categoriaService.atualizarCategorias()
-      .subscribe(
-        () => { },
-        () => {
-          this.toastr.error('Falha ao atualizar listagem de linguagens.', 'Falha!');
-        });
-  }
-
   addCategoria() {
     this.categoriaService.insert(this.formCategoria.value)
     .subscribe(() => {
       this.formCategoria.reset();
-      this.atualizarCategorias();
+      this.findAll();
       this.toastr.success('Categoria cadastrada!', 'Sucesso'); },
     (error) => {this.toastr.error(error.error.message, 'Falha'); });
   }

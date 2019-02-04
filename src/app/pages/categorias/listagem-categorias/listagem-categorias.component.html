@@ -16,8 +16,8 @@
             <td>{{categoria.id}}</td>
             <td>{{categoria.nome}}</td>
             <td>{{categoria.tipoCategoria}}</td>
-            <td><button type="button" class="btn btn-success btn-sm"><i class="fas fa-pencil-alt"></i></button></td>
-            <td><button type="button" class="btn btn-danger btn-sm"><i class="fas fa-trash-alt"></i></button></td>
+            <td><button type="button" routerLink="/dashboard/categorias/editar/{{categoria.id}}" class="btn btn-success btn-sm"><i class="fas fa-pencil-alt"></i></button></td>
+            <td><button type="button" class="btn btn-danger btn-sm" (click)="trocaId(categoria.id)" data-toggle="modal" data-target="#confirmDialog"><i class="fas fa-trash-alt"></i></button></td>
           </tr>
         </tbody>
       </table>
@@ -25,3 +25,20 @@
         <span class="badge badge-info">Nenhuma categoria cadastrada</span>
       </div>
   </app-painel-simples>
+
+  <div class="modal fade" id="confirmDialog" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+          <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLongTitle">Tem certeza que deseja apagar o registro de {{id}}? </h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+        <div class="modal-body">
+            <button class="mr btn btn-secondary"  data-dismiss="modal">Cancelar</button>
+            <button class="btn btn-danger" data-dismiss="modal" (click)="deletaCategoria()">Apagar</button>
+        </div>
+      </div>
+    </div>
+  </div>

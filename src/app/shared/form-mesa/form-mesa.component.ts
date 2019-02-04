@@ -9,6 +9,7 @@ import { MesaDTO } from 'src/app/models/mesa.dto';
 export class FormMesaComponent implements OnInit {
 
   title: string;
+  btn: string;
   @Input() mesa: MesaDTO = <MesaDTO>{};
   @Input() id: number;
   @Output() outputMesa: EventEmitter<MesaDTO> = new EventEmitter();
@@ -20,8 +21,10 @@ export class FormMesaComponent implements OnInit {
   ngOnInit() {
     if (this.id === undefined){
       this.title = 'Nova Mesa';
+      this.btn = 'Cadastrar';
     } else {
       this.title = 'Editar Mesa';
+      this.btn = 'Editar';
     }
   }
 

@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { API_CONFIG } from 'src/app/config/api.config';
-import { Observable, BehaviorSubject } from 'rxjs';
+import { Observable} from 'rxjs';
 import { CategoriaDTO } from 'src/app/models/categoria.dto';
-import { tap } from 'rxjs/operators';
+
 
 
 
@@ -12,27 +12,27 @@ import { tap } from 'rxjs/operators';
 })
 export class CategoriaService {
 
-  private _categorias: BehaviorSubject<CategoriaDTO[]>;
-  public readonly categorias$: Observable<CategoriaDTO[]>;
-
   constructor(private http: HttpClient) {
-    this._categorias = new BehaviorSubject([]);
-    this.categorias$ = this._categorias.asObservable();
-   }
 
-   atualizarCategorias() {
-    return this.findAll().pipe(
-      tap((linguagens: CategoriaDTO[]) => {
-        this._categorias.next(linguagens);
-      })
-    );
-  }
+   }
 
   findAll(): Observable<CategoriaDTO[]> {
     return this.http.get<CategoriaDTO[]>(`${API_CONFIG.baseUrl}/categorias`);
   }
 
+  find(id: string): Observable<CategoriaDTO>{
+    return this.http.get<CategoriaDTO>(`${API_CONFIG.baseUrl}/categorias/${id}`);
+  }
+
   insert(categoria: CategoriaDTO){
     return this.http.post(`${API_CONFIG.baseUrl}/categorias`, categoria);
+  }
+
+  update(categoria: CategoriaDTO){
+    return this.http.put(`${API_CONFIG.baseUrl}/categorias/${categoria.id}`, categoria);
+  }
+
+  delete(id: string){
+    return this.http.delete(`${API_CONFIG.baseUrl}/categorias/${id}`);
   }
 }
