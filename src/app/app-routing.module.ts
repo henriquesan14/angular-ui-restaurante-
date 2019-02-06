@@ -20,6 +20,8 @@ import { EdicaoProdutoComponent } from './pages/produtos/edicao-produto/edicao-p
 import { EdicaoCategoriaComponent } from './pages/categorias/edicao-categoria/edicao-categoria.component';
 import { EdicaoMesaComponent } from './pages/mesas/edicao-mesa/edicao-mesa.component';
 import { UsuarioDetailComponent } from './pages/usuarios/usuario-detail/usuario-detail.component';
+import { CadastroPedidoComponent } from './pages/pedidos/cadastro-pedido/cadastro-pedido.component';
+import { ProdutosCategoriaComponent } from './pages/pedidos/cadastro-pedido/produtos-categoria/produtos-categoria.component';
 
 const routes: Routes = [
   {path: '', component: LoginComponent, canActivate: [NotAuthGuard]},
@@ -39,7 +41,9 @@ const routes: Routes = [
     {path: 'profile/:idUsuario/endereco/:idEndereco', component: EdicaoEnderecoComponent},
     {path: 'usuarios', component: ListagemUsuariosComponent},
     {path: 'usuarios/novo', component: CadastroUsuarioComponent},
-    {path: 'usuarios/:id', component: UsuarioDetailComponent}
+    {path: 'usuarios/:id', component: UsuarioDetailComponent},
+    {path: 'pedidos/novo', component: CadastroPedidoComponent},
+    {path: 'pedidos/novo/produtos/:idCategoria', component: ProdutosCategoriaComponent}
   ]},
   {path: '**', redirectTo: ''}
 ];

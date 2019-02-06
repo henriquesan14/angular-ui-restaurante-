@@ -39,6 +39,8 @@ import { EdicaoProdutoComponent } from './pages/produtos/edicao-produto/edicao-p
 import { EdicaoCategoriaComponent } from './pages/categorias/edicao-categoria/edicao-categoria.component';
 import { EdicaoMesaComponent } from './pages/mesas/edicao-mesa/edicao-mesa.component';
 import { UsuarioDetailComponent } from './pages/usuarios/usuario-detail/usuario-detail.component';
+import { CadastroPedidoComponent } from './pages/pedidos/cadastro-pedido/cadastro-pedido.component';
+import { ProdutosCategoriaComponent } from './pages/pedidos/cadastro-pedido/produtos-categoria/produtos-categoria.component';
 
 @NgModule({
   declarations: [
@@ -68,7 +70,9 @@ import { UsuarioDetailComponent } from './pages/usuarios/usuario-detail/usuario-
     EdicaoProdutoComponent,
     EdicaoCategoriaComponent,
     EdicaoMesaComponent,
-    UsuarioDetailComponent
+    UsuarioDetailComponent,
+    CadastroPedidoComponent,
+    ProdutosCategoriaComponent
   ],
   imports: [
     BrowserModule,

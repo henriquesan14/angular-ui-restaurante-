@@ -24,6 +24,10 @@ export class CategoriaService {
     return this.http.get<CategoriaDTO>(`${API_CONFIG.baseUrl}/categorias/${id}`);
   }
 
+  findByTipo(tipo: number): Observable<CategoriaDTO[]>{
+    return this.http.get<CategoriaDTO[]>(`${API_CONFIG.baseUrl}/categorias/tipo?tipo=${tipo}`)
+  }
+
   insert(categoria: CategoriaDTO){
     return this.http.post(`${API_CONFIG.baseUrl}/categorias`, categoria);
   }

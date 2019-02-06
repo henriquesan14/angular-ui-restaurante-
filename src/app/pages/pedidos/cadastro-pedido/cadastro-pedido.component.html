@@ -1,0 +1,34 @@
+<app-painel-simples titulo="Novo pedido" col="12">
+  <div>
+    <div *ngIf="!mesa.value" class="text-danger">
+        Selecione a mesa:
+    </div>
+    <select class="form-control col-md-6" #mesa [(ngModel)]="mesaSelecionada">
+      <option *ngFor="let mesa of mesas" [ngValue]="mesa">{{mesa.nome}}</option>
+    </select>
+  </div>
+
+  <div class="box-categorias">   
+      <div class="box-item" *ngFor="let categoria of categorias">
+        <button [disabled]="!mesaSelecionada" class="btn btn-primary" routerLink="/dashboard/pedidos/novo/produtos/{{categoria.id}}"><i class="fas fa-tag"></i>{{categoria.nome}}</button>
+      </div>
+  </div>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4 box-refeicao" (click)="findByTipo(1)">
+        <img class="icon-categorias" src="assets/imgs/categorias.png">
+        <h4>Refeições</h4>
+      </div>
+      <div class="col-md-4 box-bebida" (click)="findByTipo(2)">
+        <img class="icon-categorias" src="assets/imgs/categorias.png">
+        <h4>Bebidas</h4>
+      </div>
+      <div class="col-md-4 box-sobremesa" (click)="findByTipo(3)">
+        <img class="icon-categorias" src="assets/imgs/categorias.png">
+        <h4>Sobremesas</h4>
+      </div>
+    </div>
+  </div>
+  
+</app-painel-simples>

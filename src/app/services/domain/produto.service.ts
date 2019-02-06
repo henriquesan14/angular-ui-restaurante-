@@ -21,6 +21,11 @@ export class ProdutoService {
     return this.http.get(`${API_CONFIG.baseUrl}/produtos/${id}`);
   }
 
+  findByCategoria(idCategoria: string, nome: string, page: number, orderBy: string, linesporPage: number): Observable<PageProduto>{
+    // tslint:disable-next-line:max-line-length
+    return this.http.get<PageProduto>(`${API_CONFIG.baseUrl}/produtos/categoria?categoria=${idCategoria}&nome=${nome}&page=${page}&orderBy=${orderBy}&linesPorPage=${linesporPage}`);
+  }
+
   insert(produto: Produto){
     return this.http.post(`${API_CONFIG.baseUrl}/produtos`, produto);
   }
