@@ -46,5 +46,6 @@ export class AuthService {
 
   logout() {
     this.storage.setLocalUser(null);
+    this.storage.setCart(null);
   }
 }

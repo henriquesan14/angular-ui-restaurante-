@@ -41,6 +41,8 @@ import { EdicaoMesaComponent } from './pages/mesas/edicao-mesa/edicao-mesa.compo
 import { UsuarioDetailComponent } from './pages/usuarios/usuario-detail/usuario-detail.component';
 import { CadastroPedidoComponent } from './pages/pedidos/cadastro-pedido/cadastro-pedido.component';
 import { ProdutosCategoriaComponent } from './pages/pedidos/cadastro-pedido/produtos-categoria/produtos-categoria.component';
+import { TiposCategoriasComponent } from './pages/pedidos/cadastro-pedido/tipos-categorias/tipos-categorias.component';
+
 
 @NgModule({
   declarations: [
@@ -72,7 +74,8 @@ import { ProdutosCategoriaComponent } from './pages/pedidos/cadastro-pedido/prod
     EdicaoMesaComponent,
     UsuarioDetailComponent,
     CadastroPedidoComponent,
-    ProdutosCategoriaComponent
+    ProdutosCategoriaComponent,
+    TiposCategoriasComponent
   ],
   imports: [
     BrowserModule,

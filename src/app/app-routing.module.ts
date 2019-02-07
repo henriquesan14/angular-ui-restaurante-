@@ -22,6 +22,7 @@ import { EdicaoMesaComponent } from './pages/mesas/edicao-mesa/edicao-mesa.compo
 import { UsuarioDetailComponent } from './pages/usuarios/usuario-detail/usuario-detail.component';
 import { CadastroPedidoComponent } from './pages/pedidos/cadastro-pedido/cadastro-pedido.component';
 import { ProdutosCategoriaComponent } from './pages/pedidos/cadastro-pedido/produtos-categoria/produtos-categoria.component';
+import { TiposCategoriasComponent } from './pages/pedidos/cadastro-pedido/tipos-categorias/tipos-categorias.component';
 
 const routes: Routes = [
   {path: '', component: LoginComponent, canActivate: [NotAuthGuard]},
@@ -42,8 +43,10 @@ const routes: Routes = [
     {path: 'usuarios', component: ListagemUsuariosComponent},
     {path: 'usuarios/novo', component: CadastroUsuarioComponent},
     {path: 'usuarios/:id', component: UsuarioDetailComponent},
-    {path: 'pedidos/novo', component: CadastroPedidoComponent},
-    {path: 'pedidos/novo/produtos/:idCategoria', component: ProdutosCategoriaComponent}
+    {path: 'pedidos/novo', component: CadastroPedidoComponent, children: [
+      {path: '', component: TiposCategoriasComponent},
+      {path: 'produtos/:idCategoria', component: ProdutosCategoriaComponent}
+    ]}
   ]},
   {path: '**', redirectTo: ''}
 ];

@@ -20,7 +20,7 @@ export class MesaService {
   }
 
   findStatus(status: number): Observable<MesaDTO[]>{
-    return this.http.get<MesaDTO>(`${API_CONFIG.baseUrl}/mesas/status?status=${status}`);
+    return this.http.get<MesaDTO[]>(`${API_CONFIG.baseUrl}/mesas/status?status=${status}`);
   }
 
   insert(mesa: MesaDTO){

@@ -1,34 +1,56 @@
 <app-painel-simples titulo="Novo pedido" col="12">
   <div>
-    <div *ngIf="!mesa.value" class="text-danger">
-        Selecione a mesa:
-    </div>
-    <select class="form-control col-md-6" #mesa [(ngModel)]="mesaSelecionada">
-      <option *ngFor="let mesa of mesas" [ngValue]="mesa">{{mesa.nome}}</option>
-    </select>
-  </div>
-
-  <div class="box-categorias">   
-      <div class="box-item" *ngFor="let categoria of categorias">
-        <button [disabled]="!mesaSelecionada" class="btn btn-primary" routerLink="/dashboard/pedidos/novo/produtos/{{categoria.id}}"><i class="fas fa-tag"></i>{{categoria.nome}}</button>
+      <div>
+          <button *ngIf="total() > 0" (click)="getCart()"  class="btn btn-success btn-block" data-toggle="modal" data-target="#cart">Emitir Pedido</button>
       </div>
-  </div>
-
-  <div class="container">
-    <div class="row">
-      <div class="col-md-4 box-refeicao" (click)="findByTipo(1)">
-        <img class="icon-categorias" src="assets/imgs/categorias.png">
-        <h4>Refeições</h4>
-      </div>
-      <div class="col-md-4 box-bebida" (click)="findByTipo(2)">
-        <img class="icon-categorias" src="assets/imgs/categorias.png">
-        <h4>Bebidas</h4>
-      </div>
-      <div class="col-md-4 box-sobremesa" (click)="findByTipo(3)">
-        <img class="icon-categorias" src="assets/imgs/categorias.png">
-        <h4>Sobremesas</h4>
-      </div>
-    </div>
+      <br>
+    <router-outlet></router-outlet>
   </div>
   
 </app-painel-simples>
+
+<div class="modal fade" id="cart" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+          <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLongTitle">Itens Pedidos</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+        <div class="modal-body">
+
+            <div *ngIf="!mesa.value" class="text-danger">
+                Selecione a mesa:
+            </div>
+            <div>
+              <select class="form-control col-md-6" #mesa [(ngModel)]="pedido.mesa">
+                <option *ngFor="let mesa of mesas" [ngValue]="mesa">{{mesa.nome}}</option>
+              </select>
+            </div>
+            <br>
+
+          <table class="table table-hover">
+            <thead>
+              <tr>
+                <th>Produto</th>
+                <th>Quantidade</th>
+                <th>Subtotal</th>
+              </tr>
+            </thead>
+            <tr *ngFor="let item of cart.items">
+              <td>{{item.produto.nome}}</td>
+              <td><i class="fas fa-minus-circle" (click)="decreaseQuantity(item.produto)"></i><span class="quant">{{item.quantidade}}</span><i (click)="increaseQuantity(item.produto)" class="fas fa-plus-circle"></i></td>
+              <td>{{item.produto.preco * item.quantidade | currency: 'BRL'}}</td>
+              
+              <td><button (click)="removeItem(item.produto)" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></button></td>
+            </tr>
+          </table>
+          <h5>Total: {{total() | currency: 'BRL'}}</h5>
+          
+            <button class="mr btn btn-secondary"  data-dismiss="modal">Voltar</button>
+            <button class="btn btn-success" [disabled]="!pedido.mesa || total() <= 0" data-dismiss="modal" (click)="insert()">Emitir Pedido</button>
+        </div>
+      </div>
+    </div>
+</div>

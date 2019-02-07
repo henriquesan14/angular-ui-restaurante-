@@ -4,6 +4,9 @@
     width: 100px;
     height: 100px; 
 }
+.fas{
+    font-size: 180px;
+}
 
 .box-refeicao, .box-bebida, .box-sobremesa{
     display: flex;
@@ -24,24 +27,18 @@
     display: flex;
     align-items: center;
     flex-wrap: wrap;
+    margin-top: 15px;
 }
 
-
-
-.mr{
+.btn{
     margin-right: 10px;
+    margin-top:5px;
 }
 
-.fas.fa-minus-circle, .fas.fa-plus-circle{
-    font-size:22px;
-    color: #1D8FF4;
-    cursor: pointer;
+.fas{
+    font-size:20px;
+    margin-right: 5px;
 }
-
-.quant{
-    padding: 10px;
-}
-
 
 
 @media only screen and (max-width: 479px) {

@@ -1,13 +1,13 @@
 import { MesaDTO } from "./mesa.dto";
 import { Usuario } from "./usuario";
-import { Cart } from "./cart";
+import { CartItem } from "./cart";
 
-export interface PedidoDTO {
+export interface Pedido{
     id: string;
     data: string;
     status: string;
     mesa: MesaDTO;
-    cliente: Usuario;
+    cliente?: Usuario;
     funcionario: Usuario;
-    itens: Cart;
+    itens: CartItem[];
 }

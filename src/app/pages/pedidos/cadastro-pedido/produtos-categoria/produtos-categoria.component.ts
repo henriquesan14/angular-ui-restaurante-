@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { ProdutoDTO, PageProduto } from 'src/app/models/produto.dto';
 import { ProdutoService } from 'src/app/services/domain/produto.service';
 import { ActivatedRoute } from '@angular/router';
 import { CategoriaService } from 'src/app/services/domain/categoria.service';
+import { CartService } from 'src/app/services/domain/cart.service';
+import { ToastrService } from 'ngx-toastr';
+import { Produto, PageProduto2 } from 'src/app/models/produto';
 
 @Component({
   selector: 'app-produtos-categoria',
@@ -11,8 +13,8 @@ import { CategoriaService } from 'src/app/services/domain/categoria.service';
 })
 export class ProdutosCategoriaComponent implements OnInit {
 
-  produtos: ProdutoDTO[];
-  pageProdutos: PageProduto = <PageProduto>{};
+  produtos: Produto[];
+  pageProdutos: PageProduto2 = <PageProduto2>{};
   nome;
   page;
   orderBy;
@@ -20,12 +22,19 @@ export class ProdutosCategoriaComponent implements OnInit {
   nomeCategoria: string;
   constructor(private produtoService: ProdutoService,
     private activatedRoute: ActivatedRoute,
-    private categoriaService: CategoriaService) { }
+    private categoriaService: CategoriaService,
+    private cartService: CartService,
+    private toastr: ToastrService) { }
 
   ngOnInit() {
     this.findCategoria(this.activatedRoute.snapshot.params.idCategoria);
     this.idCategoria = this.activatedRoute.snapshot.params.idCategoria;
     this.findAll(this.activatedRoute.snapshot.params.idCategoria);
+  }
+
+  addToCart(produto: Produto){
+    this.cartService.addProduto(produto);
+    this.toastr.info('Produto Adicionado', 'Info');
   }
 
   totalPages() {
@@ -39,7 +48,7 @@ export class ProdutosCategoriaComponent implements OnInit {
   findAll(idCategoria: string, nome: string = '', page: number = 0, orderBy = 'nome', linesporPage: number = 5) {
     this.produtoService.findByCategoria(idCategoria, nome, page, orderBy, linesporPage)
     .subscribe(
-      (response: PageProduto) => {
+      (response: PageProduto2) => {
         this.produtos = response.content; this.pageProdutos = response;
       }
     );

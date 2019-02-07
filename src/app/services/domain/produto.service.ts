@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { API_CONFIG } from 'src/app/config/api.config';
 import { PageProduto } from 'src/app/models/produto.dto';
 import { Observable } from 'rxjs';
-import { Produto } from 'src/app/models/produto';
+import { Produto, PageProduto2 } from 'src/app/models/produto';
 
 @Injectable({
   providedIn: 'root'
@@ -21,9 +21,9 @@ export class ProdutoService {
     return this.http.get(`${API_CONFIG.baseUrl}/produtos/${id}`);
   }
 
-  findByCategoria(idCategoria: string, nome: string, page: number, orderBy: string, linesporPage: number): Observable<PageProduto>{
+  findByCategoria(idCategoria: string, nome: string, page: number, orderBy: string, linesporPage: number): Observable<PageProduto2>{
     // tslint:disable-next-line:max-line-length
-    return this.http.get<PageProduto>(`${API_CONFIG.baseUrl}/produtos/categoria?categoria=${idCategoria}&nome=${nome}&page=${page}&orderBy=${orderBy}&linesPorPage=${linesporPage}`);
+    return this.http.get<PageProduto2>(`${API_CONFIG.baseUrl}/produtos/categoria?categoria=${idCategoria}&nome=${nome}&page=${page}&orderBy=${orderBy}&linesPorPage=${linesporPage}`);
   }
 
   insert(produto: Produto){

@@ -1,4 +1,5 @@
-import { ProdutoDTO } from "./produto.dto";
+import { Produto } from "./produto";
+
 
 export interface Cart{
     items: CartItem[];
@@ -6,5 +7,5 @@ export interface Cart{
 
 export interface CartItem{
     quantidade: number;
-    produto: ProdutoDTO; 
+    produto: Produto; 
 }

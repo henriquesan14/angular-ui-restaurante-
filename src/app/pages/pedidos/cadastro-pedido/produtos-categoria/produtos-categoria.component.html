@@ -1,12 +1,7 @@
-<app-painel-simples titulo="{{nomeCategoria}}" col="12" tipo="default" >
-        
-        <div>
-            <button class="btn btn-success btn-block">Emitir Pedido</button>
-        </div>
+        <h5 class="text-center">{{nomeCategoria}}</h5>
         <br>
-
-        <div class="row container">
-          <input placeholder="Pesquise o nome do produto..." [(ngModel)]="nome" type="text" name="nome" class="form-control col-md-8">
+        <div class="row container" *ngIf="existemProdutos()">
+          <input placeholder="Pesquise o nome do produto..." [(ngModel)]="nome" type="text" name="nome" class="form-control col-md-10">
           <button (click)="findAll(idCategoria, nome)" class="btn btn-dark"><i class="fas fa-search"></i></button>
         </div>
         
@@ -15,7 +10,7 @@
                 <div class="col-md-2 box-produto" *ngFor="let produto of produtos">
                     <h6>{{produto.nome}}</h6>
                     <p>{{produto.preco | currency: 'BRL'}}</p>
-                    <button class="btn btn-primary btn-block">Adicionar</button>
+                    <button (click)="addToCart(produto)" class="btn btn-primary btn-block">Adicionar</button>
                 </div>
             </div>
         </div>
@@ -32,5 +27,4 @@
             <i *ngIf="pageProdutos.number < pageProdutos.totalPages -1" (click)="findAll(idCategoria,nome,pageProdutos.totalPages -1,orderBy)" class="fas fa-angle-double-right"></i>
           </div>
           <button class="btn btn-light" routerLink="/dashboard/pedidos/novo">Voltar</button>
-      </app-painel-simples>
     
