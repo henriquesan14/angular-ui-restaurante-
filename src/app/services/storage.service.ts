@@ -40,6 +40,7 @@ export class StorageService {
           localStorage.removeItem(STORAGE_KEYS.cart);
       } else {
           localStorage.setItem(STORAGE_KEYS.cart, JSON.stringify(obj));
+      }
   }
 
 

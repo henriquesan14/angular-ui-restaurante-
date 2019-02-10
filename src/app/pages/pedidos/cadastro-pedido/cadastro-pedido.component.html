@@ -29,6 +29,33 @@
               </select>
             </div>
             <br>
+            <div>
+                Deseja identificar o cliente?
+            </div>
+            <div class="row container">
+              <input [(ngModel)]="email" placeholder="Pesquise o email do cliente" class="form-control col-md-10" type="text">
+              <button [disabled]="!email" (click)="findLikeEmail()" type="button" class="btn btn-dark"><i class="fas fa-search"></i></button>
+            </div>
+            <br>
+            <table class="table table-hover" *ngIf="existemClientes()">
+              <thead>
+                <tr>
+                  <th>Nome</th>
+                  <th>CPF</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr (click)="selecionaCliente(cliente)" class="clientes" *ngFor="let cliente of clientes">
+                  <td>{{cliente.nome + ' ' + cliente.sobrenome}}</td>
+                  <td>{{cliente.cpf}}</td>
+                </tr>
+              </tbody>
+            </table>
+
+            <div *ngIf="idCliente">
+              <label class="badge badge-light">Cliente: {{nomeCliente}} <i (click)="deletaCliente()" class="fas fa-trash"></i></label>
+              
+            </div>
 
           <table class="table table-hover">
             <thead>
@@ -43,10 +70,14 @@
               <td><i class="fas fa-minus-circle" (click)="decreaseQuantity(item.produto)"></i><span class="quant">{{item.quantidade}}</span><i (click)="increaseQuantity(item.produto)" class="fas fa-plus-circle"></i></td>
               <td>{{item.produto.preco * item.quantidade | currency: 'BRL'}}</td>
               
-              <td><button (click)="removeItem(item.produto)" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></button></td>
+              <td> <i (click)="removeItem(item.produto)" class="fas fa-trash"></i></td>
             </tr>
           </table>
-          <h5>Total: {{total() | currency: 'BRL'}}</h5>
+
+          <div>
+            <label class="badge badge-danger">Total: {{total() | currency: 'BRL'}}</label>
+          </div>
+          <br>
           
             <button class="mr btn btn-secondary"  data-dismiss="modal">Voltar</button>
             <button class="btn btn-success" [disabled]="!pedido.mesa || total() <= 0" data-dismiss="modal" (click)="insert()">Emitir Pedido</button>

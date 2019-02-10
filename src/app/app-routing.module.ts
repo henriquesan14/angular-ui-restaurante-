@@ -23,6 +23,8 @@ import { UsuarioDetailComponent } from './pages/usuarios/usuario-detail/usuario-
 import { CadastroPedidoComponent } from './pages/pedidos/cadastro-pedido/cadastro-pedido.component';
 import { ProdutosCategoriaComponent } from './pages/pedidos/cadastro-pedido/produtos-categoria/produtos-categoria.component';
 import { TiposCategoriasComponent } from './pages/pedidos/cadastro-pedido/tipos-categorias/tipos-categorias.component';
+import { ListagemPedidosComponent } from './pages/pedidos/listagem-pedidos/listagem-pedidos.component';
+import { PedidoDetailComponent } from './pages/pedidos/pedido-detail/pedido-detail.component';
 
 const routes: Routes = [
   {path: '', component: LoginComponent, canActivate: [NotAuthGuard]},
@@ -43,6 +45,8 @@ const routes: Routes = [
     {path: 'usuarios', component: ListagemUsuariosComponent},
     {path: 'usuarios/novo', component: CadastroUsuarioComponent},
     {path: 'usuarios/:id', component: UsuarioDetailComponent},
+    {path: 'pedidos', component: ListagemPedidosComponent},
+    {path: 'pedidos/details/:id', component: PedidoDetailComponent},
     {path: 'pedidos/novo', component: CadastroPedidoComponent, children: [
       {path: '', component: TiposCategoriasComponent},
       {path: 'produtos/:idCategoria', component: ProdutosCategoriaComponent}

@@ -33,13 +33,27 @@
 }
 
 .fas.fa-minus-circle, .fas.fa-plus-circle{
-    font-size:22px;
+    font-size:20px;
     color: #1D8FF4;
+    cursor: pointer;
+}
+
+.fas.fa-trash{
+    font-size:20px;
+    color: red;
     cursor: pointer;
 }
 
 .quant{
     padding: 10px;
+}
+
+.badge{
+    font-size:18px;
+}
+
+.clientes{
+    cursor: pointer;
 }
 
 

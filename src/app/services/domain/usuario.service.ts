@@ -36,6 +36,10 @@ export class UsuarioService {
       `${API_CONFIG.baseUrl}/usuarios/email?value=${email}`);
   }
 
+  findLikeEmail(email:string): Observable<Usuario[]>{
+    return this.http.get<Usuario[]>(`${API_CONFIG.baseUrl}/usuarios/cliente?email=${email}`);
+  }
+
   find(id: string): Observable<Usuario>{
     return this.http.get<Usuario>(`${API_CONFIG.baseUrl}/usuarios/${id}`);
   }

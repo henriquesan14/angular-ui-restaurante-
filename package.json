@@ -24,6 +24,7 @@
     "angular2-jwt": "^0.2.3",
     "angular2-text-mask": "^9.0.0",
     "core-js": "^2.5.4",
+    "net": "^1.0.2",
     "ngx-toastr": "^9.1.1",
     "rxjs": "~6.3.3",
     "text-mask-addons": "^3.8.0",

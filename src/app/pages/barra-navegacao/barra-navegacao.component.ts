@@ -15,7 +15,8 @@ export class BarraNavegacaoComponent implements OnInit {
   @Output() onToggle = new EventEmitter();
 
   constructor(private authService: AuthService, private router: Router,
-    private toastr: ToastrService) { }
+    private toastr: ToastrService) {
+     }
 
   ngOnInit() {
   }

@@ -42,6 +42,8 @@ import { UsuarioDetailComponent } from './pages/usuarios/usuario-detail/usuario-
 import { CadastroPedidoComponent } from './pages/pedidos/cadastro-pedido/cadastro-pedido.component';
 import { ProdutosCategoriaComponent } from './pages/pedidos/cadastro-pedido/produtos-categoria/produtos-categoria.component';
 import { TiposCategoriasComponent } from './pages/pedidos/cadastro-pedido/tipos-categorias/tipos-categorias.component';
+import { ListagemPedidosComponent } from './pages/pedidos/listagem-pedidos/listagem-pedidos.component';
+import { PedidoDetailComponent } from './pages/pedidos/pedido-detail/pedido-detail.component';
 
 
 @NgModule({
@@ -75,7 +77,9 @@ import { TiposCategoriasComponent } from './pages/pedidos/cadastro-pedido/tipos-
     UsuarioDetailComponent,
     CadastroPedidoComponent,
     ProdutosCategoriaComponent,
-    TiposCategoriasComponent
+    TiposCategoriasComponent,
+    ListagemPedidosComponent,
+    PedidoDetailComponent
   ],
   imports: [
     BrowserModule,

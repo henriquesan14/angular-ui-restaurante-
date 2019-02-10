@@ -26,5 +26,5 @@
             <i *ngIf="pageProdutos.number < pageProdutos.totalPages -1" (click)="findAll(idCategoria,nome,pageProdutos.number +1,orderBy)" class="fas fa-angle-right"></i>
             <i *ngIf="pageProdutos.number < pageProdutos.totalPages -1" (click)="findAll(idCategoria,nome,pageProdutos.totalPages -1,orderBy)" class="fas fa-angle-double-right"></i>
           </div>
-          <button class="btn btn-light" routerLink="/dashboard/pedidos/novo">Voltar</button>
+          <button class="btn btn-dark" routerLink="/dashboard/pedidos/novo">Voltar</button>
     

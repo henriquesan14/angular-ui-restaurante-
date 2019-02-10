@@ -8,6 +8,8 @@ import { PedidoService } from 'src/app/services/domain/pedido.service';
 import { Pedido } from 'src/app/models/pedido';
 import { ToastrService } from 'ngx-toastr';
 import { StorageService } from 'src/app/services/storage.service';
+import { UsuarioService } from 'src/app/services/domain/usuario.service';
+import { Usuario } from 'src/app/models/usuario';
 
 @Component({
   selector: 'app-cadastro-pedido',
@@ -19,22 +21,54 @@ export class CadastroPedidoComponent implements OnInit {
   mesas: MesaDTO[];
   public cart: Cart = <Cart>{items: []};
   pedido: Pedido = <Pedido>{};
+  clientes: Usuario[];
+  email: string;
+  idCliente: string;
+  nomeCliente: string;
   constructor(private cartService: CartService,
     private storage: StorageService,
     private mesaService: MesaService,
     private pedidoService: PedidoService,
-    private toastr: ToastrService) { }
+    private toastr: ToastrService,
+    private usuarioService: UsuarioService) { }
 
   ngOnInit() {
     this.findMesa();
   }
 
+  findLikeEmail(){
+    this.usuarioService.findLikeEmail(this.email)
+    .subscribe((response) => {this.clientes = response;},
+    (error) => {console.log(error); });
+  }
+
+  selecionaCliente(cliente: Usuario){
+    this.idCliente = cliente.id;
+    this.nomeCliente = cliente.nome + ' ' + cliente.sobrenome;
+    this.clientes = null;
+  }
+
+  existemClientes(): boolean{
+    return this.clientes && this.clientes.length > 0;
+  }
+
+  deletaCliente(){
+    this.idCliente = null;
+    this.nomeCliente = null;
+  }
+
   insert(){
+    if(this.idCliente){
+      this.pedido.cliente = <Usuario>{};
+      this.pedido.cliente.id = this.idCliente;
+    }
     this.pedido.itens = this.cart.items;
     this.pedidoService.insert(this.pedido)
     .subscribe(() => {
       this.toastr.success('Pedido emitido!', 'Sucesso');
-      this.storage.setCart(null); },
+      this.storage.setCart(null);
+      this.idCliente = null;
+      this.nomeCliente = null; },
     (error) => {
       console.log(this.pedido);
       console.log(error);

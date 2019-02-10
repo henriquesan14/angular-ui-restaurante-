@@ -1,5 +1,5 @@
 import { EnderecoDTO } from "./endereco.dto";
-import { PedidoDTO } from "./pedido";
+import { Pedido } from "./pedido";
 
 export interface Usuario{
     id: string;
@@ -11,5 +11,5 @@ export interface Usuario{
     telefone: string;
     enderecos: EnderecoDTO[];
     perfis: string[];
-    pedidos: PedidoDTO[];
+    pedidos: Pedido[];
 }
