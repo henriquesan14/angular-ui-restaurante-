@@ -1,0 +1,22 @@
+<app-painel-simples titulo="Demandas - Cozinha" col="12" tipo="default" >   
+<table class="table table-hover">
+      <thead>
+        <tr>
+          <th >Nome</th>
+          <th >Quantidade</th>
+          <th >Mesa</th>
+          <th>Horário</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of itens">
+          <td>{{item.produto.nome}}</td>
+          <td>{{item.quantidade}}</td>
+          <td>{{item.pedido.mesa.nome}}</td>
+          <td>{{item.pedido.data}}</td>
+          <td><button class="btn btn-success"><i class="fas fa-check"></i></button></td>
+        </tr>
+      </tbody>
+    </table>
+    <label class="badge badge-info" *ngIf="!existemItens()">Nenhum item em demanda</label>
+</app-painel-simples>

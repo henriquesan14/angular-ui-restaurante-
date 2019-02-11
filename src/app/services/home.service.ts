@@ -16,7 +16,16 @@ export class HomeService {
     return this.http.get<number>(`${API_CONFIG.baseUrl}/pedidos/total`);
   }
 
-  countDiario(): Observable<number>{
+  countPedidosDiario(): Observable<number>{
     return this.http.get<number>(`${API_CONFIG.baseUrl}/pedidos/count`);
   }
+
+  countItensDiario(): Observable<number>{
+    return this.http.get<number>(`${API_CONFIG.baseUrl}/pedidos/itens/count`);
+  }
+
+  countDemandas(status: number): Observable<number>{
+    return this.http.get<number>(`${API_CONFIG.baseUrl}/pedidos/itens/demandas?status=${status}`);
+  }
+
 }

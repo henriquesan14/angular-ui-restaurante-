@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { API_CONFIG } from 'src/app/config/api.config';
 import { Pedido, PagePedido } from 'src/app/models/pedido';
 import { Observable } from 'rxjs';
+import { CartItem } from 'src/app/models/cart';
 
 
 @Injectable({
@@ -23,5 +24,10 @@ export class PedidoService {
   find(id: string): Observable<Pedido>{
     return this.http.get<Pedido>(`${API_CONFIG.baseUrl}/pedidos/${id}`);
   }
+
+  itensByStatus(status: number): Observable<CartItem[]>{
+    return this.http.get<CartItem[]>(`${API_CONFIG.baseUrl}/pedidos/itens?status=${status}`);
+  }
+  
 
 }

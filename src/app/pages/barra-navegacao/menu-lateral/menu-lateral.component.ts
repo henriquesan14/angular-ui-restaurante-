@@ -26,6 +26,7 @@ export class MenuLateralComponent implements OnInit {
   opCategorias = false;
   opProfile = false;
   opUsuarios = false;
+  opDemandas = false;
   largura = window.innerWidth;
 
 
@@ -99,6 +100,10 @@ export class MenuLateralComponent implements OnInit {
 
   toggle6(){
     this.opUsuarios = !this.opUsuarios;
+  }
+
+  toggle7(){
+    this.opDemandas = !this.opDemandas;
   }
 
   @HostListener('window:resize', ['$event'])

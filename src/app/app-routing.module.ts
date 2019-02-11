@@ -25,6 +25,8 @@ import { ProdutosCategoriaComponent } from './pages/pedidos/cadastro-pedido/prod
 import { TiposCategoriasComponent } from './pages/pedidos/cadastro-pedido/tipos-categorias/tipos-categorias.component';
 import { ListagemPedidosComponent } from './pages/pedidos/listagem-pedidos/listagem-pedidos.component';
 import { PedidoDetailComponent } from './pages/pedidos/pedido-detail/pedido-detail.component';
+import { DemandaCozinhaComponent } from './pages/itens/demanda-cozinha/demanda-cozinha.component';
+import { DemandaGarcomComponent } from './pages/itens/demanda-garcom/demanda-garcom.component';
 
 const routes: Routes = [
   {path: '', component: LoginComponent, canActivate: [NotAuthGuard]},
@@ -50,7 +52,9 @@ const routes: Routes = [
     {path: 'pedidos/novo', component: CadastroPedidoComponent, children: [
       {path: '', component: TiposCategoriasComponent},
       {path: 'produtos/:idCategoria', component: ProdutosCategoriaComponent}
-    ]}
+    ]},
+    {path: 'demandas/cozinha', component: DemandaCozinhaComponent},
+    {path: 'demandas/garcom', component: DemandaGarcomComponent}
   ]},
   {path: '**', redirectTo: ''}
 ];

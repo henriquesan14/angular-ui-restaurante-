@@ -1,4 +1,5 @@
 import { Produto } from "./produto";
+import { Pedido } from "./pedido";
 
 
 export interface Cart{
@@ -8,4 +9,6 @@ export interface Cart{
 export interface CartItem{
     quantidade: number;
     produto: Produto; 
+    status?: number;
+    pedido?: Pedido;
 }
