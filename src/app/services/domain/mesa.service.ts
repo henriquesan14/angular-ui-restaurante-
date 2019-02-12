@@ -31,6 +31,10 @@ export class MesaService {
     return this.http.put(`${API_CONFIG.baseUrl}/mesas/${mesa.id}`, mesa);
   }
 
+  updateStatus(id: string, status: number){
+    return this.http.put(`${API_CONFIG.baseUrl}/mesas/status?id=${id}`, status);
+  }
+
   delete(id: string){
     return this.http.delete(`${API_CONFIG.baseUrl}/mesas/${id}`);
   }

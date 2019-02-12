@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { PedidoService } from 'src/app/services/domain/pedido.service';
 import { CartItem } from 'src/app/models/cart';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-demanda-cozinha',
@@ -10,7 +11,8 @@ import { CartItem } from 'src/app/models/cart';
 export class DemandaCozinhaComponent implements OnInit {
 
   itens: CartItem[];
-  constructor(private pedidoService: PedidoService) { }
+  constructor(private pedidoService: PedidoService,
+    private toastr: ToastrService) { }
 
   ngOnInit() {
     this.itensByStatus(1);
@@ -24,5 +26,15 @@ export class DemandaCozinhaComponent implements OnInit {
 
   existemItens(): boolean{
     return this.itens && this.itens.length > 0;
+  }
+
+  updateStatusItem(idPedido: string, idProduto: string, status = 2){
+    this.pedidoService.updateStatusItem(idPedido, idProduto, status)
+    .subscribe(()=> {
+      this.toastr.success('Item movido para demandas garçom!', 'Sucesso');
+      this.itensByStatus(1);
+    }, (error) => {
+      this.toastr.error(error.error.message, 'Falha');});
+
   }
 }

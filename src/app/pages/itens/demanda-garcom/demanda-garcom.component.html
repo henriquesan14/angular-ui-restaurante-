@@ -4,6 +4,7 @@
           <tr>
             <th >Nome</th>
             <th >Quantidade</th>
+            <th>Subtotal</th>
             <th >Mesa</th>
             <th>Horário</th>
           </tr>
@@ -12,9 +13,10 @@
           <tr *ngFor="let item of itens">
             <td>{{item.produto.nome}}</td>
             <td>{{item.quantidade}}</td>
+            <td>{{item.produto.preco * item.quantidade | currency: 'BRL'}}</td>
             <td>{{item.pedido.mesa.nome}}</td>
             <td>{{item.pedido.data}}</td>
-            <td><button class="btn btn-success"><i class="fas fa-check"></i></button></td>
+            <td><button (click)="updateStatusItem(item.pedido.id, item.produto.id)" class="btn btn-success"><i class="fas fa-check"></i></button></td>
           </tr>
         </tbody>
       </table>

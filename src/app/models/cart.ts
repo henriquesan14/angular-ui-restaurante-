@@ -9,6 +9,6 @@ export interface Cart{
 export interface CartItem{
     quantidade: number;
     produto: Produto; 
-    status?: number;
+    statusItem?: number;
     pedido?: Pedido;
 }

@@ -9,7 +9,6 @@ import { HomeService } from 'src/app/services/home.service';
 })
 export class HomeComponent implements OnInit {
 
-  total = 0;
   countPedidos: number;
   countItens: number;
   cozinha: number;
@@ -17,24 +16,12 @@ export class HomeComponent implements OnInit {
   constructor(private homeService: HomeService) { }
 
   ngOnInit() {
-    this.totalDiario();
     this.countItensDiario();
     this.countPedidosDiario();
     this.demandasCozinha();
     this.demandasGarcom();
    }
 
-   totalDiario(){
-     this.homeService.totalDiario()
-     .subscribe((response) => {
-      if(response==null){
-        this.total = 0;
-      }else{
-        this.total = response;
-      }
-      },
-     (error) => {console.log(error);});
-   }
 
   countPedidosDiario(){
     this.homeService.countPedidosDiario()

@@ -1,61 +1,49 @@
 <app-painel-simples titulo="Analytics" col="12">
         <div class="row">
 
-            <div class="col-md-4">
-            <div class="card text-white bg-success mb-3" style="max-width: 18rem;">
-                <div class="card-body">
-                    <div class="box-icon">
-                        <i class="fas fa-dollar-sign icon"></i>
-                    </div>
-                    <h5>Total Diários</h5>
-                <h5 class="card-text text-center">{{total | currency: 'BRL'}}</h5>
-                </div>
-            </div>
-        </div>
-
-        <div class="col-md-4">
-            <div class="card text-white bg-info mb-3 " style="max-width: 18rem;">
+        <div class="col-md-3">
+            <div class="card text-white bg-success mb-3 click" routerLink="/dashboard/pedidos/hoje" style="max-width: 18rem;">
                     <div class="card-body">
                         <div class="box-icon">
                             <i class="fas fa-cart-arrow-down icon"></i>
                         </div>
-                        <h5>Pedidos Diários</h5>
+                        <h6>Pedidos Diários</h6>
                     <h5 class="card-text text-center">{{countPedidos}}</h5>
                     </div>
             </div>
         </div>
 
-        <div class="col-md-4">
-                <div class="card text-white bg-danger mb-3 " style="max-width: 18rem;">
+        <div class="col-md-3">
+                <div class="card text-white bg-danger mb-3 click" style="max-width: 18rem;">
                         <div class="card-body">
                             <div class="box-icon">
                                 <i class="fas fa-chart-line icon"></i>
                             </div>
-                            <h5>Itens Diários</h5>
+                            <h6>Itens Diários</h6>
                         <h5 class="card-text text-center">{{countItens}}</h5>
                         </div>
                 </div>
         </div>
 
-        <div class="col-md-4" >
-                <div class="card text-white bg-dark mb-3 demandas" routerLink="/dashboard/demandas/cozinha" style="max-width: 18rem;">
+        <div class="col-md-3" >
+                <div class="card text-white bg-dark mb-3 click" routerLink="/dashboard/demandas/cozinha" style="max-width: 18rem;">
                         <div class="card-body">
                             <div class="box-icon">
                                 <i class="fas fa-utensils icon"></i>
                             </div>
-                            <h5>Demandas Cozinha</h5>
+                            <h6>Demandas Cozinha</h6>
                         <h5 class="card-text text-center">{{cozinha}}</h5>
                         </div>
                 </div>
         </div>
 
-        <div class="col-md-4">
-                <div class="card text-white bg-primary mb-3 demandas" routerLink="/dashboard/demandas/garcom" style="max-width: 18rem;">
+        <div class="col-md-3">
+                <div class="card text-white bg-primary mb-3 click" routerLink="/dashboard/demandas/garcom" style="max-width: 18rem;">
                         <div class="card-body">
                             <div class="box-icon">
                                 <i class="fas fa-chart-bar icon"></i>
                             </div>
-                            <h5>Demandas Garçom</h5>
+                            <h6>Demandas Garçom</h6>
                         <h5 class="card-text text-center">{{garcom}}</h5>
                         </div>
                 </div>

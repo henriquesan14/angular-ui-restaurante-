@@ -27,6 +27,7 @@ import { ListagemPedidosComponent } from './pages/pedidos/listagem-pedidos/lista
 import { PedidoDetailComponent } from './pages/pedidos/pedido-detail/pedido-detail.component';
 import { DemandaCozinhaComponent } from './pages/itens/demanda-cozinha/demanda-cozinha.component';
 import { DemandaGarcomComponent } from './pages/itens/demanda-garcom/demanda-garcom.component';
+import { PedidosDiariosComponent } from './pages/pedidos/pedidos-diarios/pedidos-diarios.component';
 
 const routes: Routes = [
   {path: '', component: LoginComponent, canActivate: [NotAuthGuard]},
@@ -48,6 +49,7 @@ const routes: Routes = [
     {path: 'usuarios/novo', component: CadastroUsuarioComponent},
     {path: 'usuarios/:id', component: UsuarioDetailComponent},
     {path: 'pedidos', component: ListagemPedidosComponent},
+    {path: 'pedidos/hoje', component: PedidosDiariosComponent},
     {path: 'pedidos/details/:id', component: PedidoDetailComponent},
     {path: 'pedidos/novo', component: CadastroPedidoComponent, children: [
       {path: '', component: TiposCategoriasComponent},

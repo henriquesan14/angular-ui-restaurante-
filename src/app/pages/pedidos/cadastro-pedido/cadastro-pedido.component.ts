@@ -66,6 +66,12 @@ export class CadastroPedidoComponent implements OnInit {
     this.pedidoService.insert(this.pedido)
     .subscribe(() => {
       this.toastr.success('Pedido emitido!', 'Sucesso');
+      this.mesaService.updateStatus(this.pedido.mesa.id, 2)
+      .subscribe(()=> {
+        this.findMesa();
+      },
+      (error) => {console.log(error.error.message); });
+      this.pedido = <Pedido>{};
       this.storage.setCart(null);
       this.idCliente = null;
       this.nomeCliente = null; },
