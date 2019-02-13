@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HomeService } from 'src/app/services/home.service';
-
+import Stomp from 'stompjs';
+import SockJS from 'sockjs-client';
 
 @Component({
   selector: 'app-home',
@@ -9,11 +10,17 @@ import { HomeService } from 'src/app/services/home.service';
 })
 export class HomeComponent implements OnInit {
 
+  private serverUrl = 'http://localhost:8080/socket'
+  private stompClient;
+
   countPedidos: number;
   countItens: number;
   cozinha: number;
   garcom: number;
-  constructor(private homeService: HomeService) { }
+  public msg;
+  constructor(private homeService: HomeService) { 
+    this.initializeWebSocketConnection();
+  }
 
   ngOnInit() {
     this.countItensDiario();
@@ -46,5 +53,24 @@ export class HomeComponent implements OnInit {
     .subscribe((response) => {this.garcom = response;},
     (error) => {console.log(error);});
   }
+
+  initializeWebSocketConnection(){
+    let ws = new SockJS(this.serverUrl);
+    this.stompClient = Stomp.over(ws);
+    let that = this;
+    this.stompClient.connect({}, function(frame) {
+      that.stompClient.subscribe("/chat", (message) => {
+        if(message.body) {
+          console.log('recebido: '+message.body);
+        }
+      });
+    });
+  }
+
+  sendMessage(message){
+    this.stompClient.send("/app/send/message" , {}, message);
+    console.log('enviado: '+message);
+  }
+
 
 }

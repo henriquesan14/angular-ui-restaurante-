@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { PedidoService } from 'src/app/services/domain/pedido.service';
+import { CartItem } from 'src/app/models/cart';
 
 @Component({
   selector: 'app-itens-diarios',
@@ -7,9 +9,29 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ItensDiariosComponent implements OnInit {
 
-  constructor() { }
+  total = 0;
+  itens: CartItem[];
+  constructor(private pedidoService: PedidoService) { }
 
   ngOnInit() {
+    this.itensDiario();
+    this.totalDiario();
+  }
+  
+  itensDiario(){
+    this.pedidoService.itensDiario()
+    .subscribe((response) => {
+      this.itens = response;
+    }, (error)=> {console.log(error)});
+  }
+
+  totalDiario(){
+    this.pedidoService.total()
+    .subscribe((response) => {this.total = response});
+  }
+
+  existemItens(): boolean{
+    return this.itens && this.itens.length > 0;
   }
 
 }

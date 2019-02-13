@@ -36,6 +36,14 @@ export class PedidoService {
   pedidosDiario(): Observable<Pedido[]>{
     return this.http.get<Pedido[]>(`${API_CONFIG.baseUrl}/pedidos/now`);
   }
+
+  itensDiario(): Observable<CartItem[]>{
+    return this.http.get<CartItem[]>(`${API_CONFIG.baseUrl}/pedidos/itens/now`);
+  }
+
+  total(): Observable<number>{
+    return this.http.get<number>(`${API_CONFIG.baseUrl}/pedidos/total`);
+  }
   
 
 }

@@ -9,11 +9,13 @@ import { Pedido } from 'src/app/models/pedido';
 })
 export class PedidosDiariosComponent implements OnInit {
 
+  total = 0;
   pedidos: Pedido[] = <Pedido[]>{};
   constructor(private pedidoService: PedidoService) { }
 
   ngOnInit() {
     this.pedidosDiario();
+    this.totalDiario();
   }
 
   pedidosDiario(){
@@ -26,4 +28,8 @@ export class PedidosDiariosComponent implements OnInit {
     return this.pedidos && this.pedidos.length > 0;
   }
 
+  totalDiario(){
+    this.pedidoService.total()
+    .subscribe((response) => {this.total = response});
+  }
 }
