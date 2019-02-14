@@ -10,3 +10,17 @@
   .nav-item{
     cursor:pointer;
   }
+
+  .num{
+    font-size:18px;
+    border-radius: 30px;
+    padding: 2px 5px;
+    color: white;
+    background-color: red;
+  }
+
+  .fas.fa-utensils, .fas.fa-arrow-circle-right{
+    font-size:30px;
+    color:white;
+  }
+

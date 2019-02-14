@@ -1,7 +1,5 @@
 import { Component, OnInit, EventEmitter, Output } from '@angular/core';
-import { AuthService } from 'src/app/services/auth.service';
-import { Router } from '@angular/router';
-import { ToastrService } from 'ngx-toastr';
+import { HomeService } from 'src/app/services/home.service';
 
 @Component({
   selector: 'app-barra-navegacao',
@@ -14,18 +12,24 @@ export class BarraNavegacaoComponent implements OnInit {
   // tslint:disable-next-line:no-output-on-prefix
   @Output() onToggle = new EventEmitter();
 
-  constructor(private authService: AuthService, private router: Router,
-    private toastr: ToastrService) {
+  constructor(public homeService: HomeService) {
      }
 
   ngOnInit() {
+    this.atualizaDemandasCozinha();
+    this.atualizaDemandasGarcom();
   }
 
-  logout() {
-    this.authService.logout();
-    this.toastr.success('Desconectado!', 'Sucesso');
-    this.router.navigateByUrl('');
+  atualizaDemandasCozinha(){
+    this.homeService.atualizaDemandasCozinha()
+    .subscribe(() => {});
   }
+  
+  atualizaDemandasGarcom(){
+    this.homeService.atualizaDemandasGarcom()
+    .subscribe(() => {});
+  }
+
 
   disparaEvento() {
     this.onToggle.emit();

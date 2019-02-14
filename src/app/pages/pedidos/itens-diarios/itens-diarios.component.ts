@@ -27,7 +27,13 @@ export class ItensDiariosComponent implements OnInit {
 
   totalDiario(){
     this.pedidoService.total()
-    .subscribe((response) => {this.total = response});
+    .subscribe((response) => {
+      if(response==null){
+        this.total = 0;
+      }else{
+        this.total = response;
+      }
+    });
   }
 
   existemItens(): boolean{

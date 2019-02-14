@@ -10,6 +10,9 @@ import { ToastrService } from 'ngx-toastr';
 import { StorageService } from 'src/app/services/storage.service';
 import { UsuarioService } from 'src/app/services/domain/usuario.service';
 import { Usuario } from 'src/app/models/usuario';
+import { HomeService } from 'src/app/services/home.service';
+import { WebsocketService } from 'src/app/services/websocket.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-cadastro-pedido',
@@ -30,7 +33,10 @@ export class CadastroPedidoComponent implements OnInit {
     private mesaService: MesaService,
     private pedidoService: PedidoService,
     private toastr: ToastrService,
-    private usuarioService: UsuarioService) { }
+    private usuarioService: UsuarioService,
+    private homeService: HomeService,
+    private websocket: WebsocketService,
+    private router: Router) { }
 
   ngOnInit() {
     this.findMesa();
@@ -57,6 +63,10 @@ export class CadastroPedidoComponent implements OnInit {
     this.nomeCliente = null;
   }
 
+  atualizaDemandaCozinha(){
+    this.homeService.atualizaDemandasCozinha()
+    .subscribe(() => {});
+  }
   insert(){
     if(this.idCliente){
       this.pedido.cliente = <Usuario>{};
@@ -66,20 +76,18 @@ export class CadastroPedidoComponent implements OnInit {
     this.pedidoService.insert(this.pedido)
     .subscribe(() => {
       this.toastr.success('Pedido emitido!', 'Sucesso');
-      this.mesaService.updateStatus(this.pedido.mesa.id, 2)
-      .subscribe(()=> {
-        this.findMesa();
-      },
-      (error) => {console.log(error.error.message); });
-      this.pedido = <Pedido>{};
       this.storage.setCart(null);
       this.idCliente = null;
-      this.nomeCliente = null; },
+      this.nomeCliente = null;
+      this.websocket.sendMessage(' ');
+      this.pedido = <Pedido>{};
+      this.router.navigateByUrl('/dashboard/pedidos'); },
     (error) => {
       console.log(this.pedido);
       console.log(error);
       this.toastr.error(error.error.message, 'Falha'); });
   }
+
 
   getCart(){
     this.cart = this.cartService.getCart();
@@ -107,5 +115,6 @@ export class CadastroPedidoComponent implements OnInit {
     .subscribe((response) => {this.mesas = response; },
     (error) => {console.log(error); });
   }
+
 
 }

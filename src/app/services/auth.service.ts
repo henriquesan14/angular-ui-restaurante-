@@ -8,7 +8,7 @@ import { StorageService } from './storage.service';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { CredenciaisDTO } from '../models/credenciais.dto';
 import { UsuarioNewDTO } from '../models/usuario-new.dto';
-import { Observable } from 'rxjs';
+
 
 @Injectable({
   providedIn: 'root'
