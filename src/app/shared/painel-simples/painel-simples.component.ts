@@ -10,6 +10,7 @@ export class PainelSimplesComponent implements OnInit {
   @Input() titulo;
   @Input() col;
   @Input() tipo;
+  @Input() color;
   scroll = false;
 
   constructor() { }

@@ -23,13 +23,15 @@
     "@auth0/angular-jwt": "^2.1.0",
     "angular2-jwt": "^0.2.3",
     "angular2-text-mask": "^9.0.0",
+    "chart.js": "^2.7.3",
     "core-js": "^2.5.4",
     "net": "^1.0.2",
+    "ng2-charts": "^1.6.0",
     "ngx-toastr": "^9.1.1",
     "rxjs": "~6.3.3",
-    "text-mask-addons": "^3.8.0",
     "sockjs-client": "^1.3.0",
     "stompjs": "^2.3.3",
+    "text-mask-addons": "^3.8.0",
     "zone.js": "~0.8.26"
   },
   "devDependencies": {

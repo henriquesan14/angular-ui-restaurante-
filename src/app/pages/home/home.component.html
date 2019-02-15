@@ -1,4 +1,4 @@
-<app-painel-simples titulo="Analytics" col="12">
+<app-painel-simples titulo="Analytics" col="12" tipo="primary" color="white">
         <div class="row">
 
         <div class="col-md-3">
@@ -50,9 +50,38 @@
                 </div>
         </div>
 
+        <div class="col-md-6">  
+                <div class="card">
+                    <div class="card-header">Produtos Mais vendidos</div>
+                    <div class="card-body">
+                        <div *ngIf="nomesProdutos && nomesProdutos.length == 0">
+                            <p class="text-center text-muted">Dados não disponíveis</p>
+                        </div>
+                        <div style="display: block" *ngIf="nomesProdutos && nomesProdutos.length > 0">
+                            <canvas baseChart [data]="quantidade" [labels]="nomesProdutos" [chartType]="tipoGrafico"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
         
-    </div>
+            <div class="col-md-6">  
+                <div class="card ">
+                    <div class="card-header ">Produtos Mais vendidos</div>
+                    <div class="card-body">
+                        <div *ngIf="nomesProdutos && nomesProdutos.length == 0">
+                            <p class="text-center text-muted">Dados não disponíveis</p>
+                        </div>
+                        <div style="display: block" *ngIf="nomesProdutos && nomesProdutos.length > 0">
+                            <canvas baseChart [data]="quantidade" [labels]="nomesProdutos" chartType="bar"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+    </div> <!--fim row-->
 
     
+
+
     
 </app-painel-simples>

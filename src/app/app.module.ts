@@ -5,6 +5,7 @@ import { HttpClientModule } from '@angular/common/http';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { TextMaskModule } from 'angular2-text-mask';
 import { ToastrModule } from 'ngx-toastr';
+import { ChartsModule } from 'ng2-charts';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -95,6 +96,7 @@ import { ItensDiariosComponent } from './pages/pedidos/itens-diarios/itens-diari
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
+    ChartsModule,
     TextMaskModule,
     BrowserAnimationsModule,
     ToastrModule.forRoot(environment.toastConfig)

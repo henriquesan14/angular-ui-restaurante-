@@ -43,5 +43,9 @@ export class WebsocketService {
     this.stompClient.send("/app/send/message" , {}, message);
   }
 
+  disconnect(): void {
+    this.stompClient.disconnect();
+  }
+
 }
 

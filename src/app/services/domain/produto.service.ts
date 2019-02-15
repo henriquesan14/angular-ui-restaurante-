@@ -4,6 +4,7 @@ import { API_CONFIG } from 'src/app/config/api.config';
 import { PageProduto } from 'src/app/models/produto.dto';
 import { Observable } from 'rxjs';
 import { Produto, PageProduto2 } from 'src/app/models/produto';
+import { StatisticsProduto } from 'src/app/models/statistics-produto';
 
 @Injectable({
   providedIn: 'root'
@@ -36,6 +37,10 @@ export class ProdutoService {
 
   delete(id: string) {
     return this.http.delete(`${API_CONFIG.baseUrl}/produtos/${id}`);
+  }
+
+  statisticsProduto(): Observable<StatisticsProduto[]>{
+    return this.http.get<StatisticsProduto[]>(`${API_CONFIG.baseUrl}/produtos/statistics`);
   }
 
 }

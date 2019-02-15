@@ -1,6 +1,6 @@
 <div class="col-md-{{col}}">
   <div class="card  mb-3 border- " >
-      <div  class="card-header  bg-{{tipo}} text-center ">{{titulo}}</div>
+      <div  class="card-header  bg-{{tipo}} text-center text-{{color}}">{{titulo}}</div>
       <div [ngClass]="scroll == true ? 'scroll-table':''" class="card-body">
         <ng-content></ng-content>
       </div>

@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HomeService } from 'src/app/services/home.service';
+import { ProdutoService } from 'src/app/services/domain/produto.service';
+import { StatisticsProduto } from 'src/app/models/statistics-produto';
 
 
 @Component({
@@ -13,7 +15,11 @@ export class HomeComponent implements OnInit {
   countItens: number;
   cozinha: number;
   garcom: number;
-  constructor(public homeService: HomeService) { 
+  public statistics: StatisticsProduto[];
+  public nomesProdutos: string[];
+  public quantidade: number[];
+  public tipoGrafico = 'doughnut';
+  constructor(public homeService: HomeService, private produtoService: ProdutoService) { 
     
   }
 
@@ -22,6 +28,20 @@ export class HomeComponent implements OnInit {
     this.countPedidosDiario();
     this.demandasCozinha();
     this.demandasGarcom();
+    this.statisticsProduto();
+   }
+
+   statisticsProduto(){
+     this.produtoService.statisticsProduto()
+     .subscribe( (response) => {
+       this.nomesProdutos = response.map(x => {return x.nome;});
+       this.quantidade = response.map(x => {return x.quantidade;});
+    },
+     (error) => {console.log(error); });
+   }
+
+   configura(){
+     
    }
 
    countPedidosDiario() {
