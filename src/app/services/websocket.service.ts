@@ -22,6 +22,7 @@ export class WebsocketService {
         if(message.body) {
           that.atualizaDemanda();
           that.atualizaGarcom();
+          that.playAudio();
         }
       });
     });
@@ -35,6 +36,14 @@ export class WebsocketService {
   atualizaGarcom(){
     this.homeService.atualizaDemandasGarcom()
     .subscribe(() => {});
+  }
+
+  playAudio(){
+    let audio = new Audio();
+    audio.src = "../assets/audios/sound.mp3";
+    audio.load();
+    
+    audio.play();
   }
 
 

@@ -4,6 +4,7 @@ import { API_CONFIG } from 'src/app/config/api.config';
 import { Pedido, PagePedido } from 'src/app/models/pedido';
 import { Observable} from 'rxjs';
 import { CartItem } from 'src/app/models/cart';
+import { StatisticsPedido } from 'src/app/models/statistics-pedido';
 
 
 @Injectable({
@@ -45,6 +46,10 @@ export class PedidoService {
 
   total(): Observable<number>{
     return this.http.get<number>(`${API_CONFIG.baseUrl}/pedidos/total`);
+  }
+
+  statisticsPedido(): Observable<StatisticsPedido[]>{
+    return this.http.get<StatisticsPedido[]>(`${API_CONFIG.baseUrl}/pedidos/statistics`);
   }
   
 

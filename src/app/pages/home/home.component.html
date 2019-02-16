@@ -50,9 +50,13 @@
                 </div>
         </div>
 
+        <div class="col-md-12">
+            <h4 class="text-center">{{dataAtual.getDate() + ' de ' + mesAtual + ' ' +  dataAtual.getFullYear() + ' - ' + diaSemana}} </h4>
+        </div>
+
         <div class="col-md-6">  
                 <div class="card">
-                    <div class="card-header">Produtos Mais vendidos</div>
+                    <div class="card-header">Produtos mais vendidos - Mês atual</div>
                     <div class="card-body">
                         <div *ngIf="nomesProdutos && nomesProdutos.length == 0">
                             <p class="text-center text-muted">Dados não disponíveis</p>
@@ -66,13 +70,13 @@
         
             <div class="col-md-6">  
                 <div class="card ">
-                    <div class="card-header ">Produtos Mais vendidos</div>
+                    <div class="card-header ">Total de vendas - Mês atual</div>
                     <div class="card-body">
-                        <div *ngIf="nomesProdutos && nomesProdutos.length == 0">
+                        <div *ngIf="dias && dias.length == 0">
                             <p class="text-center text-muted">Dados não disponíveis</p>
                         </div>
-                        <div style="display: block" *ngIf="nomesProdutos && nomesProdutos.length > 0">
-                            <canvas baseChart [data]="quantidade" [labels]="nomesProdutos" chartType="bar"></canvas>
+                        <div style="display: block" *ngIf="dias && dias.length > 0">
+                            <canvas baseChart [datasets]="lineChartData" [labels]="dias" [chartType]="tipoGrafico2"></canvas>
                         </div>
                     </div>
                 </div>

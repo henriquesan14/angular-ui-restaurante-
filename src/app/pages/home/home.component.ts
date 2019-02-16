@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HomeService } from 'src/app/services/home.service';
 import { ProdutoService } from 'src/app/services/domain/produto.service';
-import { StatisticsProduto } from 'src/app/models/statistics-produto';
+import { PedidoService } from 'src/app/services/domain/pedido.service';
 
 
 @Component({
@@ -11,24 +11,45 @@ import { StatisticsProduto } from 'src/app/models/statistics-produto';
 })
 export class HomeComponent implements OnInit {
 
+  public arrayMes = ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho',
+'Julho','Agosto','Setembro','Outubro','Setembro','Novembro','Dezembro'];
+  public arrayDia = ['Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sabádo'];
   countPedidos: number;
   countItens: number;
   cozinha: number;
   garcom: number;
-  public statistics: StatisticsProduto[];
   public nomesProdutos: string[];
   public quantidade: number[];
   public tipoGrafico = 'doughnut';
-  constructor(public homeService: HomeService, private produtoService: ProdutoService) { 
+  public dias: string[];
+  public dataAtual = new Date();
+  public mesAtual: string;
+  public diaSemana: string;
+  public tipoGrafico2 = 'line';
+  public lineChartData:Array<any>;
+  constructor(public homeService: HomeService, 
+    private produtoService: ProdutoService,
+    private pedidoService: PedidoService) { 
     
   }
 
+  getMesExtenso(mes){
+    return this.arrayMes[mes];
+  }
+
+  getDiaExtenso(dia){
+    return this.arrayDia[dia];
+  }
+
   ngOnInit() {
+    this.mesAtual = this.getMesExtenso(this.dataAtual.getMonth());
+    this.diaSemana = this.getDiaExtenso(this.dataAtual.getDay());
     this.countItensDiario();
     this.countPedidosDiario();
     this.demandasCozinha();
     this.demandasGarcom();
     this.statisticsProduto();
+    this.statisticsPedido();    
    }
 
    statisticsProduto(){
@@ -40,9 +61,18 @@ export class HomeComponent implements OnInit {
      (error) => {console.log(error); });
    }
 
-   configura(){
-     
-   }
+   statisticsPedido(){
+    this.pedidoService.statisticsPedido()
+    .subscribe( (response) => {
+      this.dias = response.map(x => {return x.dia;});
+      const totais:number[] = response.map(x => {return x.total});
+      this.lineChartData = [
+        {data: totais , label: this.mesAtual} 
+      ]; 
+   },
+    (error) => {console.log(error); });
+  }
+
 
    countPedidosDiario() {
     this.homeService.countPedidosDiario()
