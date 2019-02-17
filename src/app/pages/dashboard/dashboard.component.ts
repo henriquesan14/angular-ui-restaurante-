@@ -9,11 +9,14 @@ import { WebsocketService } from 'src/app/services/websocket.service';
 })
 export class DashboardComponent implements OnInit {
 
-  constructor(private websocket: WebsocketService) { }
+  constructor(private websocket: WebsocketService
+     ) { }
 
   ngOnInit() {
-    this.websocket.initializeWebSocketConnection();
+      this.websocket.initializeWebSocketConnection();
   }
+
+
 
   
 
