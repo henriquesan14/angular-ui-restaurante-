@@ -46,14 +46,14 @@ export class WebsocketService {
     audio.play();
   }
 
-
-
   sendMessage(message){
     this.stompClient.send("/app/send/message" , {}, message);
   }
 
   disconnect(): void {
-    this.stompClient.disconnect();
+    if(this.stompClient){
+      this.stompClient.disconnect();
+    } 
   }
 
 }

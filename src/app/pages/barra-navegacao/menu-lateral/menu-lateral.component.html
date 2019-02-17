@@ -13,12 +13,14 @@
     
     <li *ngIf="hasRole(['ADMIN', 'GARCOM', 'COZINHEIRO'])"><a routerLink="/dashboard"><i class="fas fa-chart-line"></i><span>Dashboard</span></a></li>
        
-    <li ><a (click)="toggle7()"><i class="fas fa-spinner"></i><span>Demandas</span></a>
+    <li ><a *ngIf="hasRole(['ADMIN', 'GARCOM', 'COZINHEIRO'])" (click)="toggle7()"><i class="fas fa-spinner"></i><span>Demandas</span></a>
         <ul [ngClass]="opDemandas == true ? 'show-menu' : 'hide-menu'">
             <li><a routerLink="/dashboard/demandas/cozinha"><i class="fas fa-utensils"></i>Cozinha</a></li>
             <li><a routerLink="/dashboard/demandas/garcom"><i class="fas fa-check-circle"></i>Garçom</a></li>
         </ul>
     </li>
+
+    <li *ngIf="hasRole(['ADMIN', 'GARCOM', 'COZINHEIRO'])"><a routerLink="/dashboard/pedidos/pendente"><i class="fas fa-credit-card"></i><span>Fechar conta</span></a></li>
 
     <li ><a (click)="toggle4()"><i class="fas fa-shopping-cart"></i><span>Pedidos</span></a>
         <ul [ngClass]="opPedidos == true ? 'show-menu' : 'hide-menu'">

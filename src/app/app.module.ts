@@ -49,6 +49,7 @@ import { DemandaCozinhaComponent } from './pages/itens/demanda-cozinha/demanda-c
 import { DemandaGarcomComponent } from './pages/itens/demanda-garcom/demanda-garcom.component';
 import { PedidosDiariosComponent } from './pages/pedidos/pedidos-diarios/pedidos-diarios.component';
 import { ItensDiariosComponent } from './pages/pedidos/itens-diarios/itens-diarios.component';
+import { PedidosPendentesComponent } from './pages/pedidos/pedidos-pendentes/pedidos-pendentes.component';
 
 
 @NgModule({
@@ -88,7 +89,8 @@ import { ItensDiariosComponent } from './pages/pedidos/itens-diarios/itens-diari
     DemandaCozinhaComponent,
     DemandaGarcomComponent,
     PedidosDiariosComponent,
-    ItensDiariosComponent
+    ItensDiariosComponent,
+    PedidosPendentesComponent
   ],
   imports: [
     BrowserModule,

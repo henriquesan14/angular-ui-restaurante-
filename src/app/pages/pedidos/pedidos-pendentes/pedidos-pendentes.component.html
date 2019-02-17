@@ -1,4 +1,4 @@
-<app-painel-simples titulo="Pedidos" col="12" tipo="default" >
+<app-painel-simples titulo="Pedidos Pendentes" col="12" tipo="default" >
   <div class="form-group row">
       <button class="btn btn-primary add" routerLink="/dashboard/pedidos/novo">Novo Pedido</button>
   </div>
@@ -29,6 +29,6 @@
       </tbody>
     </table>
     <div *ngIf="!existemPedidos()">
-      <span class="badge badge-info">Nenhum pedido cadastrado</span>
+      <span class="badge badge-info">Nenhum pedido cadastrada</span>
     </div>
 </app-painel-simples>

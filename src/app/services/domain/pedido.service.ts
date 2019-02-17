@@ -5,6 +5,7 @@ import { Pedido, PagePedido } from 'src/app/models/pedido';
 import { Observable} from 'rxjs';
 import { CartItem } from 'src/app/models/cart';
 import { StatisticsPedido } from 'src/app/models/statistics-pedido';
+import { Pagamento } from 'src/app/models/pagamento';
 
 
 @Injectable({
@@ -26,6 +27,10 @@ export class PedidoService {
 
   find(id: string): Observable<Pedido>{
     return this.http.get<Pedido>(`${API_CONFIG.baseUrl}/pedidos/${id}`);
+  }
+
+  findByStatus(status: number): Observable<PagePedido>{
+    return this.http.get<PagePedido>(`${API_CONFIG.baseUrl}/pedidos/status?status=${status}`);
   }
 
   itensByStatus(status: number): Observable<CartItem[]>{
@@ -52,5 +57,8 @@ export class PedidoService {
     return this.http.get<StatisticsPedido[]>(`${API_CONFIG.baseUrl}/pedidos/statistics`);
   }
   
+  addPagamento(id: string, pag: Pagamento){
+    return this.http.post(`${API_CONFIG.baseUrl}/pedidos/${id}/pagamentos`, pag);
+  }
 
 }

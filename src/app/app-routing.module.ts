@@ -29,6 +29,7 @@ import { DemandaCozinhaComponent } from './pages/itens/demanda-cozinha/demanda-c
 import { DemandaGarcomComponent } from './pages/itens/demanda-garcom/demanda-garcom.component';
 import { PedidosDiariosComponent } from './pages/pedidos/pedidos-diarios/pedidos-diarios.component';
 import { ItensDiariosComponent } from './pages/pedidos/itens-diarios/itens-diarios.component';
+import { PedidosPendentesComponent } from './pages/pedidos/pedidos-pendentes/pedidos-pendentes.component';
 
 const routes: Routes = [
   {path: '', component: LoginComponent, canActivate: [NotAuthGuard]},
@@ -50,6 +51,7 @@ const routes: Routes = [
     {path: 'usuarios/novo', component: CadastroUsuarioComponent},
     {path: 'usuarios/:id', component: UsuarioDetailComponent},
     {path: 'pedidos', component: ListagemPedidosComponent},
+    {path: 'pedidos/pendente', component: PedidosPendentesComponent},
     {path: 'pedidos/hoje', component: PedidosDiariosComponent},
     {path: 'itens/hoje', component: ItensDiariosComponent},
     {path: 'pedidos/details/:id', component: PedidoDetailComponent},

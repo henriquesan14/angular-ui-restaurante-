@@ -1,6 +1,7 @@
 import { MesaDTO } from "./mesa.dto";
 import { Usuario } from "./usuario";
 import { CartItem } from "./cart";
+import { Pagamento } from "./pagamento";
 
 export interface Pedido{
     id: string;
@@ -11,6 +12,7 @@ export interface Pedido{
     funcionario: Usuario;
     itens: CartItem[];
     valorTotal: number;
+    pagamentos: Pagamento[];
 }
 
 export interface PagePedido {

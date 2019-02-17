@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { WebsocketService } from 'src/app/services/websocket.service';
+import { StorageService } from 'src/app/services/storage.service';
+import { UsuarioService } from 'src/app/services/domain/usuario.service';
+
 
 
 @Component({
@@ -9,15 +12,38 @@ import { WebsocketService } from 'src/app/services/websocket.service';
 })
 export class DashboardComponent implements OnInit {
 
-  constructor(private websocket: WebsocketService
+
+  constructor(private websocket: WebsocketService,
+    private storage: StorageService,
+    private usuarioService: UsuarioService
      ) { }
 
   ngOnInit() {
-      this.websocket.initializeWebSocketConnection();
+      this.findUser();
   }
 
+  findUser(){
+    const user = this.storage.getLocalUser();
+    this.usuarioService.findByEmail(user.email)
+    .subscribe((response) => {
+      if(this.isFuncionario(response.perfis)){
+        this.websocket.initializeWebSocketConnection();
+      }
+    },
+    () => {});
 
+  }
 
-  
+  isFuncionario(roles: string[]): boolean{
+    let ok = false;
+    for(const r of roles){
+      if(r=='GARCOM' || r=='COZINHEIRO' || r=='ADMIN'){
+        ok = true;
+        break;
+      }
+    }
+    return ok;
+  }
+ 
 
 }

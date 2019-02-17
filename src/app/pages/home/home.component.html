@@ -1,7 +1,7 @@
 <app-painel-simples titulo="Analytics" col="12" tipo="primary" color="white">
         <div class="row">
 
-        <div class="col-md-3">
+        <div class="col-md-3" *ngIf="hasRole(['ADMIN','GARCOM','COZINHEIRO'])">
             <div class="card text-white bg-success mb-3 click" routerLink="/dashboard/pedidos/hoje" style="max-width: 18rem;">
                     <div class="card-body">
                         <div class="box-icon">
@@ -14,7 +14,7 @@
         </div>
 
 
-        <div class="col-md-3">
+        <div class="col-md-3" *ngIf="hasRole(['ADMIN','GARCOM','COZINHEIRO'])">
                 <div class="card text-white bg-danger mb-3 click" routerLink="/dashboard/itens/hoje" style="max-width: 18rem;">
                         <div class="card-body">
                             <div class="box-icon">
@@ -26,7 +26,7 @@
                 </div>
         </div>
 
-        <div class="col-md-3" >
+        <div class="col-md-3" *ngIf="hasRole(['ADMIN','GARCOM','COZINHEIRO'])">
                 <div class="card text-white bg-dark mb-3 click" routerLink="/dashboard/demandas/cozinha" style="max-width: 18rem;">
                         <div class="card-body">
                             <div class="box-icon">
@@ -38,7 +38,7 @@
                 </div>
         </div>
 
-        <div class="col-md-3">
+        <div class="col-md-3" *ngIf="hasRole(['ADMIN','GARCOM','COZINHEIRO'])">
                 <div class="card text-white bg-primary mb-3 click" routerLink="/dashboard/demandas/garcom" style="max-width: 18rem;">
                         <div class="card-body">
                             <div class="box-icon">
@@ -50,11 +50,11 @@
                 </div>
         </div>
 
-        <div class="col-md-12">
+        <div class="col-md-12" *ngIf="hasRole(['ADMIN','GARCOM','COZINHEIRO'])">
             <h4 class="text-center">{{dataAtual.getDate() + ' de ' + mesAtual + ' ' +  dataAtual.getFullYear() + ' - ' + diaSemana}} </h4>
         </div>
 
-        <div class="col-md-6">  
+        <div class="col-md-6" *ngIf="hasRole(['ADMIN'])">  
                 <div class="card">
                     <div class="card-header">Produtos mais vendidos - Mês atual</div>
                     <div class="card-body">
@@ -68,9 +68,9 @@
                 </div>
             </div>
         
-            <div class="col-md-6">  
+            <div class="col-md-6" *ngIf="hasRole(['ADMIN'])">  
                 <div class="card ">
-                    <div class="card-header ">Total de vendas - Mês atual</div>
+                    <div class="card-header" >Total de vendas - Mês atual</div>
                     <div class="card-body">
                         <div *ngIf="dias && dias.length == 0">
                             <p class="text-center text-muted">Dados não disponíveis</p>
