@@ -10,7 +10,7 @@
       <label class="form-control">{{pedido.status}}</label>
     </div>
 
-    <div class="form-group col-md-6">
+    <div class="form-group col-md-6" *ngIf="pedido.mesa">
         <label>Mesa</label>
         <label  class="form-control">{{pedido.mesa.nome}}</label>
     </div>
@@ -19,6 +19,16 @@
         <label>Cliente</label>
         <label  class="form-control" >{{pedido.cliente.nome + ' ' + pedido.cliente.sobrenome}}</label>
     </div>
+
+    <div class="form-group col-md-6" *ngIf="pedido.funcionario">
+      <label>Funcionário</label>
+      <label  class="form-control" >{{pedido.funcionario.nome + ' ' + pedido.funcionario.sobrenome}}</label>
+    </div>
+
+    <div class="form-group col-md-6" *ngIf="pedido.enderecoEntrega">
+      <label>Endereço da Entrega</label>
+      <label  class="form-control" >{{pedido.enderecoEntrega.logradouro + ', ' + pedido.enderecoEntrega.numero + ', ' + pedido.enderecoEntrega.bairro + ' - ' + pedido.enderecoEntrega.cep}}</label>
+  </div>
 
 
   <div class="col-md-12">

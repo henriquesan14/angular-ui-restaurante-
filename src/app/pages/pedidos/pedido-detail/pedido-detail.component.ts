@@ -30,7 +30,6 @@ export class PedidoDetailComponent implements OnInit {
   pedido: Pedido = <Pedido>{mesa: {}, cliente: {}, itens: [
     {produto: {}}
   ], pagamentos: []};
-  resto: number;
   id: string;
   constructor(private pedidoService: PedidoService,
      private activatedRoute: ActivatedRoute,

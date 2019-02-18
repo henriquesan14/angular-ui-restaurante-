@@ -14,7 +14,7 @@
           <td>{{item.produto.nome}}</td>
           <td>{{item.quantidade}}</td>
           <td>{{item.produto.preco * item.quantidade | currency: 'BRL'}}</td>
-          <td>{{item.pedido.mesa.nome}}</td>
+          <td>{{item.pedido.mesa?.nome}}</td>
           <td>{{item.pedido.data}}</td>
           <td><button (click)="updateStatusItem(item.pedido.id,item.produto.id)" class="btn btn-success"><i class="fas fa-check"></i></button></td>
         </tr>

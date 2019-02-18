@@ -28,6 +28,14 @@ export class WebsocketService {
     });
   }
 
+  initializeWebSocketConnectionSemSub(){
+    let ws = new SockJS(this.serverUrl);
+    this.stompClient = Stomp.over(ws);
+    let that = this;
+    this.stompClient.connect({}, function(frame) {
+    });
+  }
+
   atualizaDemanda(){
     this.homeService.atualizaDemandasCozinha()
     .subscribe(() => {});

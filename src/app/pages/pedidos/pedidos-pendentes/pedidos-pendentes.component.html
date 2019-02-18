@@ -8,10 +8,10 @@
         <tr>
           <th >Id</th>
           <th >Data/Hora</th>
+          <th>Tipo</th>
           <th >Status</th>
           <th>Mesa</th>
           <th>Cliente</th>
-          <th>Funcionário</th>
           <th>Total</th>
         </tr>
       </thead>
@@ -19,10 +19,10 @@
         <tr *ngFor="let pedido of pedidos">
           <td>{{pedido.id}}</td>
           <td>{{pedido.data}}</td>
+          <td>{{pedido.tipo}}</td>
           <td>{{pedido.status}}</td>
           <td>{{pedido.mesa}}</td>
           <td>{{pedido.cliente}}</td>
-          <td>{{pedido.funcionario}}</td>
           <td>{{pedido.valorTotal | currency: 'BRL'}}</td>
           <td><button class="btn btn-primary btn-sm" routerLink="/dashboard/pedidos/details/{{pedido.id}}"><i class="fas fa-list"></i></button></td>
         </tr>

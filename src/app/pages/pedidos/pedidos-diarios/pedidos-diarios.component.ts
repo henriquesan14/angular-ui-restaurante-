@@ -20,7 +20,7 @@ export class PedidosDiariosComponent implements OnInit {
 
   pedidosDiario(){
     this.pedidoService.pedidosDiario()
-    .subscribe((response) => {this.pedidos = response;},
+    .subscribe((response) => {this.pedidos = response.content;},
     (error) => {console.log(error); });
   }
 

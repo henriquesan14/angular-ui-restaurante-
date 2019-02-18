@@ -41,8 +41,8 @@ export class PedidoService {
     return this.http.put(`${API_CONFIG.baseUrl}/pedidos/itens?idPedido=${idPedido}&idProduto=${idProduto}`,status);
   }
 
-  pedidosDiario(): Observable<Pedido[]>{
-    return this.http.get<Pedido[]>(`${API_CONFIG.baseUrl}/pedidos/now`);
+  pedidosDiario(): Observable<PagePedido>{
+    return this.http.get<PagePedido>(`${API_CONFIG.baseUrl}/pedidos/now`);
   }
 
   itensDiario(): Observable<CartItem[]>{

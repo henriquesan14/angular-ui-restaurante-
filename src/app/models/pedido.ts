@@ -2,17 +2,21 @@ import { MesaDTO } from "./mesa.dto";
 import { Usuario } from "./usuario";
 import { CartItem } from "./cart";
 import { Pagamento } from "./pagamento";
+import { EnderecoDTO } from "./endereco.dto";
 
 export interface Pedido{
     id: string;
     data: string;
     status: string;
-    mesa: MesaDTO;
+    tipo: string;
     cliente?: Usuario;
-    funcionario: Usuario;
+    funcionario?: Usuario;
     itens: CartItem[];
     valorTotal: number;
     pagamentos: Pagamento[];
+    mesa: MesaDTO;
+    enderecoEntrega: EnderecoDTO;
+    "@type": string;
 }
 
 export interface PagePedido {

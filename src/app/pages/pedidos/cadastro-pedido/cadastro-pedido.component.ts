@@ -23,7 +23,7 @@ export class CadastroPedidoComponent implements OnInit {
 
   mesas: MesaDTO[];
   public cart: Cart = <Cart>{items: []};
-  pedido: Pedido = <Pedido>{};
+  pedido: Pedido = <Pedido>{"@type": 'pedidoComum'};
   clientes: Usuario[];
   email: string;
   idCliente: string;
@@ -80,7 +80,7 @@ export class CadastroPedidoComponent implements OnInit {
       this.idCliente = null;
       this.nomeCliente = null;
       this.websocket.sendMessage(' ');
-      this.pedido = <Pedido>{};
+      this.pedido = <Pedido>{"@type": 'pedidoComum'};
       this.router.navigateByUrl('/dashboard/pedidos'); },
     (error) => {
       console.log(this.pedido);

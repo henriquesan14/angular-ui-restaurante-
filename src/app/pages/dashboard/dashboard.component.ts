@@ -28,6 +28,8 @@ export class DashboardComponent implements OnInit {
     .subscribe((response) => {
       if(this.isFuncionario(response.perfis)){
         this.websocket.initializeWebSocketConnection();
+      }else{
+        this.websocket.initializeWebSocketConnectionSemSub();
       }
     },
     () => {});
