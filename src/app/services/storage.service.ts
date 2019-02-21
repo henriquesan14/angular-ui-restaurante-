@@ -43,6 +43,23 @@ export class StorageService {
       }
   }
 
+  getCartDelivery(): Cart{
+    const cart = localStorage.getItem(STORAGE_KEYS.cartDel);
+    if(cart == null){
+        return null;
+    } else {
+        return JSON.parse(cart);
+    }
+
+  }
+
+  setCartDelivery(obj: Cart){
+      if(obj == null){
+          localStorage.removeItem(STORAGE_KEYS.cartDel);
+      } else {
+          localStorage.setItem(STORAGE_KEYS.cartDel, JSON.stringify(obj));
+      }
+  }
 
 }
 

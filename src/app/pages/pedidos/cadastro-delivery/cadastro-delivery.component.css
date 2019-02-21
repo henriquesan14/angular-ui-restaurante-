@@ -1,0 +1,65 @@
+
+.icon-categorias{
+    display: flex;
+    width: 100px;
+    height: 100px; 
+}
+
+.box-refeicao, .box-bebida, .box-sobremesa{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top:20px;
+    border: 2px solid #fff;
+    padding: 10px 0px;
+    border-radius: 5px; 
+    cursor:pointer;
+}
+
+.box-refeicao:hover, .box-bebida:hover, .box-sobremesa:hover{
+    border-color: blue; 
+}
+
+.box-categorias{
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+
+
+.mr{
+    margin-right: 10px;
+}
+
+.fas.fa-minus-circle, .fas.fa-plus-circle{
+    font-size:20px;
+    color: #1D8FF4;
+    cursor: pointer;
+}
+
+.fas.fa-trash{
+    font-size:20px;
+    color: red;
+    cursor: pointer;
+}
+
+.quant{
+    padding: 10px;
+}
+
+.badge{
+    font-size:18px;
+}
+
+.clientes{
+    cursor: pointer;
+}
+
+
+
+@media only screen and (max-width: 479px) {
+    h4{
+        font-size: 20px;
+    }
+}

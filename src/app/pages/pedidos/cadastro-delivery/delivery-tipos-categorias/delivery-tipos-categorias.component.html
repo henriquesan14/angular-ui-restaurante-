@@ -1,0 +1,23 @@
+
+
+<div class="box-categorias">   
+  <div class="box-item" *ngFor="let categoria of categorias">
+    <button class="btn btn-primary" routerLink="/dashboard/deliverys/novo/produtos/{{categoria.id}}"><i class="fas fa-tag"></i>{{categoria.nome}}</button>
+  </div>
+</div>
+
+<div class="container">
+<div class="row">
+  <div class="col-md-4 box-refeicao" (click)="findByTipo(1)">
+    <i class="fas fa-utensils"></i>
+    <h4>Refeições</h4>
+  </div>
+  <div class="col-md-4 box-bebida" (click)="findByTipo(2)">
+    <i class="fas fa-wine-glass-alt"></i>
+    <h4>Bebidas</h4>
+  </div>
+  <div class="col-md-4 box-sobremesa" (click)="findByTipo(3)">
+    <i class="fas fa-cookie"></i>
+    <h4>Sobremesas</h4>
+  </div>
+</div>

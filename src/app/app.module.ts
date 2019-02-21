@@ -50,6 +50,10 @@ import { DemandaGarcomComponent } from './pages/itens/demanda-garcom/demanda-gar
 import { PedidosDiariosComponent } from './pages/pedidos/pedidos-diarios/pedidos-diarios.component';
 import { ItensDiariosComponent } from './pages/pedidos/itens-diarios/itens-diarios.component';
 import { PedidosPendentesComponent } from './pages/pedidos/pedidos-pendentes/pedidos-pendentes.component';
+import { ErrorInterceptorProvider } from './interceptors/not-auth.interceptor';
+import { CadastroDeliveryComponent } from './pages/pedidos/cadastro-delivery/cadastro-delivery.component';
+import { DeliveryTiposCategoriasComponent } from './pages/pedidos/cadastro-delivery/delivery-tipos-categorias/delivery-tipos-categorias.component';
+import { DeliveryProdutosCategoriasComponent } from './pages/pedidos/cadastro-delivery/delivery-produtos-categorias/delivery-produtos-categorias.component';
 
 
 @NgModule({
@@ -90,7 +94,10 @@ import { PedidosPendentesComponent } from './pages/pedidos/pedidos-pendentes/ped
     DemandaGarcomComponent,
     PedidosDiariosComponent,
     ItensDiariosComponent,
-    PedidosPendentesComponent
+    PedidosPendentesComponent,
+    CadastroDeliveryComponent,
+    DeliveryTiposCategoriasComponent,
+    DeliveryProdutosCategoriasComponent
   ],
   imports: [
     BrowserModule,
@@ -103,7 +110,7 @@ import { PedidosPendentesComponent } from './pages/pedidos/pedidos-pendentes/ped
     BrowserAnimationsModule,
     ToastrModule.forRoot(environment.toastConfig)
   ],
-  providers: [AuthInterceptorProvider, AuthService, StorageService, UsuarioService],
+  providers: [AuthInterceptorProvider, ErrorInterceptorProvider, AuthService, StorageService, UsuarioService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

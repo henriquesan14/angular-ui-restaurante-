@@ -65,6 +65,10 @@ export class UsuarioService {
     return this.http.put(`${API_CONFIG.baseUrl}/usuarios/password`, newSenha);
   }
 
+  findEnderecosByUsuario(idUsuario = ''){
+    return this.http.get(`${API_CONFIG.baseUrl}/usuarios/enderecos?idUsuario=${idUsuario}`);
+  }
+
   findEndereco(idUsuario: string, idEndereco: string): Observable<EnderecoDTO> {
     return this.http.get<EnderecoDTO>(`${API_CONFIG.baseUrl}/usuarios/${idUsuario}/enderecos/${idEndereco}`);
   }

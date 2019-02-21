@@ -30,6 +30,9 @@ import { DemandaGarcomComponent } from './pages/itens/demanda-garcom/demanda-gar
 import { PedidosDiariosComponent } from './pages/pedidos/pedidos-diarios/pedidos-diarios.component';
 import { ItensDiariosComponent } from './pages/pedidos/itens-diarios/itens-diarios.component';
 import { PedidosPendentesComponent } from './pages/pedidos/pedidos-pendentes/pedidos-pendentes.component';
+import { CadastroDeliveryComponent } from './pages/pedidos/cadastro-delivery/cadastro-delivery.component';
+import { DeliveryTiposCategoriasComponent } from './pages/pedidos/cadastro-delivery/delivery-tipos-categorias/delivery-tipos-categorias.component';
+import { DeliveryProdutosCategoriasComponent } from './pages/pedidos/cadastro-delivery/delivery-produtos-categorias/delivery-produtos-categorias.component';
 
 const routes: Routes = [
   {path: '', component: LoginComponent, canActivate: [NotAuthGuard]},
@@ -58,6 +61,10 @@ const routes: Routes = [
     {path: 'pedidos/novo', component: CadastroPedidoComponent, children: [
       {path: '', component: TiposCategoriasComponent},
       {path: 'produtos/:idCategoria', component: ProdutosCategoriaComponent}
+    ]},
+    {path: 'deliverys/novo', component: CadastroDeliveryComponent, children: [
+      {path: '', component: DeliveryTiposCategoriasComponent},
+      {path: 'produtos/:idCategoria', component: DeliveryProdutosCategoriasComponent}
     ]},
     {path: 'demandas/cozinha', component: DemandaCozinhaComponent},
     {path: 'demandas/garcom', component: DemandaGarcomComponent}
