@@ -82,7 +82,7 @@
 
 
     <div class="form-group col-md-12">
-      <button class="btn btn-success mr-2" *ngIf="pedido.status=='PENDENTE'" data-toggle="modal" data-target="#pagamento">Adicionar Pagamento</button>
+      <button class="btn btn-success mr-2" *ngIf="pedido.status=='PENDENTE' && funcionario" data-toggle="modal" data-target="#pagamento">Adicionar Pagamento</button>
       <button class="btn btn-light" routerLink="/dashboard/pedidos/pendente">Voltar</button>
     </div>
   </div>

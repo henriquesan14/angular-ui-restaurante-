@@ -13,6 +13,7 @@ import { WebsocketService } from 'src/app/services/websocket.service';
 import { Router } from '@angular/router';
 import { Produto } from 'src/app/models/produto';
 import { CartDeliveryService } from 'src/app/services/domain/cart-delivery.service';
+import { EnderecoDTO } from 'src/app/models/endereco.dto';
 
 @Component({
   selector: 'app-cadastro-delivery',
@@ -28,6 +29,8 @@ export class CadastroDeliveryComponent implements OnInit {
   email: string;
   idCliente = '';
   nomeCliente: string;
+  enderecos: EnderecoDTO[];
+  enderecoEntrega: EnderecoDTO;
   constructor(private cartService: CartDeliveryService,
     private storage: StorageService,
     private mesaService: MesaService,
@@ -45,7 +48,9 @@ export class CadastroDeliveryComponent implements OnInit {
 
   findEnderecos(){
     this.usuarioService.findEnderecosByUsuario(this.idCliente)
-    .subscribe((response) => {console.log(response)});
+    .subscribe((response) => {
+      this.enderecos = response;
+    });
   }
 
   findLikeEmail(){
@@ -58,16 +63,31 @@ export class CadastroDeliveryComponent implements OnInit {
     this.idCliente = cliente.id;
     this.nomeCliente = cliente.nome + ' ' + cliente.sobrenome;
     this.clientes = null;
+    this.enderecoEntrega = null;
     this.findEnderecos();
+  }
+
+
+  selecionaEndereco(end: EnderecoDTO){
+    this.enderecoEntrega = end;
+    this.enderecos = null;
   }
 
   existemClientes(): boolean{
     return this.clientes && this.clientes.length > 0;
   }
 
+  existemEnderecos(): boolean{
+    return this.enderecos && this.enderecos.length > 0;
+  }
+
   deletaCliente(){
     this.idCliente = null;
     this.nomeCliente = null;
+  }
+
+  deletaEndereco(){
+    this.enderecoEntrega = null;
   }
 
   atualizaDemandaCozinha(){
@@ -79,6 +99,7 @@ export class CadastroDeliveryComponent implements OnInit {
       this.pedido.cliente = <Usuario>{};
       this.pedido.cliente.id = this.idCliente;
     }
+    this.pedido.enderecoEntrega = this.enderecoEntrega;
     this.pedido.itens = this.cart.items;
     this.pedidoService.insert(this.pedido)
     .subscribe(() => {

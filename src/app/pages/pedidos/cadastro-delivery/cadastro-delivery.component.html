@@ -42,9 +42,27 @@
             </tbody>
           </table>
 
+          <div *ngIf="!enderecoEntrega">
+            <span class="text-danger">Selecione o endereço de entrega*</span>
+            <table class="table table-hover" >
+              <thead>
+                <tr>
+                  <th>Descrição</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr (click)="selecionaEndereco(end)" class="clientes" *ngFor="let end of enderecos">
+                  <td>{{end.logradouro + ', ' + end.numero + ', '+end.bairro +', '+ end.cep}}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
           <div *ngIf="idCliente">
             <label class="badge badge-dark">Cliente: {{nomeCliente}} <i (click)="deletaCliente()" class="fas fa-trash"></i></label>
-            
+          </div>
+          <div *ngIf="enderecoEntrega">
+            <label class="badge badge-dark">Endereço: {{enderecoEntrega.logradouro + ', ' + enderecoEntrega.numero}} <i (click)="deletaEndereco()"  class="fas fa-trash"></i></label>
           </div>
 
         <table class="table table-hover">
@@ -70,7 +88,7 @@
         <br>
         
           <button class="mr btn btn-secondary"  data-dismiss="modal">Voltar</button>
-          <button class="btn btn-success" [disabled]="total() <= 0" data-dismiss="modal" (click)="insert()">Emitir Pedido</button>
+          <button class="btn btn-success" [disabled]="!enderecoEntrega || total() <= 0" data-dismiss="modal" (click)="insert()">Emitir Pedido</button>
       </div>
     </div>
   </div>

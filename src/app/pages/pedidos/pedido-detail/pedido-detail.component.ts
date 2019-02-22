@@ -5,6 +5,9 @@ import { ActivatedRoute } from '@angular/router';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import createNumberMask from 'text-mask-addons/dist/createNumberMask';
 import { ToastrService } from 'ngx-toastr';
+import { StorageService } from 'src/app/services/storage.service';
+import { UsuarioService } from 'src/app/services/domain/usuario.service';
+import { Usuario } from 'src/app/models/usuario';
 
 @Component({
   selector: 'app-pedido-detail',
@@ -27,6 +30,8 @@ export class PedidoDetailComponent implements OnInit {
     allowLeadingZeroes: false
   });
   formPag: FormGroup;
+  funcionario = false;
+  usuario: Usuario = <Usuario>{perfis: []};
   pedido: Pedido = <Pedido>{mesa: {}, cliente: {}, itens: [
     {produto: {}}
   ], pagamentos: []};
@@ -34,12 +39,15 @@ export class PedidoDetailComponent implements OnInit {
   constructor(private pedidoService: PedidoService,
      private activatedRoute: ActivatedRoute,
      private formBuilder: FormBuilder,
-     private toastr: ToastrService) {
+     private toastr: ToastrService,
+     private usuarioService: UsuarioService,
+     private storage: StorageService) {
       }
 
   ngOnInit() {
     this.find(this.activatedRoute.snapshot.params.id);
     this.configuraForm();
+    this.getUsuario();
   }
 
   configuraForm(){
@@ -75,6 +83,26 @@ export class PedidoDetailComponent implements OnInit {
       this.pedido = response;
     },
     (error) => {console.log(error);});
+  }
+
+  getUsuario(){
+    let usuario = this.storage.getLocalUser();
+    this.usuarioService.findByEmail(usuario.email)
+    .subscribe(
+      (response) => {this.usuario = response;
+      this.funcionario = this.isFuncionario(response.perfis);}
+    );
+  }
+
+  isFuncionario(roles: string[]): boolean{
+    let ok = false;
+    for(const r of roles){
+      if(r=='GARCOM' || r=='COZINHEIRO' || r=='ADMIN'){
+        ok = true;
+        break;
+      }
+    }
+    return ok;
   }
 
 
