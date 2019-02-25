@@ -10,7 +10,7 @@
 }
 
 #form-box {
-    width: 400px;
+    width: 40%;
     padding: 20px;
     box-sizing: border-box;
     background-color: #fff;
@@ -56,4 +56,28 @@ font-size:15px;
 .register:hover{
     color: #fff;
     background-color:#26323e;
+}
+
+.icons i{
+    border: 2px solid #26323e;
+    font-size: 40px;
+    padding: 5px;
+    border-radius: 5px;
+    color: #26323e;
+}
+
+.icons i:hover{
+    background-color: #26323e;
+    color: #fff;
+}
+
+.doc a{
+    text-decoration: none;
+    font-size:15px;
+}
+
+@media (max-width: 800px) {
+    #form-box {
+        width: 90%;
+    }
 }

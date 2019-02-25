@@ -1,11 +1,11 @@
 <h5 class="text-center">{{nomeCategoria}}</h5>
 <br>
-<div class="row container" *ngIf="existemProdutos()">
+<div class="row container" >
   <input placeholder="Pesquise o nome do produto..." [(ngModel)]="nome" type="text" name="nome" class="form-control col-md-10">
   <button (click)="findAll(idCategoria, nome)" class="btn btn-dark"><i class="fas fa-search"></i></button>
 </div>
 
-<div class="container">
+<div class="container" *ngIf="existemProdutos()">
     <div class="row">
         <div class="col-md-2 box-produto" *ngFor="let produto of produtos">
             <h6>{{produto.nome}}</h6>
