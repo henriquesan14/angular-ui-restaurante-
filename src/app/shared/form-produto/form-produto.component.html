@@ -4,7 +4,7 @@
       <div class="form-group col-md-6">
         <label for="nome">Nome*</label>
         <input type="text" name="nome" #nome="ngModel" [(ngModel)]="produto.nome" [class.is-invalid]="!nome.valid && nome.touched" id="nome"   
-        class="form-control" required />
+        class="form-control" required maxlength="50" minlength="2"/>
         <div *ngIf="!nome.valid && nome.touched" class="text-danger">
             Informe o nome do produto
         </div>
@@ -54,7 +54,7 @@
                     <div class="form-group col-md-6">
                         <label for="nome">Nome</label>
                         <input type="text" name="nome" formControlName="nome" [class.is-invalid]="!nome.valid && nome.touched" id="nome"   
-                        class="form-control"  required />
+                        class="form-control"  required maxlength="50" minlength="2" />
                       </div>
                       
                       <div class="form group col-md-6">

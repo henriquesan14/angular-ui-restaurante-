@@ -6,7 +6,7 @@
             <div class="form-group col-md-6">
             <label for="nome">Nome*</label>
             <input type="text" name="nome" #nome="ngModel" [(ngModel)]="usuario.nome" [class.is-invalid]="!nome.valid && nome.touched" id="nome"   
-            class="form-control"  required />
+            class="form-control"  required minlength="2" maxlength="50" />
             <div *ngIf="!nome.valid && nome.touched" class="text-danger">
                 Informe o nome
             </div>
@@ -15,7 +15,7 @@
             <div class="form-group col-md-6">
                 <label for="sobrenome">Sobrenome*</label>
                 <input type="text" name="sobrenome" #sobrenome="ngModel" [(ngModel)]="usuario.sobrenome" [class.is-invalid]="!sobrenome.valid && sobrenome.touched" id="sobrenome"   
-                class="form-control"  required />
+                class="form-control"  required minlength="2" maxlength="50" />
                 <div *ngIf="!sobrenome.valid && sobrenome.touched" class="text-danger">
                     Informe o sobrenome
                 </div>
@@ -75,7 +75,7 @@
             <div class="form-group col-md-9">
                 <label for="logradouro">Logradouro*</label>
                 <input type="text" name="logradouro" #logradouro="ngModel" [(ngModel)]="usuario.logradouro" [class.is-invalid]="!logradouro.valid && logradouro.touched" id="logradouro"   
-                class="form-control"  required />
+                class="form-control"  required minlength="2" maxlength="100"/>
                 <div *ngIf="!logradouro.valid && logradouro.touched" class="text-danger">
                     Informe o logradouro
                 </div>
@@ -84,7 +84,7 @@
             <div class="form-group col-md-3">
                 <label for="numero">Número*</label>
                 <input type="text" name="numero" #numero="ngModel" [(ngModel)]="usuario.numero" [class.is-invalid]="!numero.valid && numero.touched" id="numero"   
-                class="form-control"  required />
+                class="form-control"  required maxlength="10" />
                 <div *ngIf="!numero.valid && numero.touched" class="text-danger">
                     Informe a número
                 </div>
@@ -93,7 +93,7 @@
             <div class="form-group col-md-6">
                 <label for="bairro">Bairro*</label>
                 <input type="text" name="bairro" #bairro="ngModel" [(ngModel)]="usuario.bairro" [class.is-invalid]="!bairro.valid && bairro.touched" id="bairro"   
-                class="form-control"  required />
+                class="form-control"  required minlength="2" maxlength="100" />
                 <div *ngIf="!bairro.valid && bairro.touched" class="text-danger">
                     Informe o bairro
                 </div>
@@ -102,7 +102,7 @@
             <div class="form-group col-md-6">
                 <label for="complemento">Complemento</label>
                 <input type="text" name="complemento" #complemento="ngModel" [(ngModel)]="usuario.complemento" [class.is-invalid]="!complemento.valid && complemento.touched" id="complemento"   
-                class="form-control"  />
+                class="form-control" maxlength="50"  />
             </div>
 
             <div class="form-group col-md-6">

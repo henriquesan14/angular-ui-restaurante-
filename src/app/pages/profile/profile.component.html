@@ -4,7 +4,7 @@
         <div class="form-group col-md-6">
           <label for="nome">Nome</label>
           <input type="text" name="nome" #nome="ngModel" [(ngModel)]="usuario.nome" [class.is-invalid]="!nome.valid && nome.touched" id="nome"   
-          class="form-control"  required />
+          class="form-control"  required minlength="2" maxlength="50" />
           <div *ngIf="!nome.valid && nome.touched" class="text-danger">
               Informe o nome
           </div>
@@ -13,7 +13,7 @@
         <div class="form-group col-md-6">
             <label for="sobrenome">Sobrenome</label>
             <input type="text" name="sobrenome" #sobrenome="ngModel" [(ngModel)]="usuario.sobrenome" [class.is-invalid]="!sobrenome.valid && sobrenome.touched" id="sobrenome"   
-            class="form-control"  required />
+            class="form-control"  required minlength="2" maxlength="50" />
             <div *ngIf="!sobrenome.valid && sobrenome.touched" class="text-danger">
                 Informe o sobrenome
             </div>
