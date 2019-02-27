@@ -16,6 +16,7 @@ export class LoginComponent implements OnInit {
     email: '',
     senha: ''
   };
+  public loaderLogin = false;
 
   constructor(private auth: AuthService, private router: Router,
     private toastr: ToastrService) { }
@@ -24,15 +25,18 @@ export class LoginComponent implements OnInit {
   }
 
   login() {
+    this.loaderLogin = true;
     this.auth.authenticate(this.creds)
     .subscribe((response) => {
       this.auth.successFullLogin(response.headers.get('Authorization'));
-      this.toastr.success('Bem vindo!', 'Sucesso');
+      this.toastr.success('Bem vindo!', 'Sucesso'); 
       this.router.navigateByUrl('/dashboard');
+      this.loaderLogin = false;
     }, (error) => {
       if (error.status === 401) {
         this.toastr.error('Email ou senha incorretos!', 'Falha');
       }
+      this.loaderLogin = false;
     });
   }
 }

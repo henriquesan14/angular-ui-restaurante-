@@ -54,6 +54,7 @@ import { ErrorInterceptorProvider } from './interceptors/not-auth.interceptor';
 import { CadastroDeliveryComponent } from './pages/pedidos/cadastro-delivery/cadastro-delivery.component';
 import { DeliveryTiposCategoriasComponent } from './pages/pedidos/cadastro-delivery/delivery-tipos-categorias/delivery-tipos-categorias.component';
 import { DeliveryProdutosCategoriasComponent } from './pages/pedidos/cadastro-delivery/delivery-produtos-categorias/delivery-produtos-categorias.component';
+import { LoadingComponent } from './shared/loading/loading.component';
 
 
 @NgModule({
@@ -97,7 +98,8 @@ import { DeliveryProdutosCategoriasComponent } from './pages/pedidos/cadastro-de
     PedidosPendentesComponent,
     CadastroDeliveryComponent,
     DeliveryTiposCategoriasComponent,
-    DeliveryProdutosCategoriasComponent
+    DeliveryProdutosCategoriasComponent,
+    LoadingComponent
   ],
   imports: [
     BrowserModule,

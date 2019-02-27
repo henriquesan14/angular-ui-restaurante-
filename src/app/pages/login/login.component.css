@@ -17,7 +17,8 @@
     border-radius:5px;
 }
 
-#form-box img{
+
+#form-box img#logo{
     display: block;
     width: 120px;
     height: 120px;
@@ -75,6 +76,8 @@ font-size:15px;
     text-decoration: none;
     font-size:15px;
 }
+
+
 
 @media (max-width: 800px) {
     #form-box {
