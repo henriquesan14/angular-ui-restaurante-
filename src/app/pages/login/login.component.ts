@@ -35,6 +35,8 @@ export class LoginComponent implements OnInit {
     }, (error) => {
       if (error.status === 401) {
         this.toastr.error('Email ou senha incorretos!', 'Falha');
+      }else{
+        this.toastr.error('Não foi possível terminar essa operação, tente novamente mais tarde', 'Falha');
       }
       this.loaderLogin = false;
     });

@@ -3,8 +3,9 @@
       <button class="btn btn-primary mr-2" *ngIf="funcionario" routerLink="/dashboard/pedidos/novo">Novo Pedido</button>
       <button class="btn btn-dark" routerLink="/dashboard/deliverys/novo">Novo Delivery</button>
   </div>
-    <br>   
-<table class="table table-hover" *ngIf="existemPedidos()" >
+    <br>  
+    <app-loading [loader]="loader"></app-loading> 
+<table class="table table-hover" *ngIf="existemPedidos() && !loader" >
       <thead>
         <tr>
           <th >Id</th>
@@ -29,7 +30,10 @@
         </tr>
       </tbody>
     </table>
-    <div *ngIf="!existemPedidos()">
+    <div *ngIf="error && !loader">
+        <span class="badge badge-danger">Dados não disponiveis, tente novamente mais tarde</span>
+    </div>
+    <div *ngIf="!existemPedidos() && !loader">
       <span class="badge badge-info">Nenhum pedido cadastrado</span>
     </div>
 </app-painel-simples>

@@ -12,6 +12,8 @@ import { StorageService } from 'src/app/services/storage.service';
 })
 export class ListagemPedidosComponent implements OnInit {
 
+  public loader = false;
+  public error = false;
   usuario: Usuario = <Usuario>{perfis: []};
   pedidos: Pedido[] = <Pedido[]>{};
   funcionario = false;
@@ -36,9 +38,12 @@ export class ListagemPedidosComponent implements OnInit {
   }
 
   findAll(){
+    this.loader = true;
     this.pedidoService.findAll()
-    .subscribe((response) => {this.pedidos = response.content;},
-    (error) => {console.log(error); });
+    .subscribe((response) => {this.pedidos = response.content;
+      this.loader = false;},
+    (error) => {this.error= true;
+      this.loader = true; });
   }
 
   existemPedidos(): boolean{
