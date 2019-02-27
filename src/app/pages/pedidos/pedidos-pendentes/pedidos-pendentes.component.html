@@ -1,34 +1,40 @@
 <app-painel-simples titulo="Pedidos Pendentes" col="12" tipo="default" >
-  <div class="form-group row">
-      <button class="btn btn-primary add" routerLink="/dashboard/pedidos/novo">Novo Pedido</button>
-  </div>
-    <br>   
-<table class="table table-hover" *ngIf="existemPedidos()" >
-      <thead>
-        <tr>
-          <th >Id</th>
-          <th >Data/Hora</th>
-          <th>Tipo</th>
-          <th >Status</th>
-          <th>Mesa</th>
-          <th>Cliente</th>
-          <th>Total</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let pedido of pedidos">
-          <td>{{pedido.id}}</td>
-          <td>{{pedido.data}}</td>
-          <td>{{pedido.tipo}}</td>
-          <td>{{pedido.status}}</td>
-          <td>{{pedido.mesa}}</td>
-          <td>{{pedido.cliente}}</td>
-          <td>{{pedido.valorTotal | currency: 'BRL'}}</td>
-          <td><button class="btn btn-primary btn-sm" routerLink="/dashboard/pedidos/details/{{pedido.id}}"><i class="fas fa-list"></i></button></td>
-        </tr>
-      </tbody>
-    </table>
-    <div *ngIf="!existemPedidos()">
-      <span class="badge badge-info">Nenhum pedido cadastrada</span>
+  <app-loading [loader]="loader"></app-loading>
+  <div *ngIf="!loader && !error">
+    <div class="form-group row">
+        <button class="btn btn-primary add" routerLink="/dashboard/pedidos/novo">Novo Pedido</button>
     </div>
+      <br>   
+  <table class="table table-hover" *ngIf="existemPedidos()" >
+        <thead>
+          <tr>
+            <th >Id</th>
+            <th >Data/Hora</th>
+            <th>Tipo</th>
+            <th >Status</th>
+            <th>Mesa</th>
+            <th>Cliente</th>
+            <th>Total</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let pedido of pedidos">
+            <td>{{pedido.id}}</td>
+            <td>{{pedido.data}}</td>
+            <td>{{pedido.tipo}}</td>
+            <td>{{pedido.status}}</td>
+            <td>{{pedido.mesa}}</td>
+            <td>{{pedido.cliente}}</td>
+            <td>{{pedido.valorTotal | currency: 'BRL'}}</td>
+            <td><button class="btn btn-primary btn-sm" routerLink="/dashboard/pedidos/details/{{pedido.id}}"><i class="fas fa-list"></i></button></td>
+          </tr>
+        </tbody>
+      </table>
+      <div *ngIf="!existemPedidos()">
+        <span class="badge badge-info">Nenhum pedido pendente</span>
+      </div>
+  </div>
+  <div *ngIf=" !loader && error">
+      <span class="badge badge-danger">Dados não disponiveis, tente novamente mais tarde</span>
+  </div>
 </app-painel-simples>

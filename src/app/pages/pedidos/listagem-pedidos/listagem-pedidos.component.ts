@@ -43,7 +43,7 @@ export class ListagemPedidosComponent implements OnInit {
     .subscribe((response) => {this.pedidos = response.content;
       this.loader = false;},
     (error) => {this.error= true;
-      this.loader = true; });
+      this.loader = false; });
   }
 
   existemPedidos(): boolean{

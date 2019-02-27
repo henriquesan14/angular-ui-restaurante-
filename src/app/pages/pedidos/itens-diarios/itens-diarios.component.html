@@ -1,26 +1,29 @@
-<app-painel-simples titulo="Itens - Hoje" col="12" tipo="default" >   
-  <label class="badge badge-danger">Valor total diário: {{total | currency: 'BRL'}}</label>
-  <table class="table table-hover">
-        <thead>
-          <tr>
-            <th >Nome</th>
-            <th >Quantidade</th>
-            <th>Subtotal</th>
-            <th >Mesa</th>
-            <th>Horário</th>
-            <th>Status</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let item of itens">
-            <td>{{item.produto.nome}}</td>
-            <td>{{item.quantidade}}</td>
-            <td>{{item.produto.preco * item.quantidade | currency: 'BRL'}}</td>
-            <td>{{item.pedido.mesa.nome}}</td>
-            <td>{{item.pedido.data}}</td>
-            <td>{{item.statusItem}}</td>
-          </tr>
-        </tbody>
-      </table>
-      <label class="badge badge-info" *ngIf="!existemItens()">Nenhum item em demanda</label>
+<app-painel-simples titulo="Itens - Hoje" col="12" tipo="default" >  
+  <app-loading [loader]="loader"></app-loading> 
+  <div *ngIf="!loader">
+    <label class="badge badge-danger">Valor total diário: {{total | currency: 'BRL'}}</label>
+    <table class="table table-hover" *ngIf="existemItens()">
+          <thead>
+            <tr>
+              <th >Nome</th>
+              <th >Quantidade</th>
+              <th>Subtotal</th>
+              <th >Mesa</th>
+              <th>Horário</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let item of itens">
+              <td>{{item.produto.nome}}</td>
+              <td>{{item.quantidade}}</td>
+              <td>{{item.produto.preco * item.quantidade | currency: 'BRL'}}</td>
+              <td>{{item.pedido.mesa.nome}}</td>
+              <td>{{item.pedido.data}}</td>
+              <td>{{item.statusItem}}</td>
+            </tr>
+          </tbody>
+        </table>
+        <label class="badge badge-info" *ngIf="!existemItens()">Nenhum item em demanda</label>
+    </div>
   </app-painel-simples>

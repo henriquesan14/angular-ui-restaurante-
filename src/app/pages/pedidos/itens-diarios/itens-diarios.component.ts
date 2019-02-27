@@ -9,6 +9,7 @@ import { CartItem } from 'src/app/models/cart';
 })
 export class ItensDiariosComponent implements OnInit {
 
+  public loader = false;
   total = 0;
   itens: CartItem[];
   constructor(private pedidoService: PedidoService) { }
@@ -19,10 +20,13 @@ export class ItensDiariosComponent implements OnInit {
   }
   
   itensDiario(){
+    this.loader = true;
     this.pedidoService.itensDiario()
     .subscribe((response) => {
       this.itens = response;
-    }, (error)=> {console.log(error)});
+      this.loader = false;
+    }, (error)=> {console.log(error);
+      this.loader = false;});
   }
 
   totalDiario(){

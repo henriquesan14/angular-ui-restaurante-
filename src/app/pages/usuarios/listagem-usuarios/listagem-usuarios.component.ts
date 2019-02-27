@@ -10,6 +10,8 @@ import { Router } from '@angular/router';
 })
 export class ListagemUsuariosComponent implements OnInit {
 
+  public loader = false;
+  public error = false;
   usuarios: UsuarioDTO[];
   constructor(private usuarioService: UsuarioService,
     private router: Router) { }
@@ -19,12 +21,16 @@ export class ListagemUsuariosComponent implements OnInit {
   }
 
   findAll(){
+    this.loader = true;
     this.usuarioService.findAll()
-    .subscribe((response: UsuarioDTO[]) => {this.usuarios = response; },
+    .subscribe((response: UsuarioDTO[]) => {this.usuarios = response;
+    this.loader = false; },
     (error) => {
       if (error.status === 403){
         this.router.navigateByUrl('dashboard');
       }
+      this.error = true;
+      this.loader = false;
     }
     );
   }

@@ -9,6 +9,7 @@ import { Pedido } from 'src/app/models/pedido';
 })
 export class PedidosDiariosComponent implements OnInit {
 
+  public loader = false;
   total = 0;
   pedidos: Pedido[] = <Pedido[]>{};
   constructor(private pedidoService: PedidoService) { }
@@ -19,9 +20,12 @@ export class PedidosDiariosComponent implements OnInit {
   }
 
   pedidosDiario(){
+    this.loader = true;
     this.pedidoService.pedidosDiario()
-    .subscribe((response) => {this.pedidos = response.content;},
-    (error) => {console.log(error); });
+    .subscribe((response) => {this.pedidos = response.content;
+      this.loader = false;},
+    (error) => {console.log(error);
+      this.loader = false;});
   }
 
   existemPedidos(): boolean{

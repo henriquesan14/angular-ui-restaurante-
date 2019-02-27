@@ -11,6 +11,8 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class ListagemProdutosComponent implements OnInit {
 
+  public loader = false;
+  public error = false;
   produtos: ProdutoDTO[];
   pageProdutos: PageProduto = <PageProduto>{};
   nome;
@@ -35,10 +37,13 @@ export class ListagemProdutosComponent implements OnInit {
   }
 
   findAll(nome: string = '', page: number = 0, orderBy = 'nome', linesporPage: number = 5) {
+    this.loader = true;
     this.produtoService.findAll(nome, page, orderBy, linesporPage)
     .subscribe(
       (response: PageProduto) => {
-        this.produtos = response.content; this.pageProdutos = response; }
+        this.produtos = response.content; this.pageProdutos = response;
+      this.loader = false; }, () => { this.error = true;
+      this.loader = false;}
     );
   }
 

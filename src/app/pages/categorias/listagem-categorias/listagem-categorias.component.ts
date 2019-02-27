@@ -10,6 +10,8 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class ListagemCategoriasComponent implements OnInit {
 
+  public loader = false;
+  public error = false;
   categorias: CategoriaDTO[];
   id: string;
   constructor(private categoriaService: CategoriaService,
@@ -24,9 +26,12 @@ export class ListagemCategoriasComponent implements OnInit {
   }
 
   findAll(){
+    this.loader = true;
     this.categoriaService.findAll()
-    .subscribe((response: CategoriaDTO[]) => {this.categorias = response; },
-     () => {});
+    .subscribe((response: CategoriaDTO[]) => {this.categorias = response; 
+    this.loader = false;},
+     () => {this.error = true;
+    this.loader = false;});
   }
 
   deletaCategoria(){

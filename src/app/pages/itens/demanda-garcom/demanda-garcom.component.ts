@@ -12,6 +12,7 @@ import { WebsocketService } from 'src/app/services/websocket.service';
 })
 export class DemandaGarcomComponent implements OnInit {
 
+  public loader = false;
   itens: CartItem[];
   constructor(private pedidoService: PedidoService,
     private toastr: ToastrService,
@@ -29,9 +30,12 @@ export class DemandaGarcomComponent implements OnInit {
   }
 
   itensByStatus(status: number){
+    this.loader = true;
     this.pedidoService.itensByStatus(status)
-    .subscribe((response) => {this.itens = response; },
-    (error) => {console.log(error); });
+    .subscribe((response) => {this.itens = response;
+    this.loader = false; },
+    (error) => {console.log(error);
+      this.loader = false; });
   }
 
   existemItens(): boolean{

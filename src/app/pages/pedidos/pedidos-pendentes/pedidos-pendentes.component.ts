@@ -9,6 +9,8 @@ import { PedidoService } from 'src/app/services/domain/pedido.service';
 })
 export class PedidosPendentesComponent implements OnInit {
 
+  public loader = false;
+  public error = false;
   pedidos: Pedido[] = <Pedido[]>{};
   constructor(private pedidoService: PedidoService) { }
 
@@ -18,9 +20,13 @@ export class PedidosPendentesComponent implements OnInit {
 
 
   findAll(){
+    this.loader = true;
     this.pedidoService.findByStatus(1)
-    .subscribe((response) => {this.pedidos = response.content;},
-    (error) => {console.log(error); });
+    .subscribe((response) => {this.pedidos = response.content;
+    this.loader = false;},
+    (error) => {console.log(error);
+    this.error = true;
+    this.loader = false; });
   }
 
   existemPedidos(): boolean{

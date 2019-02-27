@@ -11,6 +11,8 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class ListagemMesaComponent implements OnInit {
 
+  public loader = false;
+  public error = false;
   mesas: MesaDTO[];
   id: string;
   constructor(private mesaService: MesaService,
@@ -25,9 +27,13 @@ export class ListagemMesaComponent implements OnInit {
   }
 
   findAll() {
+    this.loader = true;
     this.mesaService.findAll()
-    .subscribe((response: MesaDTO[]) => {this.mesas = response; },
-    (error) => {console.log(error); });
+    .subscribe((response: MesaDTO[]) => {this.mesas = response;
+    this.loader = false; },
+    (error) => {console.log(error);
+    this.error= true;
+    this.loader = false; });
   }
 
   deletaMesa(){

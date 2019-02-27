@@ -1,29 +1,35 @@
 <app-painel-simples titulo="Mesas" col="12" tipo="default" >
-  <div class="form-group row">
-      <button class="btn btn-primary add" routerLink="/dashboard/mesas/novo">Nova Mesa</button>
-  </div>
-    <br>   
-<table class="table table-hover" *ngIf="existemMesas()">
-      <thead>
-        <tr>
-          <th >Id</th>
-          <th >Nome</th>
-          <th >Status</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let mesa of mesas">
-          <td>{{mesa.id}}</td>
-          <td>{{mesa.nome}}</td>
-          <td>{{mesa.status}}</td>
-          <td><button type="button" class="btn btn-success btn-sm" routerLink="/dashboard/mesas/editar/{{mesa.id}}"><i class="fas fa-pencil-alt"></i></button></td>
-          <td><button type="button" class="btn btn-danger btn-sm" (click)="trocaId(mesa.id)" data-toggle="modal" data-target="#confirmDialog"><i class="fas fa-trash-alt"></i></button></td>
-        </tr>
-      </tbody>
-    </table>
-    <div *ngIf="!existemMesas()">
-      <span class="badge badge-info">Nenhuma mesa cadastrada</span>
+  <app-loading [loader]="loader"></app-loading>
+  <div *ngIf="!loader && !error">
+    <div class="form-group row">
+        <button class="btn btn-primary add" routerLink="/dashboard/mesas/novo">Nova Mesa</button>
     </div>
+      <br>   
+  <table class="table table-hover" *ngIf="existemMesas()">
+        <thead>
+          <tr>
+            <th >Id</th>
+            <th >Nome</th>
+            <th >Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let mesa of mesas">
+            <td>{{mesa.id}}</td>
+            <td>{{mesa.nome}}</td>
+            <td>{{mesa.status}}</td>
+            <td><button type="button" class="btn btn-success btn-sm" routerLink="/dashboard/mesas/editar/{{mesa.id}}"><i class="fas fa-pencil-alt"></i></button></td>
+            <td><button type="button" class="btn btn-danger btn-sm" (click)="trocaId(mesa.id)" data-toggle="modal" data-target="#confirmDialog"><i class="fas fa-trash-alt"></i></button></td>
+          </tr>
+        </tbody>
+      </table>
+      <div *ngIf="!existemMesas()">
+        <span class="badge badge-info">Nenhuma mesa cadastrada</span>
+      </div>
+  </div>
+  <div *ngIf="!loader && error">
+      <span class="badge badge-danger">Dados não disponiveis, tente novamente mais tarde</span>
+  </div>
 </app-painel-simples>
 
 <div class="modal fade" id="confirmDialog" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">

@@ -1,5 +1,6 @@
-<app-painel-simples titulo="Demandas - Cozinha" col="12" tipo="default" >   
-<table class="table table-hover">
+<app-painel-simples titulo="Demandas - Cozinha" col="12" tipo="default" >
+<app-loading [loader]="loader"></app-loading>   
+  <table class="table table-hover" *ngIf="existemItens() && !loader" >
       <thead>
         <tr>
           <th >Nome</th>
@@ -20,5 +21,5 @@
         </tr>
       </tbody>
     </table>
-    <label class="badge badge-info" *ngIf="!existemItens()">Nenhum item em demanda</label>
+    <label class="badge badge-info" *ngIf="!existemItens() && !loader">Nenhum item em demanda</label>
 </app-painel-simples>
