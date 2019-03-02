@@ -20,7 +20,7 @@ export class DemandaCozinhaComponent implements OnInit {
     private websocket: WebsocketService) { }
 
   ngOnInit() {
-    this.itensByStatus(1);
+    this.itensByStatus('1');
   }
 
   atualizaDemandasCozinha(){
@@ -33,7 +33,7 @@ export class DemandaCozinhaComponent implements OnInit {
     .subscribe(() => {});
   }
 
-  itensByStatus(status: number){
+  itensByStatus(status: string){
     this.loader = true;
     this.pedidoService.itensByStatus(status)
     .subscribe((response) => {this.itens = response;

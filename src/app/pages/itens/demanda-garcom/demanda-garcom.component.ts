@@ -20,7 +20,7 @@ export class DemandaGarcomComponent implements OnInit {
     private websocket: WebsocketService) { }
 
   ngOnInit() {
-    this.itensByStatus(2);
+    this.itensByStatus('2');
   }
 
   
@@ -29,7 +29,7 @@ export class DemandaGarcomComponent implements OnInit {
     .subscribe(() => {});
   }
 
-  itensByStatus(status: number){
+  itensByStatus(status: string){
     this.loader = true;
     this.pedidoService.itensByStatus(status)
     .subscribe((response) => {this.itens = response;

@@ -33,7 +33,7 @@ export class PedidoService {
     return this.http.get<PagePedido>(`${API_CONFIG.baseUrl}/pedidos/status?status=${status}`);
   }
 
-  itensByStatus(status: number): Observable<CartItem[]>{
+  itensByStatus(status: string): Observable<CartItem[]>{
     return this.http.get<CartItem[]>(`${API_CONFIG.baseUrl}/pedidos/itens?status=${status}`);
   }
 
