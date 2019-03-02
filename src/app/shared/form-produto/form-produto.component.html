@@ -1,6 +1,6 @@
 <app-painel-simples titulo="{{title}}" col="12" tipo="default">
   <app-loading [loader]="loader"></app-loading>
-  <div *ngIf="!loader">
+  <div >
     <form #f="ngForm" (ngSubmit)="onSubmit()" >
       <div class="row">
         <div class="form-group col-md-6">
