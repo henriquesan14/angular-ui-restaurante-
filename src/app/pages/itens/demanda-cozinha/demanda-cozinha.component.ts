@@ -50,7 +50,7 @@ export class DemandaCozinhaComponent implements OnInit {
     this.pedidoService.updateStatusItem(idPedido, idProduto, status)
     .subscribe(()=> {
       this.toastr.success('Item movido para demandas garçom!', 'Sucesso');
-      this.itensByStatus(1);
+      this.itensByStatus('1');
       this.atualizaDemandasGarcom();
       this.atualizaDemandasCozinha();
       this.websocket.sendMessage(' ');

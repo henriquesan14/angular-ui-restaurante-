@@ -46,7 +46,7 @@ export class DemandaGarcomComponent implements OnInit {
     this.pedidoService.updateStatusItem(idPedido, idProduto, status)
     .subscribe(()=> {
       this.toastr.success('Item movido para itens finalizados!', 'Sucesso');
-      this.itensByStatus(2);
+      this.itensByStatus('2');
       this.atualizaDemandasGarcom();
       this.websocket.sendMessage(' ');
     }, (error) => {
