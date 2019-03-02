@@ -1,90 +1,83 @@
 <app-painel-simples titulo="Analytics" col="12" tipo="primary" color="white">
         
         <div class="row" style="display: flex;justify-content: center;" >
-            <app-loading [loader]="loaderCards"></app-loading>
-            <div *ngIf="!loaderCards"> 
-                <div class="col-md-3" *ngIf="hasRole(['ADMIN','GARCOM','COZINHEIRO'])">
-                    <div class="card text-white bg-success mb-3 click" routerLink="/dashboard/pedidos/hoje" style="max-width: 18rem;">
-                            <div class="card-body">
-                                <div class="box-icon">
-                                    <i class="fas fa-cart-arrow-down icon"></i>
-                                </div>
-                                <h6>Pedidos Diários</h6>
-                            <h5 class="card-text text-center">{{countPedidos}}</h5>
-                            </div>
+
+        <div class="col-md-3" *ngIf="hasRole(['ADMIN','GARCOM','COZINHEIRO'])">
+            <div class="card text-white bg-success mb-3 click" routerLink="/dashboard/pedidos/hoje" style="max-width: 18rem;">
+                    <div class="card-body">
+                        <div class="box-icon">
+                            <i class="fas fa-cart-arrow-down icon"></i>
+                        </div>
+                        <h6>Pedidos Diários</h6>
+                    <h5 class="card-text text-center">{{countPedidos}}</h5>
                     </div>
-                </div>
+            </div>
+        </div>
 
 
-                <div class="col-md-3" *ngIf="hasRole(['ADMIN','GARCOM','COZINHEIRO'])">
-                        <div class="card text-white bg-danger mb-3 click" routerLink="/dashboard/itens/hoje" style="max-width: 18rem;">
-                                <div class="card-body">
-                                    <div class="box-icon">
-                                        <i class="fas fa-chart-line icon"></i>
-                                    </div>
-                                    <h6>Itens Diários</h6>
-                                <h5 class="card-text text-center">{{countItens}}</h5>
-                                </div>
+        <div class="col-md-3" *ngIf="hasRole(['ADMIN','GARCOM','COZINHEIRO'])">
+                <div class="card text-white bg-danger mb-3 click" routerLink="/dashboard/itens/hoje" style="max-width: 18rem;">
+                        <div class="card-body">
+                            <div class="box-icon">
+                                <i class="fas fa-chart-line icon"></i>
+                            </div>
+                            <h6>Itens Diários</h6>
+                        <h5 class="card-text text-center">{{countItens}}</h5>
                         </div>
                 </div>
+        </div>
 
-                <div class="col-md-3" *ngIf="hasRole(['ADMIN','GARCOM','COZINHEIRO'])">
-                        <div class="card text-white bg-dark mb-3 click" routerLink="/dashboard/demandas/cozinha" style="max-width: 18rem;">
-                                <div class="card-body">
-                                    <div class="box-icon">
-                                        <i class="fas fa-utensils icon"></i>
-                                    </div>
-                                    <h6>Demandas Cozinha</h6>
-                                <h5 class="card-text text-center">{{cozinha}}</h5>
-                                </div>
+        <div class="col-md-3" *ngIf="hasRole(['ADMIN','GARCOM','COZINHEIRO'])">
+                <div class="card text-white bg-dark mb-3 click" routerLink="/dashboard/demandas/cozinha" style="max-width: 18rem;">
+                        <div class="card-body">
+                            <div class="box-icon">
+                                <i class="fas fa-utensils icon"></i>
+                            </div>
+                            <h6>Demandas Cozinha</h6>
+                        <h5 class="card-text text-center">{{cozinha}}</h5>
                         </div>
                 </div>
+        </div>
 
-                <div class="col-md-3" *ngIf="hasRole(['ADMIN','GARCOM','COZINHEIRO'])">
-                        <div class="card text-white bg-primary mb-3 click" routerLink="/dashboard/demandas/garcom" style="max-width: 18rem;">
-                                <div class="card-body">
-                                    <div class="box-icon">
-                                        <i class="fas fa-chart-bar icon"></i>
-                                    </div>
-                                    <h6>Demandas Garçom</h6>
-                                <h5 class="card-text text-center">{{garcom}}</h5>
-                                </div>
+        <div class="col-md-3" *ngIf="hasRole(['ADMIN','GARCOM','COZINHEIRO'])">
+                <div class="card text-white bg-primary mb-3 click" routerLink="/dashboard/demandas/garcom" style="max-width: 18rem;">
+                        <div class="card-body">
+                            <div class="box-icon">
+                                <i class="fas fa-chart-bar icon"></i>
+                            </div>
+                            <h6>Demandas Garçom</h6>
+                        <h5 class="card-text text-center">{{garcom}}</h5>
                         </div>
                 </div>
-            
+        </div>
 
-                <div class="col-md-12" *ngIf="hasRole(['ADMIN','GARCOM','COZINHEIRO'])">
-                    <h4 class="text-center">{{dataAtual.getDate() + ' de ' + mesAtual + ' ' +  dataAtual.getFullYear() + ' - ' + diaSemana}} </h4>
+        <div class="col-md-12" *ngIf="hasRole(['ADMIN','GARCOM','COZINHEIRO'])">
+            <h4 class="text-center">{{dataAtual.getDate() + ' de ' + mesAtual + ' ' +  dataAtual.getFullYear() + ' - ' + diaSemana}} </h4>
+        </div>
+
+        <div class="col-md-6" *ngIf="hasRole(['ADMIN'])">  
+                <div class="card">
+                    <div class="card-header">Produtos mais vendidos - Mês atual</div>
+                    <div class="card-body">
+                        <div *ngIf="nomesProdutos && nomesProdutos.length == 0">
+                            <p class="text-center text-muted">Dados não disponíveis</p>
+                        </div>
+                        <div style="display: block" *ngIf="nomesProdutos && nomesProdutos.length > 0">
+                            <canvas baseChart [data]="quantidade" [labels]="nomesProdutos" [chartType]="tipoGrafico"></canvas>
+                        </div>
+                    </div>
                 </div>
             </div>
-            
-            <app-loading [loader]="loaderGrafico1 && loaderGrafico2"></app-loading>
-            <div *ngIf="!loaderGrafico1 && !loaderGrafico2">
-
-                <div class="col-md-6" *ngIf="hasRole(['ADMIN'])">  
-                    <div class="card">
-                        <div class="card-header">Produtos mais vendidos - Mês atual</div>
-                        <div class="card-body">
-                            <div *ngIf="nomesProdutos && nomesProdutos.length == 0">
-                                <p class="text-center text-muted">Dados não disponíveis</p>
-                            </div>
-                            <div style="display: block" *ngIf="nomesProdutos && nomesProdutos.length > 0">
-                                <canvas baseChart [data]="quantidade" [labels]="nomesProdutos" [chartType]="tipoGrafico"></canvas>
-                            </div>
+        
+            <div class="col-md-6" *ngIf="hasRole(['ADMIN'])">  
+                <div class="card ">
+                    <div class="card-header" >Total de vendas - Mês atual</div>
+                    <div class="card-body">
+                        <div *ngIf="dias && dias.length == 0">
+                            <p class="text-center text-muted">Dados não disponíveis</p>
                         </div>
-                    </div>
-                </div>
-            
-                <div class="col-md-6" *ngIf="hasRole(['ADMIN'])">  
-                    <div class="card ">
-                        <div class="card-header" >Total de vendas - Mês atual</div>
-                        <div class="card-body">
-                            <div *ngIf="dias && dias.length == 0">
-                                <p class="text-center text-muted">Dados não disponíveis</p>
-                            </div>
-                            <div style="display: block" *ngIf="dias && dias.length > 0">
-                                <canvas baseChart [datasets]="lineChartData" [labels]="dias" [chartType]="tipoGrafico2"></canvas>
-                            </div>
+                        <div style="display: block" *ngIf="dias && dias.length > 0">
+                            <canvas baseChart [datasets]="lineChartData" [labels]="dias" [chartType]="tipoGrafico2"></canvas>
                         </div>
                     </div>
                 </div>

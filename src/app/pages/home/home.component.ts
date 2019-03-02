@@ -15,9 +15,7 @@ import { Router } from '@angular/router';
 })
 export class HomeComponent implements OnInit {
 
-  public loaderGrafico1= false;
-  public loaderGrafico2= false;
-  public loaderCards = false;
+
   public arrayMes = ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho',
 'Julho','Agosto','Setembro','Outubro','Setembro','Novembro','Dezembro'];
   public arrayDia = ['Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sabádo'];
@@ -115,21 +113,17 @@ export class HomeComponent implements OnInit {
   }
 
    statisticsProduto(){
-     this.loaderGrafico1 = true;
      this.produtoService.statisticsProduto()
      .subscribe( (response) => {
        this.nomesProdutos = response.map(x => {return x.nome;});
        this.quantidade = response.map(x => {return x.quantidade;});
-       this.loaderGrafico2 = false;
     },
      (error) => {
       console.log(error); 
-      this.loaderGrafico2 = false;
     });
    }
 
    statisticsPedido(){
-     this.loaderGrafico2 = true;
     this.pedidoService.statisticsPedido()
     .subscribe( (response) => {
       this.dias = response.map(x => {return x.dia;});
@@ -137,22 +131,17 @@ export class HomeComponent implements OnInit {
       this.lineChartData = [
         {data: totais , label: this.mesAtual} 
       ]; 
-      this.loaderGrafico2 = false;
    },
     (error) => {console.log(error);
-      this.loaderGrafico2 = false;
     });
   }
 
 
    countPedidosDiario() {
-    this.loaderCards = true;
     this.homeService.countPedidosDiario()
       .subscribe(
-        (response) => { this.countPedidos = response;
-          this.loaderCards = false;},
+        (response) => { this.countPedidos = response;},
         () => {
-          this.loaderCards = false;
         });
     }
 
