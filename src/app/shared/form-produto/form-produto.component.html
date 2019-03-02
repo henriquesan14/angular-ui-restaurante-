@@ -1,6 +1,6 @@
 <app-painel-simples titulo="{{title}}" col="12" tipo="default">
   <app-loading [loader]="loader"></app-loading>
-  <div >
+  <div *ngIf="!loader">
     <form #f="ngForm" (ngSubmit)="onSubmit()" >
       <div class="row">
         <div class="form-group col-md-6">
@@ -42,7 +42,7 @@
   </div>
 </app-painel-simples>
 
-<div class="modal fade" id="formCategoria" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div *ngIf="!loader" class="modal fade" id="formCategoria" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
           <div class="modal-header">
