@@ -10,6 +10,7 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class UsuarioDetailComponent implements OnInit {
 
+  public loader = false;
   usuario: Usuario = <Usuario>{};
   constructor(private usuarioService: UsuarioService,
     private activatedRoute: ActivatedRoute) { }
@@ -19,9 +20,12 @@ export class UsuarioDetailComponent implements OnInit {
   }
 
   find(id: string) {
+    this.loader = true;
     this.usuarioService.find(id)
-    .subscribe( (response) => {this.usuario = response; },
-     (error) => {console.log(error); });
+    .subscribe( (response) => {this.usuario = response;
+    this.loader = false; },
+     (error) => {console.log(error);
+      this.loader = false; });
   }
 
 }

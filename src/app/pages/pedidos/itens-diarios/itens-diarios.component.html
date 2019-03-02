@@ -18,7 +18,7 @@
               <td>{{item.produto.nome}}</td>
               <td>{{item.quantidade}}</td>
               <td>{{item.produto.preco * item.quantidade | currency: 'BRL'}}</td>
-              <td>{{item.pedido.mesa.nome}}</td>
+              <td>{{item.pedido?.mesa.nome}}</td>
               <td>{{item.pedido.data}}</td>
               <td>{{item.statusItem}}</td>
             </tr>
