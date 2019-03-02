@@ -1,29 +1,32 @@
-<h5 class="text-center">{{nomeCategoria}}</h5>
-<br>
-<div class="row container" >
-  <input placeholder="Pesquise o nome do produto..." [(ngModel)]="nome" type="text" name="nome" class="form-control col-md-10">
-  <button (click)="findAll(idCategoria, nome)" class="btn btn-dark"><i class="fas fa-search"></i></button>
-</div>
+<app-loading [loader]="loader"></app-loading>
+<div *ngIf="!loader">
+  <h5 class="text-center">{{nomeCategoria}}</h5>
+  <br>
+  <div class="row container" >
+    <input placeholder="Pesquise o nome do produto..." [(ngModel)]="nome" type="text" name="nome" class="form-control col-md-10">
+    <button (click)="findAll(idCategoria, nome)" class="btn btn-dark"><i class="fas fa-search"></i></button>
+  </div>
 
-<div class="container" *ngIf="existemProdutos()">
-    <div class="row">
-        <div class="col-md-2 box-produto" *ngFor="let produto of produtos">
-            <h6>{{produto.nome}}</h6>
-            <p>{{produto.preco | currency: 'BRL'}}</p>
-            <button (click)="addToCart(produto)" class="btn btn-primary btn-block">Adicionar</button>
-        </div>
+  <div class="container" *ngIf="existemProdutos()">
+      <div class="row">
+          <div class="col-md-2 box-produto" *ngFor="let produto of produtos">
+              <h6>{{produto.nome}}</h6>
+              <p>{{produto.preco | currency: 'BRL'}}</p>
+              <button (click)="addToCart(produto)" class="btn btn-primary btn-block">Adicionar</button>
+          </div>
+      </div>
+  </div>
+
+
+    <div *ngIf="!existemProdutos()">
+      <span class="badge badge-info">Nenhum produto cadastrado</span>
     </div>
+    <div class="text-center box-pag">
+      <i *ngIf="pageProdutos.number" (click)="findAll(idCategoria,nome,0,orderBy)" class="fas fa-angle-double-left"></i>
+      <i *ngIf="pageProdutos.number" (click)="findAll(idCategoria,nome, pageProdutos.number -1,orderBy)" class="fas fa-angle-left"></i>
+      <label [ngClass]="pageProdutos.number === i? 'atual': ''" class="number" (click)="findAll(idCategoria, nome, i,orderBy)" *ngFor="let i of totalPages()">{{i+1}}</label>
+      <i *ngIf="pageProdutos.number < pageProdutos.totalPages -1" (click)="findAll(idCategoria,nome,pageProdutos.number +1,orderBy)" class="fas fa-angle-right"></i>
+      <i *ngIf="pageProdutos.number < pageProdutos.totalPages -1" (click)="findAll(idCategoria,nome,pageProdutos.totalPages -1,orderBy)" class="fas fa-angle-double-right"></i>
+    </div>
+    <button class="btn btn-dark" routerLink="/dashboard/deliverys/novo">Voltar</button>
 </div>
-
-
-  <div *ngIf="!existemProdutos()">
-    <span class="badge badge-info">Nenhum produto cadastrado</span>
-  </div>
-  <div class="text-center box-pag">
-    <i *ngIf="pageProdutos.number" (click)="findAll(idCategoria,nome,0,orderBy)" class="fas fa-angle-double-left"></i>
-    <i *ngIf="pageProdutos.number" (click)="findAll(idCategoria,nome, pageProdutos.number -1,orderBy)" class="fas fa-angle-left"></i>
-    <label [ngClass]="pageProdutos.number === i? 'atual': ''" class="number" (click)="findAll(idCategoria, nome, i,orderBy)" *ngFor="let i of totalPages()">{{i+1}}</label>
-    <i *ngIf="pageProdutos.number < pageProdutos.totalPages -1" (click)="findAll(idCategoria,nome,pageProdutos.number +1,orderBy)" class="fas fa-angle-right"></i>
-    <i *ngIf="pageProdutos.number < pageProdutos.totalPages -1" (click)="findAll(idCategoria,nome,pageProdutos.totalPages -1,orderBy)" class="fas fa-angle-double-right"></i>
-  </div>
-  <button class="btn btn-dark" routerLink="/dashboard/deliverys/novo">Voltar</button>

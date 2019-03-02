@@ -13,6 +13,7 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class ProfileComponent implements OnInit {
 
+  public loader = false;
   formSenha: FormGroup;
   usuario: Usuario = <Usuario>{};
   formEnd: FormGroup;
@@ -32,11 +33,15 @@ export class ProfileComponent implements OnInit {
   }
 
   atualizarUsuario() {
+    this.loader = true;
     const user = this.storage.getLocalUser();
     this.usuarioService.atualizarUsuario(user.email)
       .subscribe(
-        () => { },
+        () => { 
+          this.loader = false;
+        },
         () => {
+          this.loader = false;
         });
   }
 
@@ -64,9 +69,11 @@ export class ProfileComponent implements OnInit {
   }
 
   findUser() {
+    this.loader = true;
     const user = this.storage.getLocalUser();
     this.usuarioService.findByEmail(user.email)
-    .subscribe((response: Usuario) => {this.usuario = response; },
+    .subscribe((response: Usuario) => {this.usuario = response;
+      this.loader = false; },
     (error) => {console.log(error); });
   }
 

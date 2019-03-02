@@ -13,6 +13,7 @@ import { Produto, PageProduto2 } from 'src/app/models/produto';
 })
 export class ProdutosCategoriaComponent implements OnInit {
 
+  public loader = false;
   produtos: Produto[];
   pageProdutos: PageProduto2 = <PageProduto2>{};
   nome;
@@ -46,10 +47,12 @@ export class ProdutosCategoriaComponent implements OnInit {
   }
 
   findAll(idCategoria: string, nome: string = '', page: number = 0, orderBy = 'nome', linesporPage: number = 5) {
+    this.loader = true;
     this.produtoService.findByCategoria(idCategoria, nome, page, orderBy, linesporPage)
     .subscribe(
       (response: PageProduto2) => {
         this.produtos = response.content; this.pageProdutos = response;
+        this.loader = false;
       }
     );
   }

@@ -1,3 +1,5 @@
+    <app-loading [loader]="loader"></app-loading>
+    <div *ngIf="!loader">
         <h5 class="text-center">{{nomeCategoria}}</h5>
         <br>
         <div class="row container">
@@ -27,4 +29,4 @@
             <i *ngIf="pageProdutos.number < pageProdutos.totalPages -1" (click)="findAll(idCategoria,nome,pageProdutos.totalPages -1,orderBy)" class="fas fa-angle-double-right"></i>
           </div>
           <button class="btn btn-dark" routerLink="/dashboard/pedidos/novo">Voltar</button>
-    
+    </div>

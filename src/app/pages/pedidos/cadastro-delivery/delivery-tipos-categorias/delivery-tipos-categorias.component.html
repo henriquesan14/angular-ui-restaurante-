@@ -1,5 +1,5 @@
 
-
+<app-loading [loader]="loader"></app-loading>
 <div class="box-categorias">   
   <div class="box-item" *ngFor="let categoria of categorias">
     <button class="btn btn-primary" routerLink="/dashboard/deliverys/novo/produtos/{{categoria.id}}"><i class="fas fa-tag"></i>{{categoria.nome}}</button>

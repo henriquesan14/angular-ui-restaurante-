@@ -9,6 +9,7 @@ import { CategoriaService } from 'src/app/services/domain/categoria.service';
 })
 export class TiposCategoriasComponent implements OnInit {
 
+  public loader = false;
   categorias: CategoriaDTO[];
   constructor(private categoriaService: CategoriaService) { }
 
@@ -16,8 +17,10 @@ export class TiposCategoriasComponent implements OnInit {
   }
 
   findByTipo(tipo: number){
+    this.loader = true;
     this.categoriaService.findByTipo(tipo)
-    .subscribe( (response) => {this.categorias = response;},
+    .subscribe( (response) => {this.categorias = response;
+      this.loader = false;},
     (error) => {console.log(error); });
   }
 
