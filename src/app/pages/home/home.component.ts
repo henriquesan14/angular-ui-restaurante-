@@ -51,11 +51,11 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.loader = true;
+    
     this.findUser();
     this.mesAtual = this.getMesExtenso(this.dataAtual.getMonth());
     this.diaSemana = this.getDiaExtenso(this.dataAtual.getDay());
-    this.loader = false;
+    
    }
 
    findUser(){
