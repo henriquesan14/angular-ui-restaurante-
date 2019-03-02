@@ -11,6 +11,7 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class EdicaoEnderecoComponent implements OnInit {
 
+  public loader = false;
   end: EnderecoDTO = <EnderecoDTO>{} ;
   idUsuario: string;
   idEndereco: string;
@@ -26,8 +27,11 @@ export class EdicaoEnderecoComponent implements OnInit {
   }
 
   getEndereco(idUsuario: string, idEndereco: string) {
+    this.loader = true;
     this.usuarioService.findEndereco(idUsuario, idEndereco)
-    .subscribe((response: EnderecoDTO) => {this.end = response; }, (error) => {console.log(error); });
+    .subscribe((response: EnderecoDTO) => {this.end = response;
+    this.loader = false; }, (error) => {console.log(error);
+    this.loader = false });
   }
 
   updateEndereco() {

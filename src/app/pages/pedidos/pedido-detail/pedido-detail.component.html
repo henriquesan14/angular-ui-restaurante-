@@ -1,89 +1,92 @@
 <app-painel-simples titulo="Detalhes Pedido - Id {{pedido.id}}" col="12">
-  <div class="row">
-    <div class="form-group col-md-6">
-      <label>Data/hora</label>
-      <label class="form-control">{{pedido.data}}</label>
+  <app-loading [loader]="loader"></app-loading>
+  <div *ngIf="!loader">
+    <div class="row">
+      <div class="form-group col-md-6">
+        <label>Data/hora</label>
+        <label class="form-control">{{pedido.data}}</label>
+      </div>
+
+      <div class="form-group col-md-6">
+        <label>Status</label>
+        <label class="form-control">{{pedido.status}}</label>
+      </div>
+
+      <div class="form-group col-md-6" *ngIf="pedido.mesa">
+          <label>Mesa</label>
+          <label  class="form-control">{{pedido.mesa.nome}}</label>
+      </div>
+
+      <div class="form-group col-md-6" *ngIf="pedido.cliente">
+          <label>Cliente</label>
+          <label  class="form-control" >{{pedido.cliente.nome + ' ' + pedido.cliente.sobrenome}}</label>
+      </div>
+
+      <div class="form-group col-md-6" *ngIf="pedido.funcionario">
+        <label>Funcionário</label>
+        <label  class="form-control" >{{pedido.funcionario.nome + ' ' + pedido.funcionario.sobrenome}}</label>
+      </div>
+
+      <div class="form-group col-md-6" *ngIf="pedido.enderecoEntrega">
+        <label>Endereço da Entrega</label>
+        <label  class="form-control" >{{pedido.enderecoEntrega.logradouro + ', ' + pedido.enderecoEntrega.numero + ', ' + pedido.enderecoEntrega.bairro + ' - ' + pedido.enderecoEntrega.cep}}</label>
     </div>
 
-    <div class="form-group col-md-6">
-      <label>Status</label>
-      <label class="form-control">{{pedido.status}}</label>
+
+    <div class="col-md-12">
+        <label class="badge badge-primary">Itens Pedidos</label>
     </div>
 
-    <div class="form-group col-md-6" *ngIf="pedido.mesa">
-        <label>Mesa</label>
-        <label  class="form-control">{{pedido.mesa.nome}}</label>
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th>Produto</th>
+          <th>Quantidade</th>
+          <th>Status</th>
+          <th>Subtotal</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of pedido.itens">
+          <td>{{item.produto.nome}}</td>
+          <td>{{item.quantidade}}</td>
+          <td>{{item.statusItem}}</td>
+          <td>{{item.quantidade * item.produto.preco | currency : 'BRL'}}</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="col-md-12">
+      <label class="badge badge-primary">Pagamentos</label>
     </div>
 
-    <div class="form-group col-md-6" *ngIf="pedido.cliente">
-        <label>Cliente</label>
-        <label  class="form-control" >{{pedido.cliente.nome + ' ' + pedido.cliente.sobrenome}}</label>
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th>Valor Recebido</th>
+          <th>Forma do Pagamento</th>
+
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let pag of pedido.pagamentos">
+          <td>{{pag.valorRecebido | currency:'BRL'}}</td>
+          <td>{{pag.formaPagamento}}</td>
+        </tr>
+      </tbody>
+    </table>
+
+  
+    <div class="col-md-12">
+        <label class="badge badge-danger">Total: {{pedido.valorTotal | currency: 'BRL'}}</label>
     </div>
 
-    <div class="form-group col-md-6" *ngIf="pedido.funcionario">
-      <label>Funcionário</label>
-      <label  class="form-control" >{{pedido.funcionario.nome + ' ' + pedido.funcionario.sobrenome}}</label>
-    </div>
-
-    <div class="form-group col-md-6" *ngIf="pedido.enderecoEntrega">
-      <label>Endereço da Entrega</label>
-      <label  class="form-control" >{{pedido.enderecoEntrega.logradouro + ', ' + pedido.enderecoEntrega.numero + ', ' + pedido.enderecoEntrega.bairro + ' - ' + pedido.enderecoEntrega.cep}}</label>
-  </div>
 
 
-  <div class="col-md-12">
-      <label class="badge badge-primary">Itens Pedidos</label>
-  </div>
-
-  <table class="table table-hover">
-    <thead>
-      <tr>
-        <th>Produto</th>
-        <th>Quantidade</th>
-        <th>Status</th>
-        <th>Subtotal</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let item of pedido.itens">
-        <td>{{item.produto.nome}}</td>
-        <td>{{item.quantidade}}</td>
-        <td>{{item.statusItem}}</td>
-        <td>{{item.quantidade * item.produto.preco | currency : 'BRL'}}</td>
-      </tr>
-    </tbody>
-  </table>
-
-  <div class="col-md-12">
-    <label class="badge badge-primary">Pagamentos</label>
-  </div>
-
-  <table class="table table-hover">
-    <thead>
-      <tr>
-        <th>Valor Recebido</th>
-        <th>Forma do Pagamento</th>
-
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let pag of pedido.pagamentos">
-        <td>{{pag.valorRecebido | currency:'BRL'}}</td>
-        <td>{{pag.formaPagamento}}</td>
-      </tr>
-    </tbody>
-  </table>
-
- 
-  <div class="col-md-12">
-      <label class="badge badge-danger">Total: {{pedido.valorTotal | currency: 'BRL'}}</label>
-  </div>
-
-
-
-    <div class="form-group col-md-12">
-      <button class="btn btn-success mr-2" *ngIf="pedido.status=='PENDENTE' && funcionario" data-toggle="modal" data-target="#pagamento">Adicionar Pagamento</button>
-      <button class="btn btn-light" routerLink="/dashboard/pedidos/pendente">Voltar</button>
+      <div class="form-group col-md-12">
+        <button class="btn btn-success mr-2" *ngIf="pedido.status=='PENDENTE' && funcionario" data-toggle="modal" data-target="#pagamento">Adicionar Pagamento</button>
+        <button class="btn btn-light" routerLink="/dashboard/pedidos/pendente">Voltar</button>
+      </div>
     </div>
   </div>
 </app-painel-simples>

@@ -11,6 +11,7 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class EdicaoMesaComponent implements OnInit {
 
+  public loader = false;
   mesa: MesaDTO = <MesaDTO>{};
   id: string;
   constructor(private mesaService: MesaService,
@@ -24,12 +25,15 @@ export class EdicaoMesaComponent implements OnInit {
   }
 
   findMesa(id: string){
+    this.loader = true;
     this.mesaService.find(id)
     .subscribe((response) => {
       this.mesa = response;
+      this.loader = false;
     },
     (errror) => {
       this.toastr.error('Falha ao carregar mesa', 'Falha');
+      this.loader = false;
     });
   }
 

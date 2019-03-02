@@ -20,6 +20,7 @@ export class FormProdutoComponent implements OnInit {
   public formCategoria: FormGroup;
   title: string;
   btn: string;
+  @Input() loader = false;
   @Input() produto: Produto = <Produto>{};
   @Input() id: number;
   @Output() outputProduto: EventEmitter<Produto> = new EventEmitter();

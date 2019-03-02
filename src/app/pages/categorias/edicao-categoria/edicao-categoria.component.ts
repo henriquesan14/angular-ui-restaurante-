@@ -11,6 +11,7 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class EdicaoCategoriaComponent implements OnInit {
 
+  public loader = false;
   public id: string;
   public categoria: CategoriaDTO = <CategoriaDTO>{};
   constructor(private categoriaService: CategoriaService,
@@ -24,9 +25,12 @@ export class EdicaoCategoriaComponent implements OnInit {
   }
 
   findCategoria(id: string){
+    this.loader = true;
     this.categoriaService.find(id)
-    .subscribe( (response) => {this.categoria = response; },
-    (error) => {this.toastr.error('Falha ao carregar categoria', 'Falha'); });
+    .subscribe( (response) => {this.categoria = response;
+    this.loader = false; },
+    (error) => {this.toastr.error('Falha ao carregar categoria', 'Falha');
+    this.loader = false; });
   }
 
   updateCategoria(categoria: CategoriaDTO) {

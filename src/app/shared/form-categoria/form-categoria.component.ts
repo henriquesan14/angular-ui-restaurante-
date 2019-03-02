@@ -8,8 +8,10 @@ import { CategoriaDTO } from 'src/app/models/categoria.dto';
 })
 export class FormCategoriaComponent implements OnInit {
 
+  
   title: string;
   btn: string;
+  @Input() loader = false;
   @Input() categoria: CategoriaDTO = <CategoriaDTO>{};
   @Input() id: number;
   @Output() outputCategoria: EventEmitter<CategoriaDTO> = new EventEmitter();

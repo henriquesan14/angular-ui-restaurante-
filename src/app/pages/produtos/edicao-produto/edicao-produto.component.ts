@@ -3,7 +3,6 @@ import { Produto } from 'src/app/models/produto';
 import { ProdutoService } from 'src/app/services/domain/produto.service';
 import { ToastrService } from 'ngx-toastr';
 import { Router, ActivatedRoute } from '@angular/router';
-import { CategoriaDTO } from 'src/app/models/categoria.dto';
 
 @Component({
   selector: 'app-edicao-produto',
@@ -12,6 +11,7 @@ import { CategoriaDTO } from 'src/app/models/categoria.dto';
 })
 export class EdicaoProdutoComponent implements OnInit {
 
+  public loader = false;
   id: string;
   produto: Produto = <Produto>{};
   constructor(private produtoService: ProdutoService,
@@ -28,9 +28,12 @@ export class EdicaoProdutoComponent implements OnInit {
   }
 
   getProduto(id: string){
+    this.loader = true;
     this.produtoService.find(id)
-    .subscribe((response: Produto) => {this.produto = response; },
-    () => {this.toastr.error('Falha ao buscar produto', 'Falha'); });
+    .subscribe((response: Produto) => {this.produto = response;
+    this.loader = false; },
+    () => {this.toastr.error('Falha ao buscar produto', 'Falha');
+    this.loader = false; });
   }
 
   updateProduto(produto: Produto){

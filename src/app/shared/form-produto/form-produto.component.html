@@ -1,42 +1,45 @@
 <app-painel-simples titulo="{{title}}" col="12" tipo="default">
-  <form #f="ngForm" (ngSubmit)="onSubmit()" >
-    <div class="row">
-      <div class="form-group col-md-6">
-        <label for="nome">Nome*</label>
-        <input type="text" name="nome" #nome="ngModel" [(ngModel)]="produto.nome" [class.is-invalid]="!nome.valid && nome.touched" id="nome"   
-        class="form-control" required maxlength="50" minlength="2"/>
-        <div *ngIf="!nome.valid && nome.touched" class="text-danger">
-            Informe o nome do produto
-        </div>
-      </div>
-      <div  class="form-group col-md-6">
-          <label for="preco">Valor Unitário*</label>
-          <input type="text" placeholder="0.00" #preco="ngModel" [(ngModel)]="produto.preco" [class.is-invalid]="!preco.valid && preco.touched" id="preco" name="preco"
-           class="form-control" [textMask]="{mask: numberMask, guide: false}"  required/>
-           <div *ngIf="!preco.valid && preco.touched" class=" text-danger">
-              Informe um valor válido
+  <app-loading [loader]="loader"></app-loading>
+  <div *ngIf="!loader">
+    <form #f="ngForm" (ngSubmit)="onSubmit()" >
+      <div class="row">
+        <div class="form-group col-md-6">
+          <label for="nome">Nome*</label>
+          <input type="text" name="nome" #nome="ngModel" [(ngModel)]="produto.nome" [class.is-invalid]="!nome.valid && nome.touched" id="nome"   
+          class="form-control" required maxlength="50" minlength="2"/>
+          <div *ngIf="!nome.valid && nome.touched" class="text-danger">
+              Informe o nome do produto
           </div>
-      </div>
-      
-      <div class="form-group col-md-6">
-        <label>Categoria*</label>
-        <select required class="form-control" name="categoria" [(ngModel)]="produto.categoria" [compareWith]="comparaCategoria" #categoria="ngModel">
-          <option *ngFor="let categoria of categorias"  [ngValue]="categoria" required>{{categoria.nome}}</option>
-        </select>
-        <div *ngIf="!categoria.value && categoria.touched" class="text-danger">
-            Informe a categoria
         </div>
-        <button type="button" class="btn btn-primary " data-toggle="modal" data-target="#formCategoria"><i class="fas fa-plus"></i></button>
-      </div> 
+        <div  class="form-group col-md-6">
+            <label for="preco">Valor Unitário*</label>
+            <input type="text" placeholder="0.00" #preco="ngModel" [(ngModel)]="produto.preco" [class.is-invalid]="!preco.valid && preco.touched" id="preco" name="preco"
+            class="form-control" [textMask]="{mask: numberMask, guide: false}"  required/>
+            <div *ngIf="!preco.valid && preco.touched" class=" text-danger">
+                Informe um valor válido
+            </div>
+        </div>
         
-      
+        <div class="form-group col-md-6">
+          <label>Categoria*</label>
+          <select required class="form-control" name="categoria" [(ngModel)]="produto.categoria" [compareWith]="comparaCategoria" #categoria="ngModel">
+            <option *ngFor="let categoria of categorias"  [ngValue]="categoria" required>{{categoria.nome}}</option>
+          </select>
+          <div *ngIf="!categoria.value && categoria.touched" class="text-danger">
+              Informe a categoria
+          </div>
+          <button type="button" class="btn btn-primary " data-toggle="modal" data-target="#formCategoria"><i class="fas fa-plus"></i></button>
+        </div> 
+          
+        
 
-      <div class="form-group col-md-12">
-        <button type="submit" [disabled]="!f.valid" class="btn btn-success">{{btn}}</button>
-        <button class="btn btn-light" routerLink="/dashboard/produtos" >Voltar</button>
+        <div class="form-group col-md-12">
+          <button type="submit" [disabled]="!f.valid" class="btn btn-success">{{btn}}</button>
+          <button class="btn btn-light" routerLink="/dashboard/produtos" >Voltar</button>
+        </div>
       </div>
-    </div>
-  </form>
+    </form>
+  </div>
 </app-painel-simples>
 
 <div class="modal fade" id="formCategoria" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">

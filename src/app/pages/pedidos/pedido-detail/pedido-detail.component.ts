@@ -29,6 +29,8 @@ export class PedidoDetailComponent implements OnInit {
     allowNegative: false,
     allowLeadingZeroes: false
   });
+
+  public loader = false;
   formPag: FormGroup;
   funcionario = false;
   usuario: Usuario = <Usuario>{perfis: []};
@@ -78,11 +80,14 @@ export class PedidoDetailComponent implements OnInit {
 
 
   find(id: string){
+    this.loader = true;
     this.pedidoService.find(id)
     .subscribe((response) => {
       this.pedido = response;
+      this.loader = false;
     },
-    (error) => {console.log(error);});
+    (error) => {console.log(error);
+    this.loader = false;});
   }
 
   getUsuario(){

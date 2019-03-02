@@ -10,6 +10,7 @@ export class FormMesaComponent implements OnInit {
 
   title: string;
   btn: string;
+  @Input() loader = false;
   @Input() mesa: MesaDTO = <MesaDTO>{};
   @Input() id: number;
   @Output() outputMesa: EventEmitter<MesaDTO> = new EventEmitter();
