@@ -14,7 +14,7 @@ export interface Pedido{
     itens: CartItem[];
     valorTotal: number;
     pagamentos: Pagamento[];
-    mesa: MesaDTO;
+    mesa?: MesaDTO;
     enderecoEntrega: EnderecoDTO;
     "@type": string;
 }
