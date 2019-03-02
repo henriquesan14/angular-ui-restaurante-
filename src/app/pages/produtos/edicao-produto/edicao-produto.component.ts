@@ -18,13 +18,13 @@ export class EdicaoProdutoComponent implements OnInit {
     private toastr: ToastrService,
     private router: Router,
     private activatedRoute: ActivatedRoute) {
-      this.id = this.activatedRoute.snapshot.params.id;
-    this.getProduto(this.activatedRoute.snapshot.params.id);
+      
      }
 
 
   ngOnInit() {
-
+    this.id = this.activatedRoute.snapshot.params.id;
+    this.getProduto(this.activatedRoute.snapshot.params.id);
   }
 
   getProduto(id: string){
