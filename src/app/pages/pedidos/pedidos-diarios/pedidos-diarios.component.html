@@ -22,7 +22,7 @@
             <td>{{pedido.mesa}}</td>
             <td>{{pedido.cliente}}</td>
             <td>{{pedido.valorTotal | currency: 'BRL'}}</td>
-            <td class="badge badge-pill" [ngClass]="pedido.status == 'Pendente' ? 'badge-danger' : 'badge-success'">{{pedido.status}}</td>
+            <td class="badge fs" [ngClass]="pedido.status == 'Pendente' ? 'badge-danger' : 'badge-success'">{{pedido.status}}</td>
             <td><button class="btn btn-primary btn-sm" routerLink="/dashboard/pedidos/details/{{pedido.id}}"><i class="fas fa-list"></i></button></td>
           </tr>
         </tbody>

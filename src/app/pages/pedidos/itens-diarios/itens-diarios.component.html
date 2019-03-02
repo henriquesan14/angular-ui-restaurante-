@@ -20,7 +20,7 @@
               <td>{{item.produto.preco * item.quantidade | currency: 'BRL'}}</td>
               <td>{{item.pedido.mesa?.nome}}</td>
               <td>{{item.pedido.data}}</td>
-              <td class="badge badge-pill" [ngClass]="item.statusItem == 'PENDENTE' ? 'badge-danger': 'badge-success'" >{{item.statusItem}}</td>
+              <td class="badge fs" [ngClass]="item.statusItem == 'PENDENTE' ? 'badge-danger': 'badge-success'" >{{item.statusItem}}</td>
             </tr>
           </tbody>
         </table>
