@@ -15,6 +15,7 @@ import { Router } from '@angular/router';
 })
 export class HomeComponent implements OnInit {
 
+  public loader = false;
   public arrayMes = ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho',
 'Julho','Agosto','Setembro','Outubro','Setembro','Novembro','Dezembro'];
   public arrayDia = ['Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sabádo'];
@@ -50,9 +51,11 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.loader = true;
     this.findUser();
     this.mesAtual = this.getMesExtenso(this.dataAtual.getMonth());
     this.diaSemana = this.getDiaExtenso(this.dataAtual.getDay());
+    this.loader = false;
    }
 
    findUser(){

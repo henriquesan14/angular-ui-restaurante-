@@ -1,7 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter} from '@angular/core';
 import { Produto } from 'src/app/models/produto';
 import { CategoriaService } from 'src/app/services/domain/categoria.service';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import createNumberMask from 'text-mask-addons/dist/createNumberMask';
 import { ToastrService } from 'ngx-toastr';
 import { CategoriaDTO } from 'src/app/models/categoria.dto';
@@ -14,10 +13,8 @@ import { CategoriaDTO } from 'src/app/models/categoria.dto';
 export class FormProdutoComponent implements OnInit {
 
   constructor(public categoriaService: CategoriaService,
-     private formBuilder: FormBuilder,
      private toastr: ToastrService){}
 
-  public formCategoria: FormGroup;
   title: string;
   btn: string;
   @Input() loader = false;
@@ -66,19 +63,12 @@ export class FormProdutoComponent implements OnInit {
     }
   }
 
-  configuraForm(){
-    this.formCategoria = this.formBuilder.group({
-      nome: [null, Validators.required],
-      tipoCategoria: [null, Validators.required]
-    });
-  }
-
 
 
   addCategoria() {
     this.categoriaService.insert(this.categoria)
     .subscribe(() => {
-      
+      this.categoria = <CategoriaDTO>{};
       this.findAll();
       this.toastr.success('Categoria cadastrada!', 'Sucesso'); },
     (error) => {this.toastr.error(error.error.message, 'Falha'); });
