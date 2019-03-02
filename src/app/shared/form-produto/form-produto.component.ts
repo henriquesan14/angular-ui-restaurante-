@@ -54,8 +54,8 @@ export class FormProdutoComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.configuraForm();
     this.findAll();
+    this.configuraForm();
     if (this.id === undefined){
       this.title = 'Novo Produto';
       this.btn = 'Cadastrar';
