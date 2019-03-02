@@ -25,6 +25,7 @@ export class FormProdutoComponent implements OnInit {
   @Input() id: number;
   @Output() outputProduto: EventEmitter<Produto> = new EventEmitter();
   categorias: CategoriaDTO[];
+  public categoria: CategoriaDTO = <CategoriaDTO>{};
 
   public numberMask = createNumberMask({
     prefix: '',
@@ -55,7 +56,7 @@ export class FormProdutoComponent implements OnInit {
 
   ngOnInit() {
     this.findAll();
-    this.configuraForm();
+    
     if (this.id === undefined){
       this.title = 'Novo Produto';
       this.btn = 'Cadastrar';
@@ -75,9 +76,9 @@ export class FormProdutoComponent implements OnInit {
 
 
   addCategoria() {
-    this.categoriaService.insert(this.formCategoria.value)
+    this.categoriaService.insert(this.categoria)
     .subscribe(() => {
-      this.formCategoria.reset();
+      
       this.findAll();
       this.toastr.success('Categoria cadastrada!', 'Sucesso'); },
     (error) => {this.toastr.error(error.error.message, 'Falha'); });
