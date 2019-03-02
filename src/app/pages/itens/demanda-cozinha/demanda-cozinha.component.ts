@@ -46,7 +46,7 @@ export class DemandaCozinhaComponent implements OnInit {
     return this.itens && this.itens.length > 0;
   }
 
-  updateStatusItem(idPedido: string, idProduto: string, status = 2){
+  updateStatusItem(idPedido: string, idProduto: string, status = '2'){
     this.pedidoService.updateStatusItem(idPedido, idProduto, status)
     .subscribe(()=> {
       this.toastr.success('Item movido para demandas garçom!', 'Sucesso');

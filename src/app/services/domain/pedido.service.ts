@@ -37,7 +37,7 @@ export class PedidoService {
     return this.http.get<CartItem[]>(`${API_CONFIG.baseUrl}/pedidos/itens?status=${status}`);
   }
 
-  updateStatusItem(idPedido: string, idProduto: string, status: number){
+  updateStatusItem(idPedido: string, idProduto: string, status: string){
     return this.http.put(`${API_CONFIG.baseUrl}/pedidos/itens?idPedido=${idPedido}&idProduto=${idProduto}`,status);
   }
 

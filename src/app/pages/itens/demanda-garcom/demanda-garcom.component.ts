@@ -42,7 +42,7 @@ export class DemandaGarcomComponent implements OnInit {
     return this.itens && this.itens.length > 0;
   }
 
-  updateStatusItem(idPedido: string, idProduto: string, status = 3){
+  updateStatusItem(idPedido: string, idProduto: string, status = '3'){
     this.pedidoService.updateStatusItem(idPedido, idProduto, status)
     .subscribe(()=> {
       this.toastr.success('Item movido para itens finalizados!', 'Sucesso');
