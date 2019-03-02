@@ -1,6 +1,6 @@
 <app-painel-simples titulo="Analytics" col="12" tipo="primary" color="white">
-        
-        <div class="row" style="display: flex;justify-content: center;" >
+        <app-loading [loader]="loaderCards && loaderGraficos"></app-loading>
+        <div class="row" style="display: flex;justify-content: center;" *ngIf="!loaderCards && !loaderGraficos" >
 
         <div class="col-md-3" *ngIf="hasRole(['ADMIN','GARCOM','COZINHEIRO'])">
             <div class="card text-white bg-success mb-3 click" routerLink="/dashboard/pedidos/hoje" style="max-width: 18rem;">

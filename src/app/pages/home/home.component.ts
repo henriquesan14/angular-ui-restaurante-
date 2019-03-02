@@ -15,7 +15,8 @@ import { Router } from '@angular/router';
 })
 export class HomeComponent implements OnInit {
 
-
+  public loaderGraficos = false;
+  public loaderCards = false;
   public arrayMes = ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho',
 'Julho','Agosto','Setembro','Outubro','Setembro','Novembro','Dezembro'];
   public arrayDia = ['Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sabádo'];
@@ -113,13 +114,16 @@ export class HomeComponent implements OnInit {
   }
 
    statisticsProduto(){
+     this.loaderGraficos = true;
      this.produtoService.statisticsProduto()
      .subscribe( (response) => {
        this.nomesProdutos = response.map(x => {return x.nome;});
        this.quantidade = response.map(x => {return x.quantidade;});
+       this.loaderGraficos = false;
     },
      (error) => {
       console.log(error); 
+      this.loaderGraficos = false;
     });
    }
 
@@ -138,10 +142,13 @@ export class HomeComponent implements OnInit {
 
 
    countPedidosDiario() {
+    this.loaderCards = true;
     this.homeService.countPedidosDiario()
       .subscribe(
-        (response) => { this.countPedidos = response;},
+        (response) => { this.countPedidos = response;
+          this.loaderCards = false;},
         () => {
+          this.loaderCards = false;
         });
     }
 
