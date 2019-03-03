@@ -38,7 +38,8 @@ export class PedidoService {
   }
 
   updateStatusItem(idPedido: string, idProduto: string, status: string){
-    return this.http.put(`${API_CONFIG.baseUrl}/pedidos/itens?idPedido=${idPedido}&idProduto=${idProduto}`,status);
+    let statusNum = parseInt(status);
+    return this.http.put(`${API_CONFIG.baseUrl}/pedidos/itens?idPedido=${idPedido}&idProduto=${idProduto}`,statusNum);
   }
 
   pedidosDiario(): Observable<PagePedido>{
