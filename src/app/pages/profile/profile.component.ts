@@ -57,7 +57,15 @@ export class ProfileComponent implements OnInit {
       }
       this.atualizarUsuario();
       this.toastr.success('Dados atualizados!', 'Sucesso');
-    }, (error) => {this.toastr.error(error.error.message); });
+    }, (error) => {
+      if (error.error.errors){
+        for (const err of error.error.errors){
+          this.toastr.error(err.message, 'Falha');
+        }
+       } else {
+        this.toastr.error(error.error.message, 'Falha');
+       }
+     });
   }
 
   configuraFormSenha(){
