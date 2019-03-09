@@ -1,39 +1,84 @@
-
 <div id="form-container">
-    
-    <div class="panel" id="form-box">
-        <form #f="ngForm"  method="post">
-            <img src="assets/imgs/user2.png" id="logo"/>
-            <div class="input-group mb-3">
-              <div class="input-group-prepend">
-                <span class="input-group-text" id="basic-addon1"><i class="fas fa-user"></i></span>
-              </div>
-              <input  required email type="text" name="email" [(ngModel)]="creds.email" class="form-control" placeholder="Email" aria-label="email" aria-describedby="basic-addon1">
-            </div>
+  <div class="panel" id="form-box">
+    <form #f="ngForm" method="post">
+      <img src="assets/imgs/user2.png" id="logo" />
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text" id="basic-addon1"
+            ><i class="fas fa-user"></i
+          ></span>
+        </div>
+        <input
+          required
+          email
+          type="text"
+          name="email"
+          [(ngModel)]="creds.email"
+          class="form-control"
+          placeholder="Email"
+          aria-label="email"
+          aria-describedby="basic-addon1"
+        />
+      </div>
 
-            <div class="input-group mb-3">
-              <div class="input-group-prepend">
-                <span class="input-group-text" id="basic-addon1"><i class="fas fa-lock"></i></span>
-              </div>
-              <input  required minlength="6" maxlength="40" type="password" [(ngModel)]="creds.senha" name="senha" class="form-control" placeholder="Password" aria-label="Username" aria-describedby="basic-addon1">
-            </div>
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text" id="basic-addon1"
+            ><i class="fas fa-lock"></i
+          ></span>
+        </div>
+        <input
+          required
+          minlength="6"
+          maxlength="40"
+          type="password"
+          [(ngModel)]="creds.senha"
+          name="senha"
+          class="form-control"
+          placeholder="Password"
+          aria-label="Username"
+          aria-describedby="basic-addon1"
+        />
+      </div>
 
-            <div class="form-group">
-                <input [disabled]="!f.valid" type="submit" (click)="login()" value="Entrar" class="btn btn-success form-control" />
-                <button class="btn form-control register" routerLink="/register">Registrar</button>  
-            </div>
+      <div class="form-group">
+        <input
+          [disabled]="!f.valid"
+          type="submit"
+          (click)="login()"
+          value="Entrar"
+          class="btn btn-success form-control"
+        />
+        <button class="btn form-control register" routerLink="/register">
+          Registrar
+        </button>
+      </div>
 
-            <div class="icons mb-2">
-                <a href="https://github.com/henriquesan14" target="_blank"><i class="fab fa-github mr-3"></i></a>
-                <a href="https://www.linkedin.com/in/henrique-santos-30a382152/" target="_blank"><i class="fab fa-linkedin"></i></a>
-                <app-loading [loader]="loaderLogin"></app-loading>
-            </div>
+      <div class="icons mb-2">
+        <a href="https://github.com/henriquesan14" target="_blank"
+          ><i class="fab fa-github mr-3"></i
+        ></a>
+        <a
+          href="https://www.linkedin.com/in/henrique-santos-30a382152/"
+          target="_blank"
+          ><i class="fab fa-linkedin"></i
+        ></a>
+        <app-loading [loader]="loaderLogin"></app-loading>
+      </div>
 
-            
-
-            <div class="doc">
-              <a href="https://github.com/henriquesan14/sistema-restaurante" target="_blank"><i class="fas fa-question mr-3"></i>Leia a documentação</a>
-            </div>
-        </form>
-    </div>
+      <div class="doc">
+        <a
+          href="https://github.com/henriquesan14/sistema-restaurante"
+          target="_blank"
+          ><i class="fas fa-question mr-3"></i>Leia a documentação</a
+        >
+      </div>
+      <div>
+        <h6>Clique no botão para logar como:</h6>
+        <button (click)="logarAdmin()" class="btn btn-primary btn-sm mr-1">ADMIN</button>
+        <button (click)="logarGarcom()" class="btn btn-success btn-sm mr-1">GARÇOM</button>
+        <button (click)="logarCliente()" class="btn btn-dark btn-sm">CLIENTE</button>
+      </div>
+    </form>
+  </div>
 </div>

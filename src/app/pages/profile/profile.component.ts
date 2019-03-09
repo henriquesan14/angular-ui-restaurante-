@@ -63,7 +63,7 @@ export class ProfileComponent implements OnInit {
           this.toastr.error(err.message, 'Falha');
         }
        } else {
-        this.toastr.error(error.error.message, 'Falha');
+          this.toastr.error(error.error.message, 'Falha');
        }
      });
   }

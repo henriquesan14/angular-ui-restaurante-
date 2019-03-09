@@ -41,4 +41,19 @@ export class LoginComponent implements OnInit {
       this.loaderLogin = false;
     });
   }
+
+  logarAdmin(){
+    this.creds.email = 'henrique@gmail.com';
+    this.creds.senha = '123456';
+  }
+
+  logarGarcom(){
+    this.creds.email = 'gg@gmail.com';
+    this.creds.senha = '123456';
+  }
+
+  logarCliente(){
+    this.creds.email = 'xablau@gmail.com';
+    this.creds.senha = '123456';
+  }
 }
