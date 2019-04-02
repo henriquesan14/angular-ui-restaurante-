@@ -2,10 +2,12 @@
 <div *ngIf="!loader">
   <h5 class="text-center">{{nomeCategoria}}</h5>
   <br>
-  <div class="row container" >
-    <input placeholder="Pesquise o nome do produto..." [(ngModel)]="nome" type="text" name="nome" class="form-control col-md-10">
-    <button (click)="findAll(idCategoria, nome)" class="btn btn-dark"><i class="fas fa-search"></i></button>
-  </div>
+  <form (ngSubmit)="findAll(idCategoria, nome)">
+    <div class="row container" >
+      <input placeholder="Pesquise o nome do produto..." [(ngModel)]="nome" type="text" name="nome" class="form-control col-md-10">
+      <button type="submit" class="btn btn-dark"><i class="fas fa-search"></i></button>
+    </div>
+  </form>
 
   <div class="container" *ngIf="existemProdutos()">
       <div class="row">
