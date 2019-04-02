@@ -3,8 +3,10 @@
   <div *ngIf="!loader && !error">
     <div class="form-group row">
       <button class="btn btn-primary add" routerLink="/dashboard/produtos/novo">Novo Produto</button>
-      <input placeholder="Pesquise o nome do produto..." [(ngModel)]="nome" type="text" name="nome" class="form-control col-md-6">
-      <button (click)="findAll(nome)" class="btn btn-success col-md-1"><i class="fas fa-search"></i></button>
+      <form (ngSubmit)="findAll(nome)">
+        <input placeholder="Pesquise o nome do produto..." [(ngModel)]="nome" type="text" name="nome" class="form-control col-md-6">
+        <button type="submit" class="btn btn-success col-md-1"><i class="fas fa-search"></i></button>
+      </form>
     </div>
     <br>
       <table *ngIf="existemProdutos()" class="table table-hover">
