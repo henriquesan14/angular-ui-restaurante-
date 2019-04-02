@@ -1,3 +1,3 @@
 export const API_CONFIG = {
-    baseUrl: 'https://app-ui-restaurante.herokuapp.com'
+    baseUrl: 'https://api-restaurante.herokuapp.com'
 }
