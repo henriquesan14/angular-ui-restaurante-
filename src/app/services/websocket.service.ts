@@ -10,7 +10,7 @@ export class WebsocketService {
 
   constructor(public homeService: HomeService){}
 
-  private serverUrl = 'http://localhost:8080/socket';
+  private serverUrl = 'https://api-restaurante.herokuapp.com/socket';
   private stompClient;
 
   initializeWebSocketConnection(){
