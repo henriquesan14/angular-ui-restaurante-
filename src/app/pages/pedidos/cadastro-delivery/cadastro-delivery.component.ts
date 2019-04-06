@@ -107,10 +107,13 @@ export class CadastroDeliveryComponent implements OnInit {
       this.storage.setCartDelivery(null);
       this.idCliente = null;
       this.nomeCliente = null;
-      this.atualizaDemandaCozinha();
       this.pedido = <Pedido>{"@type": 'pedidoDelivery'};
       this.router.navigateByUrl('/dashboard/pedidos');
-      this.websocket.sendMessage(' '); },
+      this.websocket.sendMessage(' ');
+      let notification = new Notification('Alerta', {
+        body: 'Um novo pedido foi emitido'});
+      setTimeout(function(){notification.close();},5000);
+     },
     (error) => {
       console.log(this.pedido);
       console.log(error);
